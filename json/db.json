@@ -1,0 +1,38 @@
+{
+  "users": [
+    {
+      "organizationName": "SPK Groups",
+      "email": "spkgroups@gmail.com",
+      "password": "Spk05@gmail.com",
+      "gstNumber": "29ABCDE1234F1Z5",
+      "role": "user",
+      "id": "jyJexLQaUpE"
+    },
+    {
+      "organizationName": "KG Groups",
+      "email": "KG@gmail.com",
+      "password": "Kggroups@05",
+      "gstNumber": "33AAAPL1234C1ZV",
+      "role": "user",
+      "id": "R9enaJG5YoQ"
+    },
+    {
+      "organizationName": "shanthi groups",
+      "email": "shanthi05@gmail.com",
+      "password": "Shanthi@2005",
+      "gstNumber": "07AABCU9603R1ZM",
+      "role": "user",
+      "id": "t-_XsgWviGM"
+    },
+    {
+      "organizationName": "Sanjay groups",
+      "email": "sanjay05@gmail.com",
+      "password": "Sanjay@2005",
+      "gstNumber": "24AABCT3518Q1ZX",
+      "role": "user",
+      "id": "kWY8jaMZEGA"
+    }
+  ],
+  "vendorDetaisl": [],
+  "$schema": "./node_modules/json-server/schema.json"
+}
