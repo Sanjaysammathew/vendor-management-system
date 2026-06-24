@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+     
+           <!-- navbar -->
+
+    <nav class="navbar navbar-expand-lg" id="nav-container">
+        <div class="container-fluid p-2" id="navbar">
+
+            <a class="navbar-brand fw-bold fs-4 d-flex align-items-center ms-lg-5" href="./index.html">
+                <i class="bi bi-buildings-fill me-2 fs-3"></i>
+                <span>VendorFlow</span>
+            </a>
+
+            <button class="navbar-toggler text-white border-white" 
+                    type="button" 
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navs">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse" id="navs">
+                <div class="navbar-nav ms-auto me-lg-5 align-items-lg-center">
+                    <div class="btn-container d-flex justify-content-center">
+                        
+                        <div class="nav-item mt-2 mt-lg-0 me-lg-2">
+                            <button class="btn px-3 fw-medium" 
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#loginModal" 
+                                    id="loginBtn">
+                                Login
+                            </button>
+                        </div>
+
+                        <div class="nav-item mt-2 mt-lg-0">
+                            <button class="btn px-3 fw-medium" 
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#registerModal" 
+                                    id="registerBtn">
+                                Register
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+           
+    <!-- Title Section -->
+
+    <div class="container hero-section my-3 my-md-4 py-5 py-md-5">
+        <div class="row align-items-center g-4">
+            <div class="col-12 col-md-6 order-2 order-md-1 text-center text-md-start">
+                
+                <div class="d-inline-block border border-dark rounded-pill px-3 py-1 text-uppercase tracking-wider fw-semibold text-dark mb-3" style="font-size: 0.7rem; letter-spacing: 0.1rem; border-width: 1.5px !important;">
+                    Onboard • Track • Verify 
+                </div>
+
+                <h1 class="hero-title fw-bold display-5 mb-4" style="line-height: 1.2;">
+                    The smarter way to manage<br>
+                    vendors, workflow, and growth
+                </h1>
+
+                <p class="hero-subtitle text-muted mb-4 fs-6" style="max-width: 480px; line-height: 1.6;">
+                    VendorFlow helps modern companies manage suppliers, automate compliance, and streamline procurement in one clean system.
+                </p>
+
+                <div class="mt-4">
+                    <button class="btn me-2" data-bs-toggle="modal" data-bs-target="#registerModal" id="registerBtn">
+                        Register
+                    </button>
+                    <button class="btn" data-bs-toggle="modal" data-bs-target="#loginModal" id="loginBtn">
+                        Login
+                    </button>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 text-center order-1 order-md-2 d-none d-md-block">
+                <img src="../assests/SVG/People.svg" alt="Expense Tracker" class="img-fluid hero-image">
+            </div>
+        </div>
+    </div>
+
+    <!-- features -->
+
+    <div class="container my-5 py-5 rounded-4" style="background-color: #F8F8F8;">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold display-6">Why Use VendorFlow?</h2>
+            <p class="text-muted mx-auto" style="max-width: 500px;">Streamlining communication and deadline management between organizations and suppliers.</p>
+        </div>
+
+        <div class="row g-4 px-2 px-md-4">
+            <div class="col-12 col-md-6">
+                <div class="card  border-0 shadow-sm p-4 bg-white rounded-4 transition-card">
+                    <div class="card-body">
+                        <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-3 mb-4" style="background: linear-gradient(135deg, rgba(83, 168, 144, 0.15), rgba(83, 168, 144, 0.05)); color: #53A890;">
+                            <i class="bi bi-speedometer2 fs-3"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Real-Time Metrics</h5>
+                        <p class="text-muted mb-0" style="line-height: 1.6;">Track total, pending, completed, and expired milestones instantly from an organized centralized dashboard architecture.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="card  border-0 shadow-sm p-4 bg-white rounded-4 transition-card">
+                    <div class="card-body">
+                        <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-3 mb-4" style="background: linear-gradient(135deg, rgba(83, 168, 144, 0.15), rgba(83, 168, 144, 0.05)); color: #53A890;">
+                            <i class="bi bi-chat-left-text-fill fs-3"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Completion Remarks</h5>
+                        <p class="text-muted mb-0" style="line-height: 1.6;">Vendors can submit execution remarks directly within their portal to instantly notify administrators of finalized workflows.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="card  border-0 shadow-sm p-4 bg-white rounded-4 transition-card">
+                    <div class="card-body">
+                        <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-3 mb-4" style="background: linear-gradient(135deg, rgba(83, 168, 144, 0.15), rgba(83, 168, 144, 0.05)); color: #53A890;">
+                            <i class="bi bi-calendar-plus-fill fs-3"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Smart Date Extensions</h5>
+                        <p class="text-muted mb-0" style="line-height: 1.6;">Easily handle delays. Vendors request extensions with custom structural remarks, allowing managers to validate and approve new target dates.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="card h-100 border-0 shadow-sm p-4 bg-white rounded-4 transition-card">
+                    <div class="card-body">
+                        <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-3 mb-4" style="background: linear-gradient(135deg, rgba(83, 168, 144, 0.15), rgba(83, 168, 144, 0.05)); color: #53A890;">
+                            <i class="bi bi-shield-lock-fill fs-3"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Automated Expirations</h5>
+                        <p class="text-muted mb-0" style="line-height: 1.6;">Contracts instantly transition to an expired status once target tracking dates pass without confirmed completion updates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+       <!-- steps to use this website -->
+
+       <div class="container my-5 py-3">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold display-6">How to Use VendorFlow?</h2>
+        <p class="text-muted mx-auto" style="max-width: 500px;">Streamlining communication and deadline management between organizations and suppliers.</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+        <div class="col-12 col-md-4">
+            <div class="card  text-center border-0 shadow-sm p-4 step-card">
+                <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-3 mb-4 mx-auto" style="background: linear-gradient(135deg, rgba(83, 168, 144, 0.15), rgba(83, 168, 144, 0.05)); color: #53A890; width: 64px; height: 64px;">
+                    <i class="bi bi-person-workspace fs-3"></i>
+                </div>
+                <h3 class="h5 fw-bold card-title mb-2">Login to Dashboard</h3>
+                <p class="text-muted small mb-0">
+                    Access your specific view as an administrator, manager, or vendor to immediately oversee targeted project metrics and active contracts.
+                </p>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="card  text-center border-0 shadow-sm p-4 step-card">
+                <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-3 mb-4 mx-auto" style="background: linear-gradient(135deg, rgba(83, 168, 144, 0.15), rgba(83, 168, 144, 0.05)); color: #53A890; width: 64px; height: 64px;">
+                    <i class="bi bi-file-earmark-text-fill fs-3"></i>
+                </div>
+                <h3 class="h5 fw-bold card-title mb-2">Track Contracts</h3>
+                <p class="text-muted small mb-0">
+                    Monitor total vendor actions in dynamic tables showing pending, completed, or auto-expired timelines based on target delivery dates.
+                </p>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="card text-center border-0 shadow-sm p-4 step-card">
+                <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-3 mb-4 mx-auto" style="background: linear-gradient(135deg, rgba(83, 168, 144, 0.15), rgba(83, 168, 144, 0.05)); color: #53A890; width: 64px; height: 64px;">
+                    <i class="bi bi-arrow-left-right fs-3"></i>
+                </div>
+                <h3 class="h5 fw-bold card-title mb-2">Manage Extensions</h3>
+                <p class="text-muted small mb-0">
+                    Vendors submit detailed execution remarks upon completion or request deadline updates that managers can instantly validate and accept.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+   
+<!-- footer -->
+    <div class="container-fluid p-4 text-center" style="background-color: #F8F8F8;">
+        <p class="text-muted mb-0">&copy; 2026 Expense Management &middot; Built for modern teams &middot; All rights reserved</p>
+    </div>
+
+
+      
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

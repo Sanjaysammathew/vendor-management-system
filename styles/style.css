@@ -1,0 +1,18 @@
+.navbar{
+    margin: 0;
+    padding: 0;
+}
+
+#navbar{
+    background-color: #F8F8F8;
+}
+
+#loginBtn{
+    background-color: #53A890;
+    color: white;
+}
+
+#registerBtn{
+    background-color: #53A890;
+    color: white;
+}
