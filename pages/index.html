@@ -206,7 +206,7 @@
                     </div>
                 </div>
                 <div class="modal-footer justify-content-end">
-                    <button class="btn btn-success">Login</button>
+                    <button class="btn btn-success" id="login">Login</button>
                 </div>
             </div>
         </div>
@@ -223,26 +223,31 @@
              <div class="mb-3">
                 <label for="org" class="form-label fw-bold">Organization</label>
                 <input type="text" class="form-control" placeholder="Enter a Organization Name" id="org">
+                <div id="error-loginName" class="text-danger small mt-1"></div>
              </div>
              <div class="mb-3">
                 <label for="email" class="form-label fw-bold">Email</label>
                 <input type="email" class="form-control" placeholder="Enter a Email" id="email">
+                <div id="error-loginEmail" class="text-danger small mt-1"></div>
              </div>
              <div class="mb-3">
-                <label for="password" class="form-label fw-bold">password</label>
-                <input type="password" class="form-control" placeholder="Enter password" id="password">
+                <label for="regPassword" class="form-label fw-bold">password</label>
+                <input type="password" class="form-control" placeholder="Enter password" id="regPassword">
+                <div id="error-loginPass" class="text-danger small mt-1"></div>
              </div>
               <div class="mb-3">
-                <label for="confirm-password" class="form-label fw-bold">Confirm password</label>
-                <input type="password" class="form-control" placeholder="Enter password" id="confirm-password">
+                <label for="confirmPassword" class="form-label fw-bold">Confirm password</label>
+                <input type="password" class="form-control" placeholder="Enter password" id="confirmPassword">
+                <div id="error-login-Confirmpass" class="text-danger small mt-1"></div>
              </div>
                     <div class="mb-3">
                 <label for="gst" class="form-label fw-bold">GST Number</label>
                 <input type="text" class="form-control" placeholder="Enter GST Number" id="gst">
+                <div id="error-loginGst" class="text-danger small mt-1"></div>
              </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-success">Register</button>
+                <button class="btn btn-success" id="register">Register</button>
             </div>
         </div>
     </div>
@@ -251,7 +256,9 @@
     <div class="container-fluid p-4 text-center" style="background-color: #F8F8F8;">
         <p class="text-muted mb-0">&copy; 2026 Expense Management &middot; Built for modern teams &middot; All rights reserved</p>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="../scripts/login.js"></script>
 </body>
 </html>
