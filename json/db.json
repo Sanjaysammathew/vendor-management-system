@@ -33,6 +33,23 @@
       "id": "kWY8jaMZEGA"
     }
   ],
-  "vendorDetails": [],
+  "vendorDetails": [
+    {
+      "organizationName": "SPK Groups",
+      "email": "spkgroups@gmail.com",
+      "gstNumber": "29ABCDE1234F1Z5",
+      "licenseNumber": "ELEC102345",
+      "phone": "8940997874",
+      "vendorType": "Electrical Appliances",
+      "description": "Providing electrical appliance and service to them",
+      "address": "123,Nehru Nagar ,coimbatore -06",
+      "isDeleted": false,
+      "status": "pending",
+      "remarks": "",
+      "createdAt": "2026-06-25T08:41:38.876Z",
+      "updatedAt": "2026-06-25T08:41:38.876Z",
+      "id": "G04w4vh6yVo"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }
