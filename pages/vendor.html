@@ -248,6 +248,8 @@
     </div>
 </div>
 
+<!-- task container -->
+
 <div class="container  rounded-4 p-5" style="background-color: #F8F8F8;">
   
     <div class="row g-4" id="vendorCards">
@@ -340,6 +342,57 @@
     </div>
 </div>
 
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Update Vendor</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <input type="hidden" id="editId">
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="editGST" readonly>
+                    <label>GST Number</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="editLicense">
+                    <label>License Number</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="editVendorType">
+                    <label>Vendor Type</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" id="editDesc"></textarea>
+                    <label>Description</label>
+                </div>
+
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="editCreatedAt" readonly>
+                    <label>Created At</label>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-success" id="updateBtn">
+                    Update
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
 
    <!-- offcanvas -->
 

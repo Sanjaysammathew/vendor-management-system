@@ -58,7 +58,7 @@ $("#number").on("input", function () {
 
 });
 
-//to check all fileds are completed
+//to check all fileds are completed and post details to db
 $("#saveBtn").click(async function () {
 
     let isValid = true;
@@ -151,6 +151,7 @@ $("#saveBtn").click(async function () {
             text: "Something went wrong"
         });
 
+
         console.log(error);
     }
 
@@ -167,6 +168,7 @@ async function loadVendorCards() {
         const vendors = await response.json();
 
         let cards = document.getElementById("vendorCards")
+        cards.innerHTML = "";
 
         vendors.forEach(vendor => {
 
@@ -233,15 +235,16 @@ async function loadVendorCards() {
                         <div class="card-footer bg-white border-0 d-flex gap-2">
 
                             <button
-                                class="btn flex-fill"
-                                onclick="editVendor(${vendor.id})" id="editTask">
+                                class="btn flex-fill " data-bs-toggle="modal"
+                                data-bs-target="#editModal"
+                                onclick="editVendor('${vendor.id}')" id="editTask">
                                 <i class="bi bi-pencil-square me-1"></i>
                                 Update
                             </button>
 
                             <button
                                 class="btn btn-outline-danger flex-fill"
-                                onclick="deleteVendor(${vendor.id})" id="deleteTask">
+                                onclick="deleteVendor('${vendor.id}')" id="deleteTask">
                                 <i class="bi bi-trash me-1"></i>
                                 Delete
                             </button>
@@ -259,6 +262,255 @@ async function loadVendorCards() {
     }
 }
 
+
+//edit task
+
+async function editVendor(id) {
+
+    try {
+
+        const response = await fetch(`${API}/${id}`);
+        const vendor = await response.json();
+
+        $("#editId").val(vendor.id);
+        $("#editGST").val(vendor.gstNumber);
+        $("#editLicense").val(vendor.licenseNumber);
+        $("#editVendorType").val(vendor.vendorType);
+        $("#editDesc").val(vendor.description);
+
+        $("#editCreatedAt").val(
+            new Date(vendor.createdAt).toLocaleDateString()
+        );
+
+    } catch (err) {
+        console.log(err);
+    }
+
+}
+
+// update Task
+
+$("#updateBtn").click(async function () {
+
+    const id = $("#editId").val();
+
+    const response = await fetch(`${API}/${id}`);
+    const vendor = await response.json();
+
+    const license = $("#editLicense").val().trim();
+const vendorType = $("#editVendorType").val().trim();
+const description = $("#editDesc").val().trim();
+
+if (license === "" || vendorType === "" || description === "") {
+    Swal.fire({
+        icon: "warning",
+        title: "Required",
+        text: "All fields are required."
+    });
+    return;
+}
+
+    const updatedVendor = {
+
+        ...vendor,
+
+        licenseNumber: license,
+        vendorType: vendorType,
+        description: description,
+
+        updatedAt: new Date().toISOString()
+
+    };
+
+    await fetch(`${API}/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updatedVendor)
+    });
+
+    Swal.fire({
+        icon: "success",
+        title: "Updated Successfully"
+    });
+
+    bootstrap.Modal.getInstance(document.getElementById("editModal")).hide();
+
+    loadVendorCards();
+
+});
+
+//delete task
+
+async function deleteVendor(id) {
+
+    const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "You can restore it later.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Delete"
+    });
+
+    if (!result.isConfirmed) return;
+
+    try {
+
+        const response = await fetch(`${API}/${id}`);
+        const vendor = await response.json();
+
+        const updatedVendor = {
+            ...vendor,
+            isDeleted: true,
+            updatedAt: new Date().toISOString()
+        };
+
+        await fetch(`${API}/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updatedVendor)
+        });
+
+        Swal.fire({
+            icon: "success",
+            title: "Deleted Successfully"
+        });
+
+        loadVendorCards();
+
+    } catch (err) {
+        console.log(err);
+    }
+
+}
+
+async function loadDeletedCards() {
+
+    try {
+
+        const response = await fetch(
+            `${API}?gstNumber=${loggedInUser.gstNumber}&isDeleted=true`
+        );
+
+        const vendors = await response.json();
+
+        const cards = document.getElementById("vendorCards");
+        cards.innerHTML = "";
+
+        vendors.forEach(vendor => {
+
+            cards.innerHTML += `
+                    <div class="col-12 col-md-6">
+                    <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                        <div class="card-header d-flex justify-content-between align-items-center">
+
+                            <h5 class="fw-bold mb-0">
+                                <i class="bi bi-building text-success me-2"></i>
+                                ${vendor.vendorType}
+                            </h5>
+
+                             <span class="badge ${getBadgeClass(vendor.status)} px-3 py-2">
+                                        ${vendor.status}
+                                       </span>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="mb-3">
+                                <strong>Description</strong>
+                                <p class="text-muted mb-0">
+                                    ${vendor.description}
+                                </p>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-6 mb-3">
+                                    <small class="text-muted">GST Number</small>
+                                    <div class="fw-semibold">
+                                        ${vendor.gstNumber}
+                                    </div>
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <small class="text-muted">License No</small>
+                                    <div class="fw-semibold">
+                                        ${vendor.licenseNumber}
+                                    </div>
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <small class="text-muted">Created At</small>
+                                    <div class="fw-semibold">
+                                        ${new Date(vendor.createdAt).toLocaleDateString()}
+                                    </div>
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <small class="text-muted">Remarks</small>
+                                    <div class="fw-semibold text-secondary">
+                                        ${vendor.remarks || "-"}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                            <button
+                                class="btn btn-success w-100"
+                                onclick="restoreVendor('${vendor.id}')">
+                                Restore
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
+            `;
+        });
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+$("#restoreBtn").click(function () {
+    loadDeletedCards();
+});
+
+async function restoreVendor(id) {
+
+    const response = await fetch(`${API}/${id}`);
+    const vendor = await response.json();
+
+    vendor.isDeleted = false;
+    vendor.updatedAt = new Date().toISOString();
+
+    await fetch(`${API}/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(vendor)
+    });
+
+    Swal.fire({
+        icon: "success",
+        title: "Vendor Restored"
+    });
+
+    loadDeletedCards(); // Refresh deleted list
+}
+
+$(".gradient-all").click(function () {
+    loadVendorCards();
+});
 
 
 function getBadgeClass(status) {
