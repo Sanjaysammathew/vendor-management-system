@@ -383,7 +383,7 @@ async function loadDeletedCards() {
                         </div>
 
                             <button
-                                class="btn btn-success w-100"
+                                class="btn btn-success w-25   "
                                 onclick="restoreVendor('${vendor.id}')">
                                 Restore
                             </button>
@@ -664,6 +664,103 @@ function countStat(vendors) {
     document.getElementById("rejectedCount").textContent = rejected;
 }
 
+$("#editProfileBtn").click(async function () {
+
+    const response = await fetch(
+        `${API}?gstNumber=${loggedInUser.gstNumber}`
+    );
+
+    const vendor = (await response.json())[0];
+
+    $("#profileEditId").val(vendor.id);
+    $("#editOrg").val(vendor.organizationName);
+    $("#editEmail").val(vendor.email);
+    $("#editGSTProfile").val(vendor.gstNumber);
+    $("#editPhone").val(vendor.phone);
+    $("#editLicenseProfile").val(vendor.licenseNumber);
+    $("#editAddressProfile").val(vendor.address);
+});
+
+$("#updateProfileBtn").click(async function () {
+
+    const id = $("#profileEditId").val();
+
+    const response = await fetch(`${API}/${id}`);
+    const vendor = await response.json();
+
+    const phone = $("#editPhone").val().trim();
+    const address = $("#editAddressProfile").val().trim();
+
+    if (phone === "" || address === "") {
+        Swal.fire({
+            icon: "warning",
+            title: "Required",
+            text: "Phone Number and Address are required."
+        });
+        return;
+    }
+
+    const updatedVendor = {
+
+        ...vendor,
+
+        phone: phone,
+        address: address,
+
+        updatedAt: new Date().toISOString()
+
+    };
+
+    await fetch(`${API}/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updatedVendor)
+    });
+
+    Swal.fire({
+        icon: "success",
+        title: "Profile Updated Successfully"
+    });
+
+    bootstrap.Modal.getInstance(
+        document.getElementById("profileEditModal")
+    ).hide();
+
+    loadVendorProfile();   // Refresh offcanvas details
+    loadVendorCards();     // Refresh cards if needed
+
+});
+
+$("#logoutBtn").click(async function () {
+
+    const result = await Swal.fire({
+        title: "Logout?",
+        text: "Are you sure you want to logout?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Logout",
+        cancelButtonText: "Cancel"
+    });
+
+    if (!result.isConfirmed) return;
+
+    localStorage.removeItem("loggedInUser");
+
+    Swal.fire({
+        icon: "success",
+        title: "Logged Out",
+        text: "You have been logged out successfully.",
+        timer: 1500,
+        showConfirmButton: false
+    });
+
+    setTimeout(() => {
+        window.location.href = "../pages/index.html";
+    }, 1500);
+
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     loadVendorCards()

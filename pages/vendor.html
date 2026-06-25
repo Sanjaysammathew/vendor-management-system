@@ -437,10 +437,6 @@
                     <h6 id="profileNumber" class="fw-bold mb-0">-</h6>
                 </div>
                 <div class="mb-2 pb-2 border-bottom">
-                    <small class="text-muted d-block">License Number</small>
-                    <h6 id="profileLicense" class="fw-bold mb-0">-</h6>
-                </div>
-                <div class="mb-2 pb-2 border-bottom">
                     <small class="text-muted d-block">GST Number</small>
                     <h6 id="profileGST" class="fw-bold mb-0">-</h6>
                 </div>
@@ -448,11 +444,89 @@
                     <small class="text-muted d-block">Address</small>
                     <h6 id="profileAddress" class="fw-bold mb-0 text-capitalize">-</h6>
                 </div>
+                
             </div>
+            <div class="mt-4 text-center">
+    <button
+        class="btn btn-primary btn-sm px-4 fw-bold rounded-pill shadow-sm"
+        data-bs-toggle="modal"
+        data-bs-target="#profileEditModal"
+        id="editProfileBtn">
+
+        <i class="bi bi-pencil-square me-2"></i>
+        Edit Profile
+    </button>
+</div>
         </div>
     </div>
 </div>
 
+<div class="modal fade" id="profileEditModal" tabindex="-1">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Profile</h5>
+
+                <button class="btn-close"
+                        data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <input type="hidden" id="profileEditId">
+
+                <div class="form-floating mb-3">
+                    <input class="form-control"
+                           id="editOrg"
+                           >
+                    <label>Organization</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input class="form-control"
+                           id="editEmail"
+                           >
+                    <label>Email</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input class="form-control"
+                           id="editGSTProfile"
+                           readonly>
+                    <label>GST Number</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input class="form-control"
+                           id="editPhone">
+                    <label>Phone Number</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control"
+                              id="editAddressProfile"></textarea>
+                    <label>Address</label>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="btn btn-success"
+                        id="updateProfileBtn">
+                    Update Details
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

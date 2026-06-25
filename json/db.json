@@ -25,11 +25,11 @@
       "id": "t-_XsgWviGM"
     },
     {
-      "organizationName": "Sanjay groups",
+      "organizationName": "Sanjay",
       "email": "sanjay05@gmail.com",
       "password": "Sanjay@2005",
       "gstNumber": "24AABCT3518Q1ZX",
-      "role": "user",
+      "role": "admin",
       "id": "kWY8jaMZEGA"
     }
   ],
@@ -39,7 +39,7 @@
       "email": "spkgroups@gmail.com",
       "gstNumber": "29ABCDE1234F1Z5",
       "licenseNumber": "ELEC102345",
-      "phone": "8940997874",
+      "phone": "8940997875",
       "vendorType": "Electrical Appliance",
       "description": "Providing electrical appliances and services to them",
       "address": "123,Nehru Nagar ,coimbatore -06",
@@ -47,7 +47,7 @@
       "status": "pending",
       "remarks": "",
       "createdAt": "2026-06-25T08:41:38.876Z",
-      "updatedAt": "2026-06-25T14:26:49.433Z",
+      "updatedAt": "2026-06-25T15:01:33.565Z",
       "id": "G04w4vh6yVo"
     },
     {
@@ -57,13 +57,13 @@
       "licenseNumber": "FSSAI102345",
       "phone": "9080624255",
       "vendorType": "Food",
-      "description": "Providing foods and Beverages",
+      "description": "Providing foods and Beverage",
       "address": "123,Indra Nagar ,coimbatore -06",
       "isDeleted": false,
       "status": "pending",
       "remarks": "",
       "createdAt": "2026-06-25T12:25:12.553Z",
-      "updatedAt": "2026-06-25T12:25:12.553Z",
+      "updatedAt": "2026-06-25T15:17:01.126Z",
       "id": "1e8XXFlrDW0"
     },
     {
@@ -95,7 +95,7 @@
       "status": "pending",
       "remarks": "",
       "createdAt": "2026-06-25T12:52:41.539Z",
-      "updatedAt": "2026-06-25T12:53:26.290Z",
+      "updatedAt": "2026-06-25T15:19:15.505Z",
       "id": "bh5tR8BuShA"
     },
     {

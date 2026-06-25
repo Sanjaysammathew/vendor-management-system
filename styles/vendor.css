@@ -185,10 +185,26 @@ background-color: #53A890;
 color: white;
 }
 
+#restoreBtn{
+    background: #fff;
+    color: #7f1d1d;
+    border: 1px solid #f5c2c7;
+    transition: all .3s ease;
+}
+
+#restoreBtn:hover{
+    background: linear-gradient(135deg, #fff5f5, #ffe5e5);
+    border-color: #f87171;
+    color: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(220, 38, 38, .12);
+}
+
 #restoreBtn.active{
-    background: linear-gradient(135deg, #374151, #111827);
-    color: #fff;
-    border: none;
+    background: linear-gradient(135deg, #fef2f2, #fee2e2);
+    border: 1px solid #f87171;
+    color: #b91c1c;
+    box-shadow: 0 6px 16px rgba(220, 38, 38, .15);
 }
 
 @media(max-width:768px){
