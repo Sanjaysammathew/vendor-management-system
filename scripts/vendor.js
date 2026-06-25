@@ -142,6 +142,8 @@ $("#saveBtn").click(async function () {
         });
 
         $("#detailsForm")[0].reset();
+        bootstrap.Modal.getInstance(document.getElementById("addModal")).hide();
+         loadVendorCards()
 
     } catch (error) {
 
@@ -167,94 +169,7 @@ async function loadVendorCards() {
 
         const vendors = await response.json();
 
-        let cards = document.getElementById("vendorCards")
-        cards.innerHTML = "";
-
-        vendors.forEach(vendor => {
-
-            cards .innerHTML+=`
-                <div class="col-12 col-md-6">
-                    <div class="card border-0 shadow-sm rounded-4 h-100">
-
-                        <div class="card-header d-flex justify-content-between align-items-center">
-
-                            <h5 class="fw-bold mb-0">
-                                <i class="bi bi-building text-success me-2"></i>
-                                ${vendor.vendorType}
-                            </h5>
-
-                             <span class="badge ${getBadgeClass(vendor.status)} px-3 py-2">
-                                        ${vendor.status}
-                                       </span>
-
-                        </div>
-
-                        <div class="card-body">
-
-                            <div class="mb-3">
-                                <strong>Description</strong>
-                                <p class="text-muted mb-0">
-                                    ${vendor.description}
-                                </p>
-                            </div>
-
-                            <div class="row">
-
-                                <div class="col-6 mb-3">
-                                    <small class="text-muted">GST Number</small>
-                                    <div class="fw-semibold">
-                                        ${vendor.gstNumber}
-                                    </div>
-                                </div>
-
-                                <div class="col-6 mb-3">
-                                    <small class="text-muted">License No</small>
-                                    <div class="fw-semibold">
-                                        ${vendor.licenseNumber}
-                                    </div>
-                                </div>
-
-                                <div class="col-6 mb-3">
-                                    <small class="text-muted">Created At</small>
-                                    <div class="fw-semibold">
-                                        ${new Date(vendor.createdAt).toLocaleDateString()}
-                                    </div>
-                                </div>
-
-                                <div class="col-6 mb-3">
-                                    <small class="text-muted">Remarks</small>
-                                    <div class="fw-semibold text-secondary">
-                                        ${vendor.remarks || "-"}
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="card-footer bg-white border-0 d-flex gap-2">
-
-                            <button
-                                class="btn flex-fill " data-bs-toggle="modal"
-                                data-bs-target="#editModal"
-                                onclick="editVendor('${vendor.id}')" id="editTask">
-                                <i class="bi bi-pencil-square me-1"></i>
-                                Update
-                            </button>
-
-                            <button
-                                class="btn btn-outline-danger flex-fill"
-                                onclick="deleteVendor('${vendor.id}')" id="deleteTask">
-                                <i class="bi bi-trash me-1"></i>
-                                Delete
-                            </button>
-
-                        </div>
-
-                    </div>
-                </div>
-            `;
-        });
+       displayVendorCards(vendors)
 
 
     } catch (err) {
@@ -386,7 +301,7 @@ async function deleteVendor(id) {
     }
 
 }
-
+ //load deleted task 
 async function loadDeletedCards() {
 
     try {
@@ -480,10 +395,13 @@ async function loadDeletedCards() {
     }
 }
 
+//if click restore button it shows the deleted task
+
 $("#restoreBtn").click(function () {
     loadDeletedCards();
 });
 
+//function to restore the task 
 async function restoreVendor(id) {
 
     const response = await fetch(`${API}/${id}`);
@@ -508,8 +426,138 @@ async function restoreVendor(id) {
     loadDeletedCards(); // Refresh deleted list
 }
 
+// if we clcik all it go to normal page
+
 $(".gradient-all").click(function () {
     loadVendorCards();
+});
+
+
+
+function displayVendorCards(vendors) {
+
+     let cards = document.getElementById("vendorCards")
+        cards.innerHTML = "";
+
+        vendors.forEach(vendor => {
+
+            cards .innerHTML+=`
+                <div class="col-12 col-md-6">
+                    <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                        <div class="card-header d-flex justify-content-between align-items-center">
+
+                            <h5 class="fw-bold mb-0">
+                                <i class="bi bi-building text-success me-2"></i>
+                                ${vendor.vendorType}
+                            </h5>
+
+                             <span class="badge ${getBadgeClass(vendor.status)} px-3 py-2">
+                                        ${vendor.status}
+                                       </span>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="mb-3">
+                                <strong>Description</strong>
+                                <p class="text-muted mb-0">
+                                    ${vendor.description}
+                                </p>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-6 mb-3">
+                                    <small class="text-muted">GST Number</small>
+                                    <div class="fw-semibold">
+                                        ${vendor.gstNumber}
+                                    </div>
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <small class="text-muted">License No</small>
+                                    <div class="fw-semibold">
+                                        ${vendor.licenseNumber}
+                                    </div>
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <small class="text-muted">Created At</small>
+                                    <div class="fw-semibold">
+                                        ${new Date(vendor.createdAt).toLocaleDateString()}
+                                    </div>
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <small class="text-muted">Remarks</small>
+                                    <div class="fw-semibold text-secondary">
+                                        ${vendor.remarks || "-"}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="card-footer bg-white border-0 d-flex gap-2">
+
+                            <button
+                                class="btn flex-fill " data-bs-toggle="modal"
+                                data-bs-target="#editModal"
+                                onclick="editVendor('${vendor.id}')" id="editTask">
+                                <i class="bi bi-pencil-square me-1"></i>
+                                Update
+                            </button>
+
+                            <button
+                                class="btn btn-outline-danger flex-fill"
+                                onclick="deleteVendor('${vendor.id}')" id="deleteTask">
+                                <i class="bi bi-trash me-1"></i>
+                                Delete
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
+            `;
+        });
+
+}
+
+async function loadVendorByStatus(status) {
+
+    try {
+
+        const response = await fetch(
+            `${API}?gstNumber=${loggedInUser.gstNumber}&isDeleted=false&status=${status}`
+        );
+
+        const vendors = await response.json();
+
+        displayVendorCards(vendors);
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+$(".gradient-all").click(function () {
+    loadVendorCards();
+});
+
+$(".gradient-pending").click(function () {
+    loadVendorByStatus("pending");
+});
+
+$(".gradient-completed").click(function () {
+    loadVendorByStatus("approved");
+});
+
+$(".gradient-rejected").click(function () {
+    loadVendorByStatus("rejected");
 });
 
 
@@ -531,6 +579,59 @@ function getBadgeClass(status) {
     }
 
 }
+
+
+async function applyFilters() {
+
+    const searchText = $("#taskSearch").val().toLowerCase().trim();
+    const fromDate = $("#fromDate").val();
+    const toDate = $("#toDate").val();
+
+    const response = await fetch(
+        `${API}?gstNumber=${loggedInUser.gstNumber}&isDeleted=false`
+    );
+
+    let vendors = await response.json();
+
+    // Search by Vendor Type
+    if (searchText) {
+        vendors = vendors.filter(vendor =>
+            vendor.vendorType.toLowerCase().includes(searchText)
+        );
+    }
+
+    // From Date
+    if (fromDate) {
+        vendors = vendors.filter(vendor =>
+            vendor.createdAt.split("T")[0] >= fromDate
+        );
+    }
+
+    // To Date
+    if (toDate) {
+        vendors = vendors.filter(vendor =>
+            vendor.createdAt.split("T")[0] <= toDate
+        );
+    }
+
+    displayVendorCards(vendors);
+}
+
+
+$("#taskSearch").on("input", applyFilters);
+
+$("#fromDate").on("change", applyFilters);
+
+$("#toDate").on("change", applyFilters);
+
+$("#clearFiltersBtn").click(function () {
+
+    $("#taskSearch").val("");
+    $("#fromDate").val("");
+    $("#toDate").val("");
+
+    loadVendorCards();
+});
 
 
 document.addEventListener('DOMContentLoaded', () => {
