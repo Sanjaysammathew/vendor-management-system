@@ -169,8 +169,12 @@ async function loadVendorCards() {
 
         const vendors = await response.json();
 
+        vendors.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+
        displayVendorCards(vendors)
         countStat(vendors);
+
+        console.log(vendors)
 
 
     } catch (err) {
