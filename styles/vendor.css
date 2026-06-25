@@ -3,10 +3,6 @@
     color: white;
 }
 
-#restoreBtn{
-    background-color: #53A890;
-    color: white;
-}
 
 #button-container .btn{
     border: 2px solid transparent; 
@@ -189,6 +185,11 @@ background-color: #53A890;
 color: white;
 }
 
+#restoreBtn.active{
+    background: linear-gradient(135deg, #374151, #111827);
+    color: #fff;
+    border: none;
+}
 
 @media(max-width:768px){
 

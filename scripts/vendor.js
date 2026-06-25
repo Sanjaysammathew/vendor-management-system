@@ -170,6 +170,7 @@ async function loadVendorCards() {
         const vendors = await response.json();
 
        displayVendorCards(vendors)
+        countStat(vendors);
 
 
     } catch (err) {
@@ -633,6 +634,32 @@ $("#clearFiltersBtn").click(function () {
     loadVendorCards();
 });
 
+function countStat(vendors) {
+
+    const activeVendors = vendors.filter(
+        vendor => !vendor.isDeleted
+    );
+
+    const total = activeVendors.length;
+
+    const completed = activeVendors.filter(
+        vendor => vendor.status.toLowerCase() === "approved"
+    ).length;
+
+    const pending = activeVendors.filter(
+        vendor => vendor.status.toLowerCase() === "pending"
+    ).length;
+
+    const rejected = activeVendors.filter(
+        vendor => vendor.status.toLowerCase() === "rejected"
+    ).length;
+
+    document.getElementById("totalCount").textContent = total;
+    document.getElementById("completedCount").textContent = completed;
+    document.getElementById("pendingCount").textContent = pending;
+    document.getElementById("rejectedCount").textContent = rejected;
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     loadVendorCards()
@@ -644,14 +671,20 @@ document.addEventListener('DOMContentLoaded', () => {
     buttons.forEach(button => {
         button.addEventListener('click', () => {
             buttons.forEach(btn => btn.classList.remove('active'));
+            restoreBtn.classList.remove('active'); //
             button.classList.add('active');
         });
     });
 
 
-    if (restoreBtn) {
-        restoreBtn.addEventListener('click', () => {
-            buttons.forEach(btn => btn.classList.remove('active'));
-        });
-    }
+if (restoreBtn) {
+    restoreBtn.addEventListener("click", () => {
+
+        buttons.forEach(btn => btn.classList.remove("active"));
+
+        restoreBtn.classList.add("active");
+
+        loadDeletedCards();
+    });
+}
 });
