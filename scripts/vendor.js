@@ -156,8 +156,133 @@ $("#saveBtn").click(async function () {
 
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+async function loadVendorCards() {
 
+    try {
+
+        const response = await fetch(
+            `${API}?gstNumber=${loggedInUser.gstNumber}&isDeleted=false`
+        );
+
+        const vendors = await response.json();
+
+        let cards = document.getElementById("vendorCards")
+
+        vendors.forEach(vendor => {
+
+            cards .innerHTML+=`
+                <div class="col-12 col-md-6">
+                    <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                        <div class="card-header d-flex justify-content-between align-items-center">
+
+                            <h5 class="fw-bold mb-0">
+                                <i class="bi bi-building text-success me-2"></i>
+                                ${vendor.vendorType}
+                            </h5>
+
+                             <span class="badge ${getBadgeClass(vendor.status)} px-3 py-2">
+                                        ${vendor.status}
+                                       </span>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="mb-3">
+                                <strong>Description</strong>
+                                <p class="text-muted mb-0">
+                                    ${vendor.description}
+                                </p>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-6 mb-3">
+                                    <small class="text-muted">GST Number</small>
+                                    <div class="fw-semibold">
+                                        ${vendor.gstNumber}
+                                    </div>
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <small class="text-muted">License No</small>
+                                    <div class="fw-semibold">
+                                        ${vendor.licenseNumber}
+                                    </div>
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <small class="text-muted">Created At</small>
+                                    <div class="fw-semibold">
+                                        ${new Date(vendor.createdAt).toLocaleDateString()}
+                                    </div>
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <small class="text-muted">Remarks</small>
+                                    <div class="fw-semibold text-secondary">
+                                        ${vendor.remarks || "-"}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="card-footer bg-white border-0 d-flex gap-2">
+
+                            <button
+                                class="btn flex-fill"
+                                onclick="editVendor(${vendor.id})" id="editTask">
+                                <i class="bi bi-pencil-square me-1"></i>
+                                Update
+                            </button>
+
+                            <button
+                                class="btn btn-outline-danger flex-fill"
+                                onclick="deleteVendor(${vendor.id})" id="deleteTask">
+                                <i class="bi bi-trash me-1"></i>
+                                Delete
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
+            `;
+        });
+
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+
+
+function getBadgeClass(status) {
+
+    switch (status.toLowerCase()) {
+
+        case "approved":
+            return "bg-success";
+
+        case "pending":
+            return "bg-warning text-dark";
+
+        case "rejected":
+            return "bg-danger";
+
+        default:
+            return "bg-secondary";
+    }
+
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadVendorCards()
     loadVendorProfile()
     const buttons = document.querySelectorAll('#button-container .btn');
     const restoreBtn = document.getElementById('restoreBtn');

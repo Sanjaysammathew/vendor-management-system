@@ -116,6 +116,80 @@
     font-size:.92rem;
 }
 
+.btn-clear{
+    background-color: #f16d75;   /* Soft red */
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.btn-clear:hover{
+    background-color: #e45762;
+}
+
+
+.custom-container{
+    max-width: 1100px;   
+}
+
+/* Card */
+.card{
+    border-radius:18px !important;
+}
+
+.card-header{
+    background: #EAF8F1 !important;   /* Light Green */
+    border-bottom: 1px solid #D4EDDA !important;
+    padding: 18px 22px;
+}
+
+.card-header h5{
+    color: #198754;
+    margin: 0;
+}
+
+.card-header i{
+    color: #198754 !important;
+}
+
+/* Description Box */
+.description-box{
+    background:#F5F6F8;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:18px;
+}
+
+.description-box strong{
+    display:block;
+    margin-bottom:6px;
+}
+
+.description-box p{
+    margin:0;
+}
+
+/* Footer Buttons */
+.card-footer{
+    padding:18px;
+}
+
+/* Small hover */
+.card{
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-3px);
+}
+
+#editTask{
+background-color: #53A890;
+color: white;
+}
+
+
 @media(max-width:768px){
 
 .stat-card{
