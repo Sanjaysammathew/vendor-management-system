@@ -1,4 +1,5 @@
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+const API="http://localhost:3000/vendorDetails"
 
 $("#orgName").val(loggedInUser.organizationName);
 $("#gst").val(loggedInUser.gstNumber);
@@ -14,10 +15,8 @@ $("#profileGST").text(loggedInUser.gstNumber);
 // off canvas details like phone number
 async function loadVendorProfile() {
 
-    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-
-    const response = await fetch(
-        `http://localhost:3000/vendorDetails?userId=${loggedInUser.id}`
+       const response = await fetch(
+        `${API}?gstNumber=${loggedInUser.gstNumber}`
     );
 
     const vendor = await response.json();
@@ -106,20 +105,7 @@ $("#saveBtn").click(async function () {
 
     if (!isValid) return;
 
-    const check = await fetch(`${API}?gstNumber=${loggedInUser.gstNumber}`);
-const existing = await check.json();
-
-if (existing.length > 0) {
-    Swal.fire({
-        icon: "warning",
-        title: "Already Added",
-        text: "Vendor details already exist."
-    });
-    return;
-}
-
         const vendorData = {
-              userId: loggedInUser.id, 
         organizationName: loggedInUser.organizationName,
         email: loggedInUser.email,
         gstNumber: loggedInUser.gstNumber,
@@ -171,6 +157,8 @@ if (existing.length > 0) {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    loadVendorProfile()
     const buttons = document.querySelectorAll('#button-container .btn');
     const restoreBtn = document.getElementById('restoreBtn');
 
