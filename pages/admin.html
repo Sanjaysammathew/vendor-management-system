@@ -215,79 +215,102 @@
         </div>
     </div>
 
+    <!-- Search & Filter Section (Outside Table Card) -->
+<div class="container my-4">
+    <div class="p-4 bg-white rounded-4 shadow-sm border border-light">
+        <div class="row g-3 align-items-end">
 
-    <div class="container my-4">
+            <!-- Search -->
+            <div class="col-12 col-lg-5">
+                <label for="searchVendor" class="form-label fw-semibold text-secondary small mb-2">
+                    <i class="bi bi-search me-1 text-primary"></i>
+                    Search Vendor Type
+                </label>
+
+                <div class="input-group">
+                    <span class="input-group-text bg-light border-end-0">
+                        <i class="bi bi-search"></i>
+                    </span>
+
+                    <input
+                        type="text"
+                        id="searchVendor"
+                        class="form-control bg-light border-start-0"
+                        placeholder="Search by Vendor Type...">
+                </div>
+            </div>
+
+            <!-- From Date -->
+            <div class="col-12 col-sm-5 col-lg-3">
+                <label for="fromDate" class="form-label fw-semibold text-secondary small mb-2">
+                    <i class="bi bi-calendar-range me-1 text-primary"></i>
+                    From Date
+                </label>
+
+                <div class="input-group">
+                    <span class="input-group-text bg-light border-end-0">
+                        <i class="bi bi-calendar-event"></i>
+                    </span>
+
+                    <input
+                        type="date"
+                        id="fromDate"
+                        class="form-control bg-light border-start-0">
+                </div>
+            </div>
+
+            <!-- To Date -->
+            <div class="col-12 col-sm-5 col-lg-3">
+                <label for="toDate" class="form-label fw-semibold text-secondary small mb-2">
+                    <i class="bi bi-calendar-check me-1 text-primary"></i>
+                    To Date
+                </label>
+
+                <div class="input-group">
+                    <span class="input-group-text bg-light border-end-0">
+                        <i class="bi bi-calendar-check"></i>
+                    </span>
+
+                    <input
+                        type="date"
+                        id="toDate"
+                        class="form-control bg-light border-start-0">
+                </div>
+            </div>
+
+            <!-- Clear -->
+            <div class="col-12 col-sm-2 col-lg-1">
+                <button
+                    type="button"
+                    id="clearFiltersBtn"
+                    class="btn btn-danger w-100">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container my-4 p-5 rounded-4" style="background-color: #F8F8F8;">
 
     <div class="card shadow-sm border-0 rounded-4">
 
         <div class="card-body">
 
-                       <div class="d-flex justify-content-between align-items-center mb-4">
-    <h3 class="fw-bold mb-0">
-        <i class="bi bi-card-list me-2 text-primary"></i>
-        Vendor Records
-    </h3>
-</div>
-
-            <!-- Search & Filters -->
-            <div class="row g-3 align-items-end mb-4">
-
-                <!-- Search -->
-                <div class="col-lg-4 col-md-6">
-                    <label class="form-label fw-semibold">
-                        Search Vendor
-                    </label>
-
-                    <div class="input-group">
-                        <span class="input-group-text bg-white">
-                            <i class="bi bi-search"></i>
-                        </span>
-
-                        <input
-                            type="text"
-                            id="searchVendor"
-                            class="form-control"
-                            placeholder="Search by Vendor Type...">
-                    </div>
-                </div>
-
-                <!-- From Date -->
-                <div class="col-lg-2 col-md-6">
-                    <label class="form-label fw-semibold">
-                        From Date
-                    </label>
-
-                    <input
-                        type="date"
-                        id="fromDate"
-                        class="form-control">
-                </div>
-
-                <!-- To Date -->
-                <div class="col-lg-2 col-md-6">
-                    <label class="form-label fw-semibold">
-                        To Date
-                    </label>
-
-                    <input
-                        type="date"
-                        id="toDate"
-                        class="form-control">
-                </div>
-
-                <!-- Clear Button -->
-              <div class="col-lg-2 col-md-3">
-             <button class="btn btn-danger rounded-circle p-0" id="clearFiltersBtn">
-               <i class="bi bi-x-lg"></i>
-           </button>
-           </div>
-
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="fw-bold mb-0">
+                    <i class="bi bi-card-list me-2 text-primary"></i>
+                    Vendor Records
+                </h3>
             </div>
-             
-            <div id="noRecord"></div>
-            <!-- Table -->
-            <div class="table-responsive">
 
+            <div id="noRecord"></div>
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    
                 <table class="table table-hover ">
 
                     <thead class="table-success">
@@ -304,20 +327,16 @@
                     <tbody id="vendorTableBody">
                         <!-- Data from JavaScript -->
                     </tbody>
-
                 </table>
-
             </div>
 
         </div>
 
         <div class="d-flex justify-content-center mt-4">
-    <nav>
-        <ul class="pagination" id="pagination">
-
-        </ul>
-    </nav>
-</div>
+            <nav>
+                <ul class="pagination" id="pagination"></ul>
+            </nav>
+        </div>
 
     </div>
 

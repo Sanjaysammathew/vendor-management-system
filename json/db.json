@@ -50,7 +50,7 @@
       "status": "approved",
       "remarks": "It is approved by our managers and lead",
       "createdAt": "2026-06-25T08:41:38.876Z",
-      "updatedAt": "2026-06-26T09:56:24.182Z",
+      "updatedAt": "2026-06-26T13:33:41.066Z",
       "id": "G04w4vh6yVo"
     },
     {
@@ -78,11 +78,11 @@
       "vendorType": "IT equipments",
       "description": "Providing Pc,Laptops to the company and service if it is repaired",
       "address": "123,Rajiv Nagar ,coimbatore -06",
-      "isDeleted": true,
-      "status": "pending",
-      "remarks": "",
+      "isDeleted": false,
+      "status": "approved",
+      "remarks": "good we are happy for the comapny",
       "createdAt": "2026-06-25T12:41:13.325Z",
-      "updatedAt": "2026-06-26T04:40:22.191Z",
+      "updatedAt": "2026-06-26T13:46:06.234Z",
       "id": "Qvwr3IjmWfE"
     },
     {
@@ -94,11 +94,11 @@
       "vendorType": "Mechanical Equipments",
       "description": "Providing Mechanical appliance and service to them",
       "address": "123,Nehru Nagar ,coimbatore -06",
-      "isDeleted": false,
+      "isDeleted": true,
       "status": "pending",
       "remarks": "",
       "createdAt": "2026-06-25T12:54:12.580Z",
-      "updatedAt": "2026-06-25T12:54:12.580Z",
+      "updatedAt": "2026-06-26T13:37:19.216Z",
       "id": "aeuMZgTxDBI"
     },
     {
@@ -127,10 +127,10 @@
       "description": "Providing it service to the pc and laptop",
       "address": "123,Thirumalai Nagar ,coimbatore -06",
       "isDeleted": false,
-      "status": "pending",
-      "remarks": "",
+      "status": "rejected",
+      "remarks": "not happy with the company performance",
       "createdAt": "2026-06-26T12:37:24.020Z",
-      "updatedAt": "2026-06-26T12:37:24.020Z",
+      "updatedAt": "2026-06-26T13:47:10.806Z",
       "id": "qRV0FZgs_4Y"
     }
   ],

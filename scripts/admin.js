@@ -391,3 +391,7 @@ $("#logoutBtn").click(async function () {
         window.location.href = "../pages/index.html";
     }, 1500);
 });
+
+$("#fromDate, #toDate").on("keydown paste", function (e) {
+    e.preventDefault();
+});
