@@ -352,3 +352,32 @@ function countStat(data){
     $("#pendingProgress").css("width",(pending/total)*100 + "%");
     $("#rejectedProgress").css("width",(rejected/total)*100 + "%");
 }
+
+$("#logoutBtn").click(async function () {
+
+    const result = await Swal.fire({
+        title: "Logout?",
+        text: "Are you sure you want to logout?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Logout",
+        cancelButtonText: "Cancel"
+    });
+
+    if (!result.isConfirmed) return;
+
+    localStorage.removeItem("loggedInUser");
+
+    Swal.fire({
+        icon: "success",
+        title: "Logged Out",
+        text: "You have been logged out successfully.",
+        timer: 1500,
+        showConfirmButton: true
+    });
+
+    setTimeout(() => {
+        window.location.href = "../pages/index.html";
+    }, 1500);
+
+});

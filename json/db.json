@@ -24,18 +24,17 @@
       "role": "user",
       "id": "t-_XsgWviGM"
     },
-{
-  "organizationName": "Sanjay",
-  "employeeId": "EMP1001",
-  "department": "Administration",
-  "gender": "Male",
-  "dateOfBirth": "2005-05-15",
-  "email": "sanjay05@gmail.com",
-  "password": "Sanjay@2005",
-  "role": "admin",
-  "id": "kWY8jaMZEGA"
-}
-
+    {
+      "organizationName": "Sanjay",
+      "employeeId": "EMP1001",
+      "department": "Administration",
+      "gender": "Male",
+      "dateOfBirth": "2005-05-15",
+      "email": "sanjay05@gmail.com",
+      "password": "Sanjay@2005",
+      "role": "admin",
+      "id": "kWY8jaMZEGA"
+    }
   ],
   "vendorDetails": [
     {
@@ -101,6 +100,22 @@
       "createdAt": "2026-06-25T12:54:12.580Z",
       "updatedAt": "2026-06-25T12:54:12.580Z",
       "id": "aeuMZgTxDBI"
+    },
+    {
+      "organizationName": "KG Groups",
+      "email": "KG@gmail.com",
+      "gstNumber": "33AAAPL1234C1ZV",
+      "licenseNumber": "FSSAI589014",
+      "phone": "8940997879",
+      "vendorType": "Food",
+      "description": "Providing food service to the canteen and vending machines",
+      "address": "22,masani Amman garden ganapathy coimbatore -06",
+      "isDeleted": false,
+      "status": "pending",
+      "remarks": "",
+      "createdAt": "2026-06-26T11:46:35.073Z",
+      "updatedAt": "2026-06-26T11:46:35.073Z",
+      "id": "cSD60n8BCMs"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
