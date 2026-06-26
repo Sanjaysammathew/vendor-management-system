@@ -320,10 +320,25 @@ async function loadDeletedCards() {
         const cards = document.getElementById("vendorCards");
         cards.innerHTML = "";
 
+            if (vendors.length === 0) {
+        cards.innerHTML = `
+            <div class="col-12">
+                <div class="text-center py-5">
+                    <i class="bi bi-search fs-1 text-secondary"></i>
+                    <h4 class="mt-3">No Records Found</h4>
+                    <p class="text-muted">
+                        No vendors match your search or filter.
+                    </p>
+                </div>
+            </div>
+        `;
+        return;
+    }
+
         vendors.forEach(vendor => {
 
             cards.innerHTML += `
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-6 col-lg-4">
                     <div class="card border-0 shadow-sm rounded-4 h-100">
 
                         <div class="card-header d-flex justify-content-between align-items-center">
@@ -383,7 +398,7 @@ async function loadDeletedCards() {
                         </div>
 
                             <button
-                                class="btn btn-success w-25   "
+                                class="btn btn-success w-100   "
                                 onclick="restoreVendor('${vendor.id}')">
                                 Restore
                             </button>
@@ -444,10 +459,25 @@ function displayVendorCards(vendors) {
      let cards = document.getElementById("vendorCards")
         cards.innerHTML = "";
 
+            if (vendors.length === 0) {
+        cards.innerHTML = `
+            <div class="col-12">
+                <div class="text-center py-5">
+                    <i class="bi bi-search fs-1 text-secondary"></i>
+                    <h4 class="mt-3">No Records Found</h4>
+                    <p class="text-muted">
+                        No vendors match your search or filter.
+                    </p>
+                </div>
+            </div>
+        `;
+        return;
+    }
+
         vendors.forEach(vendor => {
 
             cards .innerHTML+=`
-                <div class="col-12 col-md-6">
+                  <div class="col-12 col-md-6 col-lg-4">
                     <div class="card border-0 shadow-sm rounded-4 h-100">
 
                         <div class="card-header d-flex justify-content-between align-items-center">
