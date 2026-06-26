@@ -124,19 +124,6 @@
     border-radius:10px;
 }
 
-.btn{
-    border-radius:10px;
-    height:45px;
-}
-
-.table thead th{
-    font-weight:600;
-    white-space:nowrap;
-}
-
-.table tbody td{
-    vertical-align:middle;
-}
 
 .table-responsive{
     border-radius:12px;
