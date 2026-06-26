@@ -200,3 +200,17 @@
     background:#dc3545;
     color:white;
 }
+
+.pagination .page-item.active .page-link{
+    background-color: #6c757d;   /* Bootstrap secondary (gray) */
+    border-color: #6c757d;
+    color: #fff;
+}
+
+.pagination .page-link{
+    color: #6c757d;
+}
+
+.pagination .page-link:hover{
+    color: #495057;
+}

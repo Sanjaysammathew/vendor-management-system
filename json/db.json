@@ -116,6 +116,22 @@
       "createdAt": "2026-06-26T11:46:35.073Z",
       "updatedAt": "2026-06-26T11:46:35.073Z",
       "id": "cSD60n8BCMs"
+    },
+    {
+      "organizationName": "KG Groups",
+      "email": "KG@gmail.com",
+      "gstNumber": "33AAAPL1234C1ZV",
+      "licenseNumber": "ITEQ456732",
+      "phone": "8940997879",
+      "vendorType": "Food",
+      "description": "Providing it service to the pc and laptop",
+      "address": "123,Thirumalai Nagar ,coimbatore -06",
+      "isDeleted": false,
+      "status": "pending",
+      "remarks": "",
+      "createdAt": "2026-06-26T12:37:24.020Z",
+      "updatedAt": "2026-06-26T12:37:24.020Z",
+      "id": "qRV0FZgs_4Y"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
