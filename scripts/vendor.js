@@ -358,7 +358,7 @@ async function loadDeletedCards() {
 
                             <div class="mb-3">
                                 <strong>Description</strong>
-                                <p class="text-muted mb-0">
+                                <p class=" description-text text-muted mb-0">
                                     ${vendor.description}
                                 </p>
                             </div>
@@ -476,88 +476,107 @@ function displayVendorCards(vendors) {
 
         vendors.forEach(vendor => {
 
-            cards .innerHTML+=`
-                  <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card border-0 shadow-sm rounded-4 h-100">
+         cards.innerHTML += `
+<div class="col-lg-4 col-md-6 mb-4">
 
-                        <div class="card-header d-flex justify-content-between align-items-center">
+<div class="card vendor-card border-0 shadow h-100">
 
-                            <h5 class="fw-bold mb-0">
-                                <i class="bi bi-building text-success me-2"></i>
-                                ${vendor.vendorType}
-                            </h5>
+    <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
 
-                             <span class="badge ${getBadgeClass(vendor.status)} px-3 py-2">
-                                        ${vendor.status}
-                                       </span>
+        <div>
+            <h5 class="fw-bold mb-1">
+                <i class="bi bi-building-fill text-primary me-2"></i>
+                ${vendor.vendorType}
+            </h5>
 
-                        </div>
+            <small class="text-muted">
+                <i class="bi bi-calendar3 me-1"></i>
+                ${new Date(vendor.createdAt).toLocaleDateString()}
+            </small>
+        </div>
 
-                        <div class="card-body">
+        <span class="badge rounded-pill ${getBadgeClass(vendor.status)} px-3 py-2">
+            ${vendor.status}
+        </span>
 
-                            <div class="mb-3">
-                                <strong>Description</strong>
-                                <p class="text-muted mb-0">
-                                    ${vendor.description}
-                                </p>
-                            </div>
+    </div>
 
-                            <div class="row">
+    <div class="card-body">
 
-                                <div class="col-6 mb-3">
-                                    <small class="text-muted">GST Number</small>
-                                    <div class="fw-semibold">
-                                        ${vendor.gstNumber}
-                                    </div>
-                                </div>
+        <div class="row g-2">
 
-                                <div class="col-6 mb-3">
-                                    <small class="text-muted">License No</small>
-                                    <div class="fw-semibold">
-                                        ${vendor.licenseNumber}
-                                    </div>
-                                </div>
-
-                                <div class="col-6 mb-3">
-                                    <small class="text-muted">Created At</small>
-                                    <div class="fw-semibold">
-                                        ${new Date(vendor.createdAt).toLocaleDateString()}
-                                    </div>
-                                </div>
-
-                                <div class="col-6 mb-3">
-                                    <small class="text-muted">Remarks</small>
-                                    <div class="fw-semibold text-secondary">
-                                        ${vendor.remarks || "-"}
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="card-footer bg-white border-0 d-flex gap-2">
-
-                            <button
-                                class="btn flex-fill " data-bs-toggle="modal"
-                                data-bs-target="#editModal"
-                                onclick="editVendor('${vendor.id}')" id="editTask">
-                                <i class="bi bi-pencil-square me-1"></i>
-                                Update
-                            </button>
-
-                            <button
-                                class="btn btn-outline-danger flex-fill"
-                                onclick="deleteVendor('${vendor.id}')" id="deleteTask">
-                                <i class="bi bi-trash me-1"></i>
-                                Delete
-                            </button>
-
-                        </div>
-
-                    </div>
+            <div class="col-6">
+                <div class="mini-card">
+                    <i class="bi bi-receipt-cutoff text-primary fs-4"></i>
+                    <small>GST Number</small>
+                    <div class="fw-semibold">${vendor.gstNumber}</div>
                 </div>
-            `;
+            </div>
+
+            <div class="col-6">
+                <div class="mini-card">
+                    <i class="bi bi-patch-check-fill text-success fs-4"></i>
+                    <small>License</small>
+                    <div class="fw-semibold">${vendor.licenseNumber}</div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="mini-card">
+                    <i class="bi bi-card-text text-warning fs-4"></i>
+                    <small>Description</small>
+                    <p class="mb-0 mt-1">
+                        ${vendor.description}
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="mini-card">
+                    <i class="bi bi-chat-square-dots-fill text-danger fs-4"></i>
+                    <small>Remarks</small>
+                    <p class="mb-0 mt-1">
+                        ${vendor.remarks || "-"}
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card-footer bg-white border-0 d-flex gap-2">
+
+   ${vendor.status !== "approved" ? `
+<div class="card-footer bg-white border-0 d-flex gap-2">
+
+    <button
+        class="btn btn-primary flex-fill rounded-pill"
+        data-bs-toggle="modal"
+        data-bs-target="#editModal"
+        onclick="editVendor('${vendor.id}')">
+
+        <i class="bi ${vendor.status === "rejected" ? "bi-arrow-clockwise" : "bi-pencil-square"} me-1"></i>
+        ${vendor.status === "rejected" ? "Reapply" : "Update"}
+
+    </button>
+
+    <button
+        class="btn btn-outline-danger flex-fill rounded-pill"
+        onclick="deleteVendor('${vendor.id}')">
+
+        <i class="bi bi-trash3 me-1"></i>
+        Delete
+
+    </button>
+
+</div>
+` : ""}
+
+</div>
+
+</div>
+`;
         });
 
 }

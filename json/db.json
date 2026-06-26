@@ -47,8 +47,8 @@
       "description": "Providing electrical appliances and services to them",
       "address": "123,Thirumalai Nagar ,coimbatore -06",
       "isDeleted": false,
-      "status": "approved",
-      "remarks": "It is approved by our managers and lead",
+      "status": "pending",
+      "remarks": "",
       "createdAt": "2026-06-25T08:41:38.876Z",
       "updatedAt": "2026-06-26T13:33:41.066Z",
       "id": "G04w4vh6yVo"
