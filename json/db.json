@@ -24,14 +24,18 @@
       "role": "user",
       "id": "t-_XsgWviGM"
     },
-    {
-      "organizationName": "Sanjay",
-      "email": "sanjay05@gmail.com",
-      "password": "Sanjay@2005",
-      "gstNumber": "24AABCT3518Q1ZX",
-      "role": "admin",
-      "id": "kWY8jaMZEGA"
-    }
+{
+  "organizationName": "Sanjay",
+  "employeeId": "EMP1001",
+  "department": "Administration",
+  "gender": "Male",
+  "dateOfBirth": "2005-05-15",
+  "email": "sanjay05@gmail.com",
+  "password": "Sanjay@2005",
+  "role": "admin",
+  "id": "kWY8jaMZEGA"
+}
+
   ],
   "vendorDetails": [
     {

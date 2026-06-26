@@ -1,8 +1,27 @@
 const API="http://localhost:3000/vendorDetails"
 
 document.addEventListener("DOMContentLoaded", () => {
-    
+    const currentUser = JSON.parse(localStorage.getItem("loggedInUser"));
     loadVendors()
+      $('#userProfile').on('show.bs.offcanvas', function () {
+      
+
+    if (currentUser) {
+      $("#dropdownUsername").text(currentUser.organizationName  || "User");
+      $("#profileDesignation").text(currentUser.role || "N/A");
+      $("#profileEmpId").text(currentUser.employeeId || currentUser.id || "N/A");
+      $("#profileEmail").text(currentUser.email || "N/A");
+      $("#profileDept").text(currentUser.department || "N/A");
+      $("#profileRole").text(currentUser.role || "N/A");
+      $("#profileGender").text(currentUser.gender || "N/A");
+      $("#profileDob").text(currentUser.dateOfBirth || "N/A");
+    } else {
+      console.warn("Failed loading profiles: 'currentUser' was missing from localStorage.");
+    }
+  });
+
+        $("#navUsername").text(currentUser.organizationName)
+  
     const buttons = document.querySelectorAll("#button-container .btn");
     buttons.forEach(button => {
 
