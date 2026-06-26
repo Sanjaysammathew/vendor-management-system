@@ -283,7 +283,8 @@
            </div>
 
             </div>
-
+             
+            <div id="noRecord"></div>
             <!-- Table -->
             <div class="table-responsive">
 
@@ -365,7 +366,184 @@
     </div>
 </div>
 
+<!-- view modal -->
+<!-- View Vendor Modal -->
+<div class="modal fade" id="viewVendorModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" style="max-width:700px;">
+        <div class="modal-content border-0 shadow-lg rounded-4">
 
+            <!-- Header -->
+            <div class="modal-header bg-primary text-white rounded-top-4">
+                <h5 class="modal-title fw-bold">
+                    <i class="bi bi-person-vcard-fill me-2"></i>
+                    Vendor Details
+                </h5>
+
+                <button type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal">
+                </button>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body px-4 py-4">
+
+                <div class="row g-3">
+
+                    <!-- Organization -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Organization Name</label>
+                        <input type="text" id="viewOrganization" class="form-control" readonly>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Email</label>
+                        <input type="email" id="viewEmail" class="form-control" readonly>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Phone Number</label>
+                        <input type="text" id="viewPhone" class="form-control" readonly>
+                    </div>
+
+                    <!-- GST -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">GST Number</label>
+                        <input type="text" id="viewGST" class="form-control" readonly>
+                    </div>
+
+                    <!-- License -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">License Number</label>
+                        <input type="text" id="viewLicense" class="form-control" readonly>
+                    </div>
+
+                    <!-- Vendor Type -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Vendor Type</label>
+                        <input type="text" id="viewVendorType" class="form-control" readonly>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Status</label>
+                        <input type="text" id="viewStatus" class="form-control fw-bold" readonly>
+                    </div>
+
+                    <!-- Created Date -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Created Date</label>
+                        <input type="text" id="viewCreatedAt" class="form-control" readonly>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Description</label>
+                        <textarea id="viewDescription"
+                                  class="form-control"
+                                  rows="2"
+                                  readonly></textarea>
+                    </div>
+
+                    <!-- Remarks (Hidden initially) -->
+                    <div class="col-12" id="remarksSection" style="display:none;">
+                        <label class="form-label fw-semibold">
+                            Admin Remarks
+                        </label>
+
+                        <textarea id="viewRemarks"
+                                  class="form-control"
+                                  rows="2"
+                                  readonly></textarea>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <div class="modal-footer" id="actionButtons">
+
+                <button type="button"
+                        class="btn btn-danger px-4"
+                        data-bs-toggle="modal",
+                        data-bs-target="#remarksModal"
+                        id="rejectBtn">
+                    <i class="bi bi-x-circle me-1"></i>
+                    Reject
+                </button>
+
+                <button type="button"
+                        class="btn btn-success px-4",
+                        data-bs-toggle="modal",
+                        data-bs-target="#remarksModal"
+                        id="approveBtn">
+                    <i class="bi bi-check-circle me-1"></i>
+                    Approve
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="remarksModal" tabindex="-1">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content rounded-4 border-0 shadow">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="remarksTitle">
+                    Add Remarks
+                </h5>
+
+                <button
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <label class="form-label fw-semibold">
+                    Remarks
+                </label>
+
+                <textarea
+                    id="remarksInput"
+                    class="form-control"
+                    rows="4"
+                    placeholder="Enter remarks here..."></textarea>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+                    Cancel
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    id="submitRemarksBtn">
+                    Submit
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

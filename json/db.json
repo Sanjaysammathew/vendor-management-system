@@ -44,10 +44,10 @@
       "description": "Providing electrical appliances and services to them",
       "address": "123,Thirumalai Nagar ,coimbatore -06",
       "isDeleted": false,
-      "status": "pending",
-      "remarks": "",
+      "status": "approved",
+      "remarks": "It is approved by our managers and lead",
       "createdAt": "2026-06-25T08:41:38.876Z",
-      "updatedAt": "2026-06-26T04:44:19.773Z",
+      "updatedAt": "2026-06-26T09:56:24.182Z",
       "id": "G04w4vh6yVo"
     },
     {
@@ -60,10 +60,10 @@
       "description": "Providing foods and Beverage",
       "address": "123,Indra Nagar ,coimbatore -06",
       "isDeleted": false,
-      "status": "pending",
-      "remarks": "",
+      "status": "rejected",
+      "remarks": "No it is not within our budget it is not approved",
       "createdAt": "2026-06-25T12:25:12.553Z",
-      "updatedAt": "2026-06-25T15:17:01.126Z",
+      "updatedAt": "2026-06-26T10:04:12.510Z",
       "id": "1e8XXFlrDW0"
     },
     {

@@ -43,6 +43,32 @@ async function loadVendors(){
 function displayVendorCards(data){
     const table=document.getElementById("vendorTableBody")
     table.innerHTML="";
+
+    const card=document.getElementById("noRecord")
+    card.innerHTML=""
+
+     const tableContainer = document.querySelector(".table-responsive");
+
+           if (data.length === 0) {
+
+        tableContainer.style.display = "none";
+
+    card.innerHTML = `
+            <div class="col-12 ms-auto">
+                <div class="text-center py-5">
+                    <i class="bi bi-search fs-1 text-secondary"></i>
+                    <h4 class="mt-3">No Records Found</h4>
+                    <p class="text-muted">
+                        No vendors match your search or filter.
+                    </p>
+                </div>
+            </div>
+        `;
+        return;
+    }
+
+       tableContainer.style.display = "block";
+
     data.forEach(task =>{
         table.innerHTML+=`
         <tr>
@@ -54,7 +80,7 @@ function displayVendorCards(data){
         <span class="badge ${
             task.status === "approved"
                 ? "bg-success"
-                : task.status === "Rejected"
+                : task.status === "rejected"
                 ? "bg-danger"
                 : "bg-warning text-dark"
         }">
@@ -78,12 +104,224 @@ function displayVendorCards(data){
     })
 }
 
+async function loadVendorByStatus(status) {
+
+    try {
+
+         const response = await fetch(
+    `${API}?isDeleted=false&status=${status}`
+);
+
+        const vendors = await response.json();
+
+        displayVendorCards(vendors);
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+$(".gradient-all").click(function () {
+    loadVendors();
+});
+
+$(".gradient-pending").click(function () {
+    loadVendorByStatus("pending");
+});
+
+$(".gradient-completed").click(function () {
+    loadVendorByStatus("approved");
+});
+
+$(".gradient-rejected").click(function () {
+    loadVendorByStatus("rejected");
+});
+
+async function viewVendor(id) {
+
+    try {
+
+        const response = await fetch(`${API}/${id}`);
+        const vendor = await response.json();
+    
+        // Fill modal
+        $("#viewOrganization").val(vendor.organizationName);
+        $("#viewEmail").val(vendor.email);
+        $("#viewPhone").val(vendor.phone);
+        $("#viewGST").val(vendor.gstNumber);
+        $("#viewLicense").val(vendor.licenseNumber);
+        $("#viewVendorType").val(vendor.vendorType);
+        $("#viewDescription").val(vendor.description);
+        $("#viewStatus").val(vendor.status);
+        $("#viewCreatedAt").val(new Date(vendor.createdAt).toLocaleDateString())
+
+        // Store id for Approve/Reject
+        $("#approveBtn").data("id", vendor.id);
+        $("#rejectBtn").data("id", vendor.id);
+
+        // Pending -> Show buttons
+if (vendor.status === "pending") {
+
+    $("#actionButtons").show();
+    $("#remarksSection").hide();
+
+}
+// Approved or Rejected -> Hide buttons
+else {
+
+    $("#actionButtons").hide();
+    $("#remarksSection").show();
+
+    $("#viewRemarks").val(vendor.remarks || "No Remarks");
+
+}
+
+        const modal = new bootstrap.Modal(
+            document.getElementById("viewVendorModal")
+        );
+
+        modal.show();
+
+    } catch(err){
+        console.log(err);
+    }
+
+}
+
+let currentVendorId = null;
+let currentAction = "";
+
+$("#approveBtn").click(function(){
+
+    currentVendorId = $(this).data("id");
+
+    currentAction = "approved";
+
+    $("#remarksTitle").text("Approve Vendor");
+
+    $("#remarksInput").val("");
+
+});
+
+$("#rejectBtn").click(function(){
+
+    currentVendorId = $(this).data("id");
+
+    currentAction = "rejected";
+
+    $("#remarksTitle").text("Reject Vendor");
+
+    $("#remarksInput").val("");
+
+});
+
+$("#submitRemarksBtn").click(async function(){
+
+    const remarks = $("#remarksInput").val().trim();
+
+    if(remarks === ""){
+
+        Swal.fire(
+            "Required",
+            "Please enter remarks.",
+            "warning"
+        );
+
+        return;
+    }
+
+    await fetch(`${API}/${currentVendorId}`,{
+
+        method:"PATCH",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+
+            status:currentAction,
+            remarks:remarks,
+            updatedAt:new Date().toISOString()
+
+        })
+
+    });
+
+    bootstrap.Modal
+        .getInstance(document.getElementById("remarksModal"))
+        .hide();
+
+    bootstrap.Modal
+        .getInstance(document.getElementById("viewVendorModal"))
+        .hide();
+
+    loadVendors();
+
+    Swal.fire(
+        "Success",
+        `Vendor ${currentAction} successfully.`,
+        "success"
+    );
+
+});
+
+async function applyFilters() {
+
+    const searchText = $("#searchVendor").val().toLowerCase().trim();
+    const fromDate = $("#fromDate").val();
+    const toDate = $("#toDate").val();
+
+    const response = await fetch(
+        `${API}?isDeleted=false`
+    );
+
+    let vendors = await response.json();
+
+    if (searchText) {
+        vendors = vendors.filter(vendor =>
+            vendor.vendorType
+                .toLowerCase()
+                .includes(searchText)
+        );
+    }
+
+    if (fromDate) {
+        vendors = vendors.filter(vendor =>
+            vendor.createdAt.split("T")[0] >= fromDate
+        );
+    }
+
+    if (toDate) {
+        vendors = vendors.filter(vendor =>
+            vendor.createdAt.split("T")[0] <= toDate
+        );
+    }
+
+    displayVendorCards(vendors);
+}
+
+$("#searchVendor").on("input", applyFilters);
+
+$("#fromDate").on("change", applyFilters);
+
+$("#toDate").on("change", applyFilters);
+
+$("#clearFiltersBtn").click(function () {
+
+    $("#searchVendor").val("");
+    $("#fromDate").val("");
+    $("#toDate").val("");
+
+    loadVendors();
+});
+
 function countStat(data){
 
     const total = data.length;
     const completed = data.filter(v => v.status === "approved").length;
     const pending = data.filter(v => v.status === "pending").length;
-    const rejected = data.filter(v => v.status === "Rejected").length;
+    const rejected = data.filter(v => v.status === "rejected").length;
 
     $("#totalCount").text(total);
     $("#completedCount").text(completed);
