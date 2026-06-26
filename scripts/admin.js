@@ -162,38 +162,65 @@ async function viewVendor(id) {
 
         const response = await fetch(`${API}/${id}`);
         const vendor = await response.json();
-    
-        // Fill modal
-        $("#viewOrganization").val(vendor.organizationName);
-        $("#viewEmail").val(vendor.email);
-        $("#viewPhone").val(vendor.phone);
-        $("#viewGST").val(vendor.gstNumber);
-        $("#viewLicense").val(vendor.licenseNumber);
-        $("#viewVendorType").val(vendor.vendorType);
-        $("#viewDescription").val(vendor.description);
-        $("#viewStatus").val(vendor.status);
-        $("#viewCreatedAt").val(new Date(vendor.createdAt).toLocaleDateString())
 
-        // Store id for Approve/Reject
+        $("#viewOrganization").text(vendor.organizationName);
+        $("#viewEmail").text(vendor.email);
+        $("#viewPhone").text(vendor.phone);
+        $("#viewGST").text(vendor.gstNumber);
+        $("#viewLicense").text(vendor.licenseNumber);
+        $("#viewVendorType").text(vendor.vendorType);
+        $("#viewDescription").text(vendor.description);
+        $("#viewCreatedAt").text(
+            new Date(vendor.createdAt).toLocaleDateString()
+        );
+
+        let badge = "";
+
+        if (vendor.status === "approved") {
+
+            badge =
+            `<span class="status-pill status-approved">
+                Approved
+            </span>`;
+
+        }
+        else if (vendor.status === "pending") {
+
+            badge =
+            `<span class="status-pill status-pending">
+                Pending
+            </span>`;
+
+        }
+        else {
+
+            badge =
+            `<span class="status-pill status-rejected">
+                Rejected
+            </span>`;
+
+        }
+
+        $("#statusBadge").html(badge);
+
         $("#approveBtn").data("id", vendor.id);
         $("#rejectBtn").data("id", vendor.id);
 
-        // Pending -> Show buttons
-if (vendor.status === "pending") {
+        if (vendor.status === "pending") {
 
-    $("#actionButtons").show();
-    $("#remarksSection").hide();
+            $("#actionButtons").show();
+            $("#remarksSection").hide();
 
-}
-// Approved or Rejected -> Hide buttons
-else {
+        } else {
 
-    $("#actionButtons").hide();
-    $("#remarksSection").show();
+            $("#actionButtons").hide();
+            $("#remarksSection").show();
 
-    $("#viewRemarks").val(vendor.remarks || "No Remarks");
+            $("#viewRemarks").text(
+                vendor.remarks || "No Remarks"
+            );
 
-}
+        }
 
         const modal = new bootstrap.Modal(
             document.getElementById("viewVendorModal")
@@ -201,8 +228,10 @@ else {
 
         modal.show();
 
-    } catch(err){
+    } catch (err) {
+
         console.log(err);
+
     }
 
 }

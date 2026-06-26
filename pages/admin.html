@@ -276,11 +276,11 @@
                 </div>
 
                 <!-- Clear Button -->
-              <!-- <div class="col-lg-2 col-md-3">
+              <div class="col-lg-2 col-md-3">
              <button class="btn btn-danger rounded-circle p-0" id="clearFiltersBtn">
                <i class="bi bi-x-lg"></i>
            </button>
-           </div> -->
+           </div>
 
             </div>
              
@@ -366,97 +366,114 @@
     </div>
 </div>
 
-<!-- view modal -->
 <!-- View Vendor Modal -->
 <div class="modal fade" id="viewVendorModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered" style="max-width:700px;">
-        <div class="modal-content border-0 shadow-lg rounded-4">
+
+    <div class="modal-dialog modal-dialog-centered" style="max-width:580px;">
+
+        <div class="modal-content border-0 shadow rounded-4">
 
             <!-- Header -->
-            <div class="modal-header bg-primary text-white rounded-top-4">
+            <div class="modal-header bg-primary text-white">
+
                 <h5 class="modal-title fw-bold">
                     <i class="bi bi-person-vcard-fill me-2"></i>
                     Vendor Details
                 </h5>
 
-                <button type="button"
-                        class="btn-close btn-close-white"
-                        data-bs-dismiss="modal">
+                <button
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
                 </button>
+
             </div>
 
             <!-- Body -->
-            <div class="modal-body px-4 py-4">
+            <div class="modal-body">
 
                 <div class="row g-3">
 
-                    <!-- Organization -->
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold">Organization Name</label>
-                        <input type="text" id="viewOrganization" class="form-control" readonly>
+                        <div class="info-card">
+                            <small>Organization</small>
+                            <h6 id="viewOrganization"></h6>
+                        </div>
                     </div>
 
-                    <!-- Email -->
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold">Email</label>
-                        <input type="email" id="viewEmail" class="form-control" readonly>
+                        <div class="info-card">
+                            <small>Email</small>
+                            <h6 id="viewEmail"></h6>
+                        </div>
                     </div>
 
-                    <!-- Phone -->
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold">Phone Number</label>
-                        <input type="text" id="viewPhone" class="form-control" readonly>
+                        <div class="info-card">
+                            <small>Phone</small>
+                            <h6 id="viewPhone"></h6>
+                        </div>
                     </div>
 
-                    <!-- GST -->
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold">GST Number</label>
-                        <input type="text" id="viewGST" class="form-control" readonly>
+                        <div class="info-card">
+                            <small>GST Number</small>
+                            <h6 id="viewGST"></h6>
+                        </div>
                     </div>
 
-                    <!-- License -->
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold">License Number</label>
-                        <input type="text" id="viewLicense" class="form-control" readonly>
+                        <div class="info-card">
+                            <small>License Number</small>
+                            <h6 id="viewLicense"></h6>
+                        </div>
                     </div>
 
-                    <!-- Vendor Type -->
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold">Vendor Type</label>
-                        <input type="text" id="viewVendorType" class="form-control" readonly>
+                        <div class="info-card">
+                            <small>Vendor Type</small>
+                            <h6 id="viewVendorType"></h6>
+                        </div>
                     </div>
 
-                    <!-- Status -->
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold">Status</label>
-                        <input type="text" id="viewStatus" class="form-control fw-bold" readonly>
+                        <div class="info-card text-center">
+                            <small>Status</small>
+
+                            <div id="statusBadge" class="mt-2"></div>
+
+                        </div>
                     </div>
 
-                    <!-- Created Date -->
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold">Created Date</label>
-                        <input type="text" id="viewCreatedAt" class="form-control" readonly>
+                        <div class="info-card">
+                            <small>Created Date</small>
+                            <h6 id="viewCreatedAt"></h6>
+                        </div>
                     </div>
 
-                    <!-- Description -->
                     <div class="col-12">
-                        <label class="form-label fw-semibold">Description</label>
-                        <textarea id="viewDescription"
-                                  class="form-control"
-                                  rows="2"
-                                  readonly></textarea>
+                        <div class="info-card">
+                            <small>Description</small>
+                            <p id="viewDescription" class="mb-0"></p>
+                        </div>
                     </div>
 
-                    <!-- Remarks (Hidden initially) -->
-                    <div class="col-12" id="remarksSection" style="display:none;">
-                        <label class="form-label fw-semibold">
-                            Admin Remarks
-                        </label>
+                    <div
+                        class="col-12"
+                        id="remarksSection"
+                        style="display:none;">
 
-                        <textarea id="viewRemarks"
-                                  class="form-control"
-                                  rows="2"
-                                  readonly></textarea>
+                        <div class="info-card text-center">
+
+                            <small>Admin Remarks</small>
+
+                            <p
+                                id="viewRemarks"
+                                class="mb-0 fw-semibold">
+                            </p>
+
+                        </div>
+
                     </div>
 
                 </div>
@@ -464,30 +481,36 @@
             </div>
 
             <!-- Footer -->
-            <div class="modal-footer" id="actionButtons">
+            <div class="modal-footer justify-content-center" id="actionButtons">
 
-                <button type="button"
-                        class="btn btn-danger px-4"
-                        data-bs-toggle="modal",
-                        data-bs-target="#remarksModal"
-                        id="rejectBtn">
+                <button
+                    class="btn btn-danger px-4"
+                    id="rejectBtn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#remarksModal">
+
                     <i class="bi bi-x-circle me-1"></i>
                     Reject
+
                 </button>
 
-                <button type="button"
-                        class="btn btn-success px-4",
-                        data-bs-toggle="modal",
-                        data-bs-target="#remarksModal"
-                        id="approveBtn">
+                <button
+                    class="btn btn-success px-4"
+                    id="approveBtn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#remarksModal">
+
                     <i class="bi bi-check-circle me-1"></i>
                     Approve
+
                 </button>
 
             </div>
 
         </div>
+
     </div>
+
 </div>
 
 <div class="modal fade" id="remarksModal" tabindex="-1">
