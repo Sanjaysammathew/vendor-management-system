@@ -803,6 +803,71 @@ $("#clearFiltersBtn").click(function () {
     loadVendorCards();
 });
 
+async function viewVendor(id){
+
+    const response = await fetch(`${API}/${id}`);
+    const vendor = await response.json();
+
+   $("#viewOrganization").text(vendor.organizationName || "-");
+$("#viewEmail").text(vendor.email || "-");
+$("#viewGST").text(vendor.gstNumber || "-");
+$("#viewLicense").text(vendor.licenseNumber || "-");
+$("#viewPhone").text(vendor.phone || "-");
+$("#viewVendorType").text(vendor.vendorType || "-");
+$("#viewContactPerson").text(vendor.contactPerson || "-");
+$("#viewDesignation").text(vendor.contactDesignation || "-");
+$("#viewDescription").text(vendor.description || "-");
+$("#viewAddress").text(vendor.address || "-");
+$("#viewRemarks").text(vendor.remarks || "No remarks available");
+
+    $("#viewCreated").text(
+        new Date(vendor.createdAt).toLocaleDateString()
+    );
+
+    $("#viewUpdated").text(
+        new Date(vendor.updatedAt).toLocaleDateString()
+    );
+
+    $("#viewDescription").text(vendor.description);
+    $("#viewAddress").text(vendor.address);
+    $("#viewRemarks").text(vendor.remarks || "No remarks available");
+
+    $("#viewStatus").html(
+        `<span class="badge ${getBadgeClass(vendor.status)} px-3 py-2">
+            ${vendor.status}
+        </span>`
+    );
+
+    $("#viewUpdateBtn")
+        .off("click")
+        .on("click",function(){
+
+            bootstrap.Modal.getInstance(
+                document.getElementById("viewModal")
+            ).hide();
+
+            editVendor(id);
+
+            new bootstrap.Modal(
+                document.getElementById("editModal")
+            ).show();
+
+        });
+
+    $("#viewDeleteBtn")
+        .off("click")
+        .on("click",function(){
+
+            bootstrap.Modal.getInstance(
+                document.getElementById("viewModal")
+            ).hide();
+
+            deleteVendor(id);
+
+        });
+
+}
+
 function countStat(vendors) {
 
     const activeVendors = vendors.filter(

@@ -643,6 +643,173 @@
 
 </div>
 
+<div class="modal fade" id="viewModal" tabindex="-1">
+
+    <div class="modal-dialog  modal-dialog-centered">
+
+        <div class="modal-content border-0 shadow">
+
+            <div class="modal-header text-white" style="background:#53A890;">
+
+                <h5 class="modal-title">
+                    <i class="bi bi-eye-fill me-2"></i>
+                    Vendor Details
+                </h5>
+
+                   <div class="ms-auto me-5">
+
+                    <span id="viewStatus"></span>
+
+                </div>
+
+                <button
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <!-- Status -->
+
+                <div class="row g-3">
+
+                    <!-- Organization -->
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <small>Organization</small>
+                            <h6 id="viewOrganization"></h6>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <small>Email</small>
+                            <h6 id="viewEmail"></h6>
+                        </div>
+                    </div>
+
+                    <!-- GST -->
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <small>GST Number</small>
+                            <h6 id="viewGST"></h6>
+                        </div>
+                    </div>
+
+                    <!-- License -->
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <small>License Number</small>
+                            <h6 id="viewLicense"></h6>
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <small>Phone Number</small>
+                            <h6 id="viewPhone"></h6>
+                        </div>
+                    </div>
+
+                    <!-- Vendor -->
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <small>Vendor Type</small>
+                            <h6 id="viewVendorType"></h6>
+                        </div>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <small>Contact Person</small>
+                            <h6 id="viewContactPerson"></h6>
+                        </div>
+                    </div>
+
+                    <!-- Designation -->
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <small>Designation</small>
+                            <h6 id="viewDesignation"></h6>
+                        </div>
+                    </div>
+
+                    <!-- Created -->
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <small>Created Date</small>
+                            <h6 id="viewCreated"></h6>
+                        </div>
+                    </div>
+
+                    <!-- Updated -->
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <small>Updated Date</small>
+                            <h6 id="viewUpdated"></h6>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col-12">
+                        <div class="info-card">
+                            <small>Description</small>
+                            <p id="viewDescription" class="mb-0"></p>
+                        </div>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="col-12">
+                        <div class="info-card">
+                            <small>Address</small>
+                            <p id="viewAddress" class="mb-0"></p>
+                        </div>
+                    </div>
+
+                    <!-- Remarks -->
+                    <div class="col-12">
+                        <div class="info-card">
+                            <small>Admin Remarks</small>
+                            <p id="viewRemarks" class="mb-0 fw-semibold"></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-success"
+                    id="viewUpdateBtn">
+
+                    <i class="bi bi-pencil-square me-1"></i>
+                    Update
+
+                </button>
+
+                <button
+                    class="btn btn-danger"
+                    id="viewDeleteBtn">
+
+                    <i class="bi bi-trash3 me-1"></i>
+                    Delete
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
