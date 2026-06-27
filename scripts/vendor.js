@@ -912,14 +912,6 @@ function countStat(vendors) {
 
 $("#editProfileBtn").click(async function () {
 
-    
-    const offcanvasElement = document.getElementById("userProfileOffcanvas");
-    const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement);
-
-    if (offcanvas) {
-        offcanvas.hide();
-    }
-
     try {
 
         const response = await fetch(
