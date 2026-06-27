@@ -214,28 +214,30 @@ async function loadVendorCards() {
 
 
 //edit task
-
 async function editVendor(id) {
 
-    try {
+    const response = await fetch(`${API}/${id}`);
+    const vendor = await response.json();
 
-        const response = await fetch(`${API}/${id}`);
-        const vendor = await response.json();
+    console.log("Vendor ID:", id);
 
-        $("#editId").val(vendor.id);
-        $("#editGST").val(vendor.gstNumber);
-        $("#editLicense").val(vendor.licenseNumber);
-        $("#editVendorType").val(vendor.vendorType);
-        $("#editDesc").val(vendor.description);
+    $("#editId").val(vendor.id);
 
-        $("#editCreatedAt").val(
-            new Date(vendor.createdAt).toLocaleDateString()
-        );
+   $("#editOrganization").val(vendor.organizationName);
+$("#editEmail").val(vendor.email);
+$("#editGST").val(vendor.gstNumber);
 
-    } catch (err) {
-        console.log(err);
-    }
+$("#editLicense").val(vendor.licenseNumber);
+$("#editPhone").val(vendor.phone);
+$("#editVendorType").val(vendor.vendorType);
+$("#editContactPerson").val(vendor.contactPerson);
+$("#editContactDesignation").val(vendor.contactDesignation);
+$("#editDesc").val(vendor.description);
+$("#editAddress").val(vendor.address);
 
+$("#editCreatedAt").val(
+    new Date(vendor.createdAt).toLocaleDateString()
+);
 }
 
 // update Task
@@ -260,17 +262,19 @@ if (license === "" || vendorType === "" || description === "") {
     return;
 }
 
-    const updatedVendor = {
+  const updatedVendor = {
+    ...vendor,
 
-        ...vendor,
+    licenseNumber: $("#editLicense").val().trim(),
+    phone: $("#editPhone").val().trim(),
+    vendorType: $("#editVendorType").val().trim(),
+    contactPerson: $("#editContactPerson").val().trim(),
+    contactDesignation: $("#editContactDesignation").val().trim(),
+    description: $("#editDesc").val().trim(),
+    address: $("#editAddress").val().trim(),
 
-        licenseNumber: license,
-        vendorType: vendorType,
-        description: description,
-
-        updatedAt: new Date().toISOString()
-
-    };
+    updatedAt: new Date().toISOString()
+};
 
     await fetch(`${API}/${id}`, {
         method: "PUT",
@@ -557,7 +561,7 @@ function displayVendorCards(vendors) {
         vendors.forEach(vendor => {
 
         cards.innerHTML += `
-<div class="col-lg-4 col-md-6 mb-4">
+<div class="col-xl-4 col-lg-6 col-12 mb-4">
 
     <div class="card vendor-card border-0 shadow h-100">
 
@@ -838,6 +842,18 @@ $("#viewRemarks").text(vendor.remarks || "No remarks available");
         </span>`
     );
 
+    if (vendor.status.toLowerCase() === "approved") {
+
+    $("#viewUpdateBtn").hide();
+    $("#viewDeleteBtn").hide();
+
+} else {
+
+    $("#viewUpdateBtn").show();
+    $("#viewDeleteBtn").show();
+
+}
+
     $("#viewUpdateBtn")
         .off("click")
         .on("click",function(){
@@ -896,70 +912,147 @@ function countStat(vendors) {
 
 $("#editProfileBtn").click(async function () {
 
-    const response = await fetch(
-        `${API}?gstNumber=${loggedInUser.gstNumber}`
-    );
+    
+    const offcanvasElement = document.getElementById("userProfileOffcanvas");
+    const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement);
 
-    const vendor = (await response.json())[0];
+    if (offcanvas) {
+        offcanvas.hide();
+    }
 
-    $("#profileEditId").val(vendor.id);
-    $("#editOrg").val(vendor.organizationName);
-    $("#editEmail").val(vendor.email);
-    $("#editGSTProfile").val(vendor.gstNumber);
-    $("#editPhone").val(vendor.phone);
-    $("#editLicenseProfile").val(vendor.licenseNumber);
-    $("#editAddressProfile").val(vendor.address);
+    try {
+
+        const response = await fetch(
+            `${API}?gstNumber=${loggedInUser.gstNumber}`
+        );
+
+        const vendors = await response.json();
+
+        if (!vendors.length) {
+            Swal.fire({
+                icon: "error",
+                title: "Profile not found"
+            });
+            return;
+        }
+
+        const vendor = vendors[0];
+
+        $("#profileEditId").val(vendor.id);
+        $("#editOrg").val(vendor.organizationName);
+        $("#editEmailOrg").val(vendor.email);
+        $("#editGSTProfile").val(vendor.gstNumber);
+
+          const modal = new bootstrap.Modal(
+                document.getElementById("profileEditModal")
+            );
+
+            modal.show();
+    
+
+    } catch (err) {
+
+        console.log(err);
+
+        Swal.fire({
+            icon: "error",
+            title: "Unable to load profile"
+        });
+
+    }
+
 });
 
 $("#updateProfileBtn").click(async function () {
 
     const id = $("#profileEditId").val();
 
-    const response = await fetch(`${API}/${id}`);
-    const vendor = await response.json();
+    const organization = $("#editOrg").val().trim();
+    const email = $("#editEmailOrg").val().trim();
+    const gst = $("#editGSTProfile").val().trim();
 
-    const phone = $("#editPhone").val().trim();
-    const address = $("#editAddressProfile").val().trim();
+    if (!organization || !email || !gst) {
 
-    if (phone === "" || address === "") {
         Swal.fire({
             icon: "warning",
-            title: "Required",
-            text: "Phone Number and Address are required."
+            title: "All fields are required"
         });
+
         return;
     }
 
-    const updatedVendor = {
+    try {
 
-        ...vendor,
+        const response = await fetch(`${API}/${id}`);
+        const vendor = await response.json();
 
-        phone: phone,
-        address: address,
+        const updatedVendor = {
 
-        updatedAt: new Date().toISOString()
+            ...vendor,
 
-    };
+            organizationName: organization,
+            email: email,
+            gstNumber: gst,
 
-    await fetch(`${API}/${id}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(updatedVendor)
-    });
+            updatedAt: new Date().toISOString()
 
-    Swal.fire({
-        icon: "success",
-        title: "Profile Updated Successfully"
-    });
+        };
 
-    bootstrap.Modal.getInstance(
-        document.getElementById("profileEditModal")
-    ).hide();
+        await fetch(`${API}/${id}`, {
 
-    loadVendorProfile();   // Refresh offcanvas details
-    loadVendorCards();     // Refresh cards if needed
+            method: "PUT",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(updatedVendor)
+
+        });
+
+        // Update Local Storage
+        const updatedUser = {
+
+            ...loggedInUser,
+
+            organizationName: organization,
+            email: email,
+            gstNumber: gst
+
+        };
+
+        localStorage.setItem(
+            "loggedInUser",
+            JSON.stringify(updatedUser)
+        );
+
+        // Update UI immediately
+        $("#dropdownUsername").text(organization);
+        $("#navUsername").text(organization);
+
+        $("#profileOrg").text(organization);
+        $("#profileEmail").text(email);
+        $("#profileGST").text(gst);
+
+        bootstrap.Modal.getInstance(
+            document.getElementById("profileEditModal")
+        ).hide();
+
+        Swal.fire({
+            icon: "success",
+            title: "Profile Updated"
+        });
+
+    } catch (err) {
+
+        console.log(err);
+
+        Swal.fire({
+            icon: "error",
+            title: "Update Failed"
+        });
+
+    }
 
 });
 

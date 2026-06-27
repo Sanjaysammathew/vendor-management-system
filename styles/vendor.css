@@ -312,3 +312,38 @@ color: white;
 }
 
 }
+
+@media (max-width:576px){
+
+#vendorSection{
+    padding:1rem !important;
+}
+
+}
+
+@media (max-width:576px){
+
+#viewModal .modal-header{
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+#viewModal .modal-title{
+    margin-bottom: 0;
+}
+
+#viewModal .modal-header .position-absolute{
+    position: static !important;
+    transform: none !important;
+}
+
+#viewModal .btn-close{
+    position: absolute;
+    top: 18px;
+    right: 18px;
+}
+
+}

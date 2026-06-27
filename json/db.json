@@ -38,20 +38,22 @@
   ],
   "vendorDetails": [
     {
-      "organizationName": "SPK Groups",
+      "organizationName": "SPK Group",
       "email": "spkgroups@gmail.com",
       "gstNumber": "29ABCDE1234F1Z5",
       "licenseNumber": "ELEC102345",
       "phone": "8940997875",
       "vendorType": "Electrical Appliance",
-      "description": "Providing electrical appliances and services to them",
+      "description": "Providing electrical appliances and service to them",
       "address": "123,Thirumalai Nagar ,coimbatore -06",
       "isDeleted": false,
       "status": "pending",
       "remarks": "",
       "createdAt": "2026-06-25T08:41:38.876Z",
-      "updatedAt": "2026-06-26T13:33:41.066Z",
-      "id": "G04w4vh6yVo"
+      "updatedAt": "2026-06-27T10:43:34.711Z",
+      "id": "G04w4vh6yVo",
+      "contactPerson": "Krithick",
+      "contactDesignation": "Product Lead"
     },
     {
       "organizationName": "SPK Groups",
@@ -60,14 +62,16 @@
       "licenseNumber": "FSSAI102345",
       "phone": "9080624255",
       "vendorType": "Food",
-      "description": "Providing foods and Beverage",
+      "description": "Providing foods and Beverages",
       "address": "123,Indra Nagar ,coimbatore -06",
       "isDeleted": false,
       "status": "rejected",
       "remarks": "No it is not within our budget it is not approved",
       "createdAt": "2026-06-25T12:25:12.553Z",
-      "updatedAt": "2026-06-26T10:04:12.510Z",
-      "id": "1e8XXFlrDW0"
+      "updatedAt": "2026-06-27T10:18:24.125Z",
+      "id": "1e8XXFlrDW0",
+      "contactPerson": "Manoj",
+      "contactDesignation": "Manager"
     },
     {
       "organizationName": "SPK Groups",
