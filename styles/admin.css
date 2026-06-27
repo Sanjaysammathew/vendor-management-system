@@ -12,6 +12,11 @@
     transform: translateY(-2px);
 }
 
+#nav-container{
+      background-color: #53A890;
+    color: white;
+}
+
 
 #button-container .btn.gradient-all.active {
     border-color: #1E3A5F;
@@ -213,4 +218,10 @@
 
 .pagination .page-link:hover{
     color: #495057;
+}
+
+.custom-header th{
+    background: #4CAF7A !important;
+    color: #fff !important;
+    border-color: #4CAF7A !important;
 }

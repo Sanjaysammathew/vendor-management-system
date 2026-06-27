@@ -13,12 +13,12 @@
 <body>
     <!-- Navbar  -->
      
-  <nav class="navbar navbar-expand-lg shadow-sm" style="background-color: #F8F8F8;">
+  <nav class="navbar navbar-expand-lg shadow-sm" id="nav-container">
     <div class="container">
 
         <a href="../pages/index.html" class="navbar-brand fw-bold fs-4 d-flex align-items-center">
-             <i class="bi bi-buildings-fill me-2 fs-3"></i>
-             <span class="fw-bold">VendorFlow</span>
+             <i class="bi bi-buildings-fill me-2 fs-3 text-white"></i>
+             <span class="fw-bold text-white">VendorFlow</span>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navs">
@@ -29,8 +29,8 @@
             <div class="navbar-nav ms-auto flex-row justify-content-end gap-2 mt-2 mt-lg-0">
                 <div class="nav-item me-lg-5">
                     <button class="btn nav-icon-btn p-2" id="userProfileBtn" data-bs-toggle="offcanvas" data-bs-target="#userProfile">
-                        <i class="bi bi-person-circle fs-5 me-1"></i>
-                        Hi, <span id="navUsername">user</span>
+                        <i class="bi bi-person-circle fs-5 me-1 text-white"></i>
+                         <span id="navUsername" class="text-white">user</span>
                     </button>
                 </div>
             </div>
@@ -44,7 +44,7 @@
     <section class="container my-4">
         <div class="row">
             <div class="col-12 col-lg-6 text-center text-lg-start mt-2">
-                <p class="h3 fw-bold me">Admin Dashboard</p>
+                <p class="h3 fw-bold me text-success">Admin Dashboard</p>
             </div>
             <div class="col-12 col-lg-6 text-center text-lg-end">
                 <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-lg-end mt-2 mt-md-0" id="button-container">
@@ -293,51 +293,40 @@
 </div>
 
 
-<div class="container my-4 p-5 rounded-4" style="background-color: #F8F8F8;">
+<div class="container my-4 p-3">
 
-    <div class="card shadow-sm border-0 rounded-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold mb-0">
+            <i class="bi bi-card-list me-2 text-success"></i>
+            <span class="text-success" id="recordTitle">Vendor Records</span>
+        </h3>
+    </div>
 
-        <div class="card-body">
+    <div id="noRecord"></div>
 
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h3 class="fw-bold mb-0">
-                    <i class="bi bi-card-list me-2 text-primary"></i>
-                    Vendor Records
-                </h3>
-            </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead class="custom-header">
+                <tr>
+                    <th>GST Number</th>
+                    <th>Vendor Type</th>
+                    <th>License</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
 
-            <div id="noRecord"></div>
+            <tbody id="vendorTableBody">
+                <!-- Data from JavaScript -->
+            </tbody>
+        </table>
+    </div>
 
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    
-                <table class="table table-hover ">
-
-                    <thead class="table-success">
-                        <tr>
-                            <th>GST Number</th>
-                            <th>Vendor Type</th>
-                            <th>License</th>
-                            <th>Status</th>
-                            <th>Created</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="vendorTableBody">
-                        <!-- Data from JavaScript -->
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-
-        <div class="d-flex justify-content-center mt-4">
-            <nav>
-                <ul class="pagination" id="pagination"></ul>
-            </nav>
-        </div>
-
+    <div class="d-flex justify-content-center mt-4">
+        <nav>
+            <ul class="pagination" id="pagination"></ul>
+        </nav>
     </div>
 
 </div>

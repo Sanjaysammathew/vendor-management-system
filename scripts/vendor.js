@@ -344,8 +344,8 @@ async function loadDeletedCards() {
                         <div class="card-header d-flex justify-content-between align-items-center">
 
                             <h5 class="fw-bold mb-0">
-                                <i class="bi bi-building text-success me-2"></i>
-                                ${vendor.vendorType}
+                                <i class="bi bi-building  me-2"></i>
+                                  ${vendor.vendorType}
                             </h5>
 
                              <span class="badge ${getBadgeClass(vendor.status)} px-3 py-2">
@@ -525,7 +525,7 @@ function displayVendorCards(vendors) {
                 <div class="mini-card">
                     <i class="bi bi-card-text text-warning fs-4"></i>
                     <small>Description</small>
-                    <p class="mb-0 mt-1">
+                    <p class="mb-0 mt-1 fw-bold">
                         ${vendor.description}
                     </p>
                 </div>
@@ -545,13 +545,13 @@ function displayVendorCards(vendors) {
 
     </div>
 
-    <div class="card-footer bg-white border-0 d-flex gap-2">
+  
 
    ${vendor.status !== "approved" ? `
 <div class="card-footer bg-white border-0 d-flex gap-2">
 
     <button
-        class="btn btn-primary flex-fill rounded-pill"
+        class="btn btn-primary flex-fill rounded-4  px-3"
         data-bs-toggle="modal"
         data-bs-target="#editModal"
         onclick="editVendor('${vendor.id}')">
@@ -837,4 +837,21 @@ if (restoreBtn) {
         loadDeletedCards();
     });
 }
+});
+
+
+$("#fromDate, #toDate").on("keydown paste", function (e) {
+    e.preventDefault();
+});
+
+$("#restoreBtn").click(function () {
+
+    loadDeletedCards();
+
+    document.getElementById("vendorSection").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+    $("#recordTitle").text("Deleted Records");
 });
