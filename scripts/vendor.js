@@ -392,7 +392,7 @@ async function loadDeletedCards() {
             </div>
 
             <span class="badge rounded-pill ${getBadgeClass(vendor.status)} px-3 py-2">
-                ${vendor.status}
+                  ${capitalize(vendor.status)}
             </span>
 
         </div>
@@ -581,7 +581,7 @@ function displayVendorCards(vendors) {
             </div>
 
             <span class="badge rounded-pill ${getBadgeClass(vendor.status)} px-3 py-2">
-                ${vendor.status}
+                  ${capitalize(vendor.status)}
             </span>
 
         </div>
@@ -1129,4 +1129,8 @@ function showVendorRecords() {
     $("#restoreBtn").removeClass("active");
 
     $("#button-container .btn").removeClass("active");
+}
+
+function capitalize(text) {
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
 }

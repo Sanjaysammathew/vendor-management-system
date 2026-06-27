@@ -103,7 +103,7 @@ function displayVendorCards(data) {
                 ? "bg-danger"
                 : "bg-warning text-dark"
         }">
-            ${task.status}
+            ${capitalize(task.status)}
         </span>
     </td>
 
@@ -395,3 +395,7 @@ $("#logoutBtn").click(async function () {
 $("#fromDate, #toDate").on("keydown paste", function (e) {
     e.preventDefault();
 });
+
+function capitalize(text) {
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+}
