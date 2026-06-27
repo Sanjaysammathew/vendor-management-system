@@ -132,6 +132,24 @@
       "createdAt": "2026-06-26T12:37:24.020Z",
       "updatedAt": "2026-06-26T13:47:10.806Z",
       "id": "qRV0FZgs_4Y"
+    },
+    {
+      "organizationName": "SPK Groups",
+      "email": "spkgroups@gmail.com",
+      "gstNumber": "29ABCDE1234F1Z5",
+      "licenseNumber": "ITEQ456732",
+      "phone": "8940997879",
+      "contactPerson": "Rohan",
+      "contactDesignation": "Manager",
+      "vendorType": "IT Service",
+      "description": "Providing food service to the canteen and vending machines",
+      "address": "123,Indra Nagar Nallampalayam coimbatore -06",
+      "isDeleted": false,
+      "status": "pending",
+      "remarks": "",
+      "createdAt": "2026-06-27T07:09:11.720Z",
+      "updatedAt": "2026-06-27T07:09:11.720Z",
+      "id": "k69vlPp4s5w"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

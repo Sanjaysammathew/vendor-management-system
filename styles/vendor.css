@@ -281,6 +281,17 @@ color: white;
     margin:2px 0 0;
 }
 
+.card-footer .btn{
+    border-radius: 10px;
+    font-size: .85rem;
+    padding: 8px 0;
+    font-weight: 600;
+}
+
+.card-footer .d-flex{
+    gap: 12px !important;
+}
+
 .description-text{
     color:#343a40;
     font-size:.9rem;

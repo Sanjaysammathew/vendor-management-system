@@ -266,87 +266,202 @@
 </div>
 
 <!-- Add Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
 
-   <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog  modal-dialog-centered">
+
         <div class="modal-content">
+
             <div class="modal-header">
-                <div class="modal-title">Add Details</div>
-                <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                <h5 class="modal-title fw-bold">
+                    Add Vendor Details
+                </h5>
+
+                <button
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close">
+                </button>
             </div>
+
             <div class="modal-body">
+
                 <form id="detailsForm">
 
+                    <!-- Organization -->
                     <div class="mb-3">
                         <div class="form-floating">
-                            <input type="text" class="form-control" placeholder="Enter a Name" id="orgName" readonly>
-                            <label for="orgName" class="form-label">Organization</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="orgName"
+                                readonly>
+                            <label>Organization</label>
                         </div>
                     </div>
 
+                    <!-- GST & License -->
                     <div class="row">
-                        <div class="col col-lg-6">
+
+                        <div class="col-md-6 mb-3">
                             <div class="form-floating">
-                                <input type="text" class="form-control" placeholder="Gst Number" id="gst" readonly>
-                                <label for="gst" class="form-label">Gst Number</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="gst"
+                                    readonly>
+                                <label>GST Number</label>
                             </div>
                         </div>
 
-                          <div class="col col-lg-6">
+                        <div class="col-md-6 mb-3">
                             <div class="form-floating">
-                                <input type="text" class="form-control" placeholder="Gst Number" id="license" >
-                                <label for="license" class="form-label">License Number</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="license"
+                                    placeholder="License Number">
+                                <label>License Number</label>
                             </div>
+
+                            <div id="error-license" class="text-danger"></div>
+                        </div>
+
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="addEmail"
+                                readonly>
+                            <label>Email</label>
                         </div>
                     </div>
 
-                    <div class="mt-3">
-                        <div class="form-floating">
-                            <input type="email" class="form-control" placeholder="Email" id="addEmail" readonly>
-                            <label for="readEmail">Email</label>
+                    <!-- Phone & Vendor Type -->
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <div class="form-floating">
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="number">
+                                <label>Phone Number</label>
+                            </div>
+
+                            <div id="error-phone" class="text-danger"></div>
+
                         </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <div class="form-floating">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="vendor-type">
+                                <label>Vendor Type</label>
+                            </div>
+
+                            <div id="error-vendor" class="text-danger"></div>
+
+                        </div>
+
                     </div>
 
-                    <div class="mt-3">
-                        <div class="form-floating">
-                            <input type="number" class="form-control" placeholder="number" id="number">
-                            <label for="number">Phone Number</label>
+                    <!-- Contact Person -->
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <div class="form-floating">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="contactPerson">
+                                <label>Contact Person</label>
+                            </div>
+
+                            <div id="error-contactPerson" class="text-danger"></div>
+
                         </div>
-                        <div id="error-phone" class="text-danger"></div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <div class="form-floating">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="contactDesignation">
+                                <label>Contact Person Designation</label>
+                            </div>
+
+                            <div id="error-contactDesignation" class="text-danger"></div>
+
+                        </div>
+
                     </div>
 
-                    <div class="mt-3">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" placeholder="vendor Type" id="vendor-type">
-                            <label for="vendor-type" class="form-label">Vendor Type</label>
-                        </div>
-                        <div id="error-vendor"class="text-danger"></div>
-                    </div>
+                    <!-- Description -->
+                    <div class="mb-3">
 
-                    <div class="mt-3">
                         <div class="form-floating">
-                            <input type="text" class="form-control" placeholder="description" id="desc">
-                            <label for="desc" class="form-label">Description</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="desc">
+                            <label>Description</label>
                         </div>
+
                         <div id="error-desc" class="text-danger"></div>
+
                     </div>
-                    
-                    <div class="mt-3" >
+
+                    <!-- Address -->
+                    <div class="mb-3">
+
                         <div class="form-floating">
-                     <textarea class="form-control" id="address" placeholder="Enter a Address"></textarea>
-                     <label for="address" class="form-label">Address</label>
-                    </div>
-                    <div id="error-address" class="text-danger"></div>
+                            <textarea
+                                class="form-control"
+                                id="address"
+                                style="height:100px"></textarea>
+
+                            <label>Address</label>
+                        </div>
+
+                        <div id="error-address" class="text-danger"></div>
+
                     </div>
 
                 </form>
+
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-success" id="saveBtn">Save</button>
+
+                <button
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+                    Cancel
+                </button>
+
+                <button
+                    class="btn btn-success"
+                    id="saveBtn">
+                    Save
+                </button>
+
             </div>
+
         </div>
+
     </div>
+
 </div>
 
 
@@ -527,6 +642,8 @@
     </div>
 
 </div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

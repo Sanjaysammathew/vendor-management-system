@@ -68,6 +68,8 @@ $("#saveBtn").click(async function () {
     const description = $("#desc").val().trim();
     const address = $("#address").val().trim();
     const licenseNumber=$("#license").val().trim()
+    const contactPerson = $("#contactPerson").val().trim();
+    const contactDesignation = $("#contactDesignation").val().trim();
 
     // Phone
     const phone = $("#number").val().trim();
@@ -101,25 +103,53 @@ $("#saveBtn").click(async function () {
         $("#error-address").text("");
     }
 
+    if (contactPerson === "") {
+    $("#error-contactPerson").text("Contact Person is required");
+    isValid = false;
+} else {
+    $("#error-contactPerson").text("");
+}
+
+if (contactDesignation === "") {
+    $("#error-contactDesignation").text("Designation is required");
+    isValid = false;
+} else {
+    $("#error-contactDesignation").text("");
+}
+
+if (licenseNumber === "") {
+    $("#error-license").text("License Number is required");
+    isValid = false;
+} else {
+    $("#error-license").text("");
+}
+
 
 
     if (!isValid) return;
 
-        const vendorData = {
-        organizationName: loggedInUser.organizationName,
-        email: loggedInUser.email,
-        gstNumber: loggedInUser.gstNumber,
-        licenseNumber:licenseNumber ,
-        phone: phone,
-        vendorType:vendorType,
-        description:description,
-        address: address,
-        isDeleted:false,
-        status:"pending",
-        remarks:"",
-        createdAt:new Date().toISOString(),
-        updatedAt:new Date().toISOString()
-    };
+      const vendorData = {
+    organizationName: loggedInUser.organizationName,
+    email: loggedInUser.email,
+    gstNumber: loggedInUser.gstNumber,
+
+    licenseNumber: licenseNumber,
+    phone: phone,
+
+    contactPerson: contactPerson,
+    contactDesignation: contactDesignation,
+
+    vendorType: vendorType,
+    description: description,
+    address: address,
+
+    isDeleted: false,
+    status: "pending",
+    remarks: "",
+
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+};
 
     try {
 
@@ -337,77 +367,127 @@ async function loadDeletedCards() {
 
         vendors.forEach(vendor => {
 
-            cards.innerHTML += `
-                    <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card border-0 shadow-sm rounded-4 h-100">
+         cards.innerHTML += `
+<div class="col-lg-4 col-md-6 mb-4">
 
-                        <div class="card-header d-flex justify-content-between align-items-center">
+    <div class="card vendor-card border-0 shadow h-100">
 
-                            <h5 class="fw-bold mb-0">
-                                <i class="bi bi-building  me-2"></i>
-                                  ${vendor.vendorType}
-                            </h5>
+        <!-- Header -->
+        <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
 
-                             <span class="badge ${getBadgeClass(vendor.status)} px-3 py-2">
-                                        ${vendor.status}
-                                       </span>
+            <div>
+                <h5 class="fw-bold mb-1">
+                    <i class="bi bi-building-fill text-primary me-2"></i>
+                    ${vendor.vendorType}
+                </h5>
 
+                <small class="text-muted">
+                    <i class="bi bi-calendar3 me-1"></i>
+                    ${new Date(vendor.createdAt).toLocaleDateString()}
+                </small>
+            </div>
+
+            <span class="badge rounded-pill ${getBadgeClass(vendor.status)} px-3 py-2">
+                ${vendor.status}
+            </span>
+
+        </div>
+
+        <!-- Body -->
+        <div class="card-body">
+
+            <!-- GST & License -->
+            <div class="row g-3 mb-4">
+
+                <div class="col-6">
+                    <div class="p-3 bg-light rounded-3 border h-100">
+                        <small class="text-muted d-block">
+                            GST Number
+                        </small>
+
+                        <div class="fw-bold mt-1">
+                            ${vendor.gstNumber}
                         </div>
-
-                        <div class="card-body">
-
-                            <div class="mb-3">
-                                <strong>Description</strong>
-                                <p class=" description-text text-muted mb-0">
-                                    ${vendor.description}
-                                </p>
-                            </div>
-
-                            <div class="row">
-
-                                <div class="col-6 mb-3">
-                                    <small class="text-muted">GST Number</small>
-                                    <div class="fw-semibold">
-                                        ${vendor.gstNumber}
-                                    </div>
-                                </div>
-
-                                <div class="col-6 mb-3">
-                                    <small class="text-muted">License No</small>
-                                    <div class="fw-semibold">
-                                        ${vendor.licenseNumber}
-                                    </div>
-                                </div>
-
-                                <div class="col-6 mb-3">
-                                    <small class="text-muted">Created At</small>
-                                    <div class="fw-semibold">
-                                        ${new Date(vendor.createdAt).toLocaleDateString()}
-                                    </div>
-                                </div>
-
-                                <div class="col-6 mb-3">
-                                    <small class="text-muted">Remarks</small>
-                                    <div class="fw-semibold text-secondary">
-                                        ${vendor.remarks || "-"}
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                            <button
-                                class="btn btn-success w-100   "
-                                onclick="restoreVendor('${vendor.id}')">
-                                Restore
-                            </button>
-
-                        </div>
-
                     </div>
                 </div>
-            `;
+
+                <div class="col-6">
+                    <div class="p-3 bg-light rounded-3 border h-100">
+                        <small class="text-muted d-block">
+                            License Number
+                        </small>
+
+                        <div class="fw-bold mt-1">
+                            ${vendor.licenseNumber}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Description -->
+            <div class="mb-4">
+
+                <small class="text-muted fw-semibold">
+                    Description
+                </small>
+
+                <p class="fs-6 mt-2 mb-0">
+                    ${vendor.description}
+                </p>
+
+            </div>
+
+            <!-- Remarks -->
+            <div>
+
+                <small class="text-muted fw-semibold">
+                    Remarks
+                </small>
+
+                <p class="fs-6 mt-2 mb-0">
+                    ${vendor.remarks || "-"}
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="card-footer bg-white border-0">
+
+            <div class="d-flex justify-content-center gap-3">
+
+                <!-- View -->
+                <button
+                    class="btn btn-outline-info flex-fill"
+                    data-bs-toggle="modal"
+                    data-bs-target="#viewModal"
+                    onclick="viewVendor('${vendor.id}')">
+
+                    <i class="bi bi-eye-fill me-1"></i>
+                    View
+
+                </button>
+
+                <!-- Restore -->
+                <button
+                    class="btn btn-success flex-fill"
+                    onclick="restoreVendor('${vendor.id}')">
+
+                    <i class="bi bi-arrow-counterclockwise me-1"></i>
+                    Restore
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+`;
         });
 
     } catch (err) {
@@ -476,107 +556,139 @@ function displayVendorCards(vendors) {
 
         vendors.forEach(vendor => {
 
-         cards.innerHTML += `
+        cards.innerHTML += `
 <div class="col-lg-4 col-md-6 mb-4">
 
-<div class="card vendor-card border-0 shadow h-100">
+    <div class="card vendor-card border-0 shadow h-100">
 
-    <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
+        <!-- Header -->
+        <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
 
-        <div>
-            <h5 class="fw-bold mb-1">
-                <i class="bi bi-building-fill text-primary me-2"></i>
-                ${vendor.vendorType}
-            </h5>
+            <div>
+                <h5 class="fw-bold mb-1">
+                    <i class="bi bi-building-fill text-primary me-2"></i>
+                    ${vendor.vendorType}
+                </h5>
 
-            <small class="text-muted">
-                <i class="bi bi-calendar3 me-1"></i>
-                ${new Date(vendor.createdAt).toLocaleDateString()}
-            </small>
-        </div>
-
-        <span class="badge rounded-pill ${getBadgeClass(vendor.status)} px-3 py-2">
-            ${vendor.status}
-        </span>
-
-    </div>
-
-    <div class="card-body">
-
-        <div class="row g-2">
-
-            <div class="col-6">
-                <div class="mini-card">
-                    <i class="bi bi-receipt-cutoff text-primary fs-4"></i>
-                    <small>GST Number</small>
-                    <div class="fw-semibold">${vendor.gstNumber}</div>
-                </div>
+                <small class="text-muted">
+                    <i class="bi bi-calendar3 me-1"></i>
+                    ${new Date(vendor.createdAt).toLocaleDateString()}
+                </small>
             </div>
 
-            <div class="col-6">
-                <div class="mini-card">
-                    <i class="bi bi-patch-check-fill text-success fs-4"></i>
-                    <small>License</small>
-                    <div class="fw-semibold">${vendor.licenseNumber}</div>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div class="mini-card">
-                    <i class="bi bi-card-text text-warning fs-4"></i>
-                    <small>Description</small>
-                    <p class="mb-0 mt-1 fw-bold">
-                        ${vendor.description}
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div class="mini-card">
-                    <i class="bi bi-chat-square-dots-fill text-danger fs-4"></i>
-                    <small>Remarks</small>
-                    <p class="mb-0 mt-1">
-                        ${vendor.remarks || "-"}
-                    </p>
-                </div>
-            </div>
+            <span class="badge rounded-pill ${getBadgeClass(vendor.status)} px-3 py-2">
+                ${vendor.status}
+            </span>
 
         </div>
 
+        <!-- Body -->
+        <div class="card-body">
+
+            <!-- GST & License -->
+            <div class="row g-3 mb-4">
+
+                <div class="col-6">
+                    <div class="p-3 bg-light rounded-3 border h-100">
+                        <small class="text-muted d-block">
+                            GST Number
+                        </small>
+
+                        <div class="fw-bold mt-1">
+                            ${vendor.gstNumber}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="p-3 bg-light rounded-3 border h-100">
+                        <small class="text-muted d-block">
+                            License Number
+                        </small>
+
+                        <div class="fw-bold mt-1">
+                            ${vendor.licenseNumber}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Description -->
+            <div class="mb-4">
+
+                <small class="text-muted fw-semibold">
+                    Description
+                </small>
+
+                <p class=" fs-6 mt-2 mb-0">
+                    ${vendor.description}
+                </p>
+
+            </div>
+
+            <!-- Remarks -->
+            <div>
+
+                <small class="text-muted fw-semibold">
+                    Remarks
+                </small>
+
+                <p class="fs-6 mt-2 mb-0">
+                    ${vendor.remarks || "-"}
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+     <div class="card-footer bg-white border-0">
+
+    <div class="d-flex justify-content-center gap-3">
+
+        <!-- View -->
+        <button
+            class="btn btn-outline-info flex-fill"
+            data-bs-toggle="modal"
+            data-bs-target="#viewModal"
+            onclick="viewVendor('${vendor.id}')">
+
+            <i class="bi bi-eye-fill me-1"></i>
+            View
+        </button>
+
+        ${vendor.status !== "approved" ? `
+
+        <!-- Update -->
+        <button
+            class="btn flex-fill"
+            id="editTask"
+            data-bs-toggle="modal"
+            data-bs-target="#editModal"
+            onclick="editVendor('${vendor.id}')">
+
+            <i class="bi ${vendor.status === "rejected" ? "bi-arrow-clockwise" : "bi-pencil-square"} me-1"></i>
+            ${vendor.status === "rejected" ? "Reapply" : "Update"}
+        </button>
+
+        <!-- Delete -->
+        <button
+            class="btn btn-outline-danger flex-fill"
+            onclick="deleteVendor('${vendor.id}')">
+
+            <i class="bi bi-trash3 me-1"></i>
+            Delete
+
+        </button>
+
+        ` : ""}
+
     </div>
 
-  
-
-   ${vendor.status !== "approved" ? `
-<div class="card-footer bg-white border-0 d-flex gap-2">
-
-    <button
-        class="btn btn-primary flex-fill rounded-4  px-3"
-        data-bs-toggle="modal"
-        data-bs-target="#editModal"
-        onclick="editVendor('${vendor.id}')">
-
-        <i class="bi ${vendor.status === "rejected" ? "bi-arrow-clockwise" : "bi-pencil-square"} me-1"></i>
-        ${vendor.status === "rejected" ? "Reapply" : "Update"}
-
-    </button>
-
-    <button
-        class="btn btn-outline-danger flex-fill rounded-pill"
-        onclick="deleteVendor('${vendor.id}')">
-
-        <i class="bi bi-trash3 me-1"></i>
-        Delete
-
-    </button>
-
-</div>
-` : ""}
-
-</div>
-
-</div>
+</div>  
 `;
+
         });
 
 }
@@ -599,18 +711,22 @@ async function loadVendorByStatus(status) {
 }
 
 $(".gradient-all").click(function () {
+      showVendorRecords();
     loadVendorCards();
 });
 
 $(".gradient-pending").click(function () {
+      showVendorRecords();
     loadVendorByStatus("pending");
 });
 
 $(".gradient-completed").click(function () {
+      showVendorRecords();
     loadVendorByStatus("approved");
 });
 
 $(".gradient-rejected").click(function () {
+      showVendorRecords();
     loadVendorByStatus("rejected");
 });
 
@@ -855,3 +971,12 @@ $("#restoreBtn").click(function () {
 
     $("#recordTitle").text("Deleted Records");
 });
+
+function showVendorRecords() {
+
+    $("#recordTitle").text("Vendor Records");
+
+    $("#restoreBtn").removeClass("active");
+
+    $("#button-container .btn").removeClass("active");
+}
