@@ -1,4 +1,3 @@
-````markdown
 <div align="center">
 
 <img src="assets/svg/logo.svg" width="170">
@@ -8,8 +7,8 @@
 ### Vendor Management System
 
 <p>
-A modern web-based application for managing vendor registration,
-verification, approval, and administration through a centralized workflow.
+A web-based application for managing vendor registration, verification,
+approval, and administration through a centralized workflow.
 </p>
 
 <p>
@@ -29,48 +28,42 @@ verification, approval, and administration through a centralized workflow.
 
 ## 📖 About
 
-VendorFlow is a **Vendor Management System** built using **HTML5, CSS3, JavaScript, Bootstrap, jQuery, and JSON Server**.
+**VendorFlow** is a vendor management system built with **HTML5, CSS3, JavaScript, Bootstrap, jQuery, and JSON Server**.
 
-It enables organizations and government departments to efficiently manage vendor registrations through a structured approval workflow.
+It gives organizations a structured way to onboard and manage vendors — from registration and document submission through to admin review, approval, and ongoing status tracking.
 
 ---
 
 ## ✨ Features
 
 <table>
-
 <tr>
 <th width="50%">Vendor</th>
 <th width="50%">Administrator</th>
 </tr>
-
 <tr>
-
 <td>
 
-- Register Account
-- Secure Login
-- Submit Vendor Details
-- View Vendor Profile
-- Update Pending Applications
-- Track Approval Status
+- Register an account
+- Secure login
+- Submit vendor details
+- View vendor profile
+- Update pending applications
+- Track approval status
 
 </td>
-
 <td>
 
-- Admin Dashboard
-- View Vendor Applications
-- View Vendor Details
-- Approve Vendors
-- Reject with Remarks
-- Restore Vendors
-- Delete Pending Applications
+- Admin dashboard overview
+- View vendor applications
+- View vendor details
+- Approve vendors
+- Reject with remarks
+- Restore vendors
+- Delete pending applications
 
 </td>
-
 </tr>
-
 </table>
 
 ---
@@ -78,40 +71,41 @@ It enables organizations and government departments to efficiently manage vendor
 ## 📸 Screenshots
 
 | Home | Vendor Dashboard |
-|------|------------------|
-| ![](assets/screenshots/home.png) | ![](assets/screenshots/vendor-dashboard.png) |
+|------|-------------------|
+| ![Home page](assets/screenshots/home.png) | ![Vendor dashboard](assets/screenshots/vendor-dashboard.png) |
 
 | Admin Dashboard | Vendor Details |
-|-----------------|----------------|
-| ![](assets/screenshots/admin-dashboard.png) | ![](assets/screenshots/vendor-details.png) |
+|------------------|------------------|
+| ![Admin dashboard](assets/screenshots/admin-dashboard.png) | ![Vendor details](assets/screenshots/vendor-details.png) |
 
 | Approval Modal | Register |
-|----------------|----------|
-| ![](assets/screenshots/approval-modal.png) | ![](assets/screenshots/register.png) |
+|------------------|-----------|
+| ![Approval modal](assets/screenshots/approval-modal.png) | ![Register page](assets/screenshots/register.png) |
 
 ---
 
-## ⚙ Workflow
+## ⚙️ Workflow
 
 ```text
 Vendor Registration
         │
         ▼
-Vendor Login
+   Vendor Login
         │
         ▼
 Submit Vendor Details
         │
         ▼
-JSON Server
+   JSON Server
         │
         ▼
-Admin Dashboard
+ Admin Dashboard
         │
    ┌────┴────┐
    ▼         ▼
-Approve   Reject
-        │
+Approve    Reject
+   │         │
+   └────┬────┘
         ▼
 Vendor Status Updated
 ```
@@ -172,43 +166,42 @@ VendorFlow/
 ## 🚀 Getting Started
 
 ```bash
-# Clone Repository
+# Clone the repository
 git clone https://github.com/yourusername/VendorFlow.git
 
-# Navigate
+# Move into the project directory
 cd VendorFlow
 
-# Install JSON Server
+# Install JSON Server globally
 npm install -g json-server
 
-# Start Server
+# Start the mock backend
 json-server --watch json/db.json --port 3000
 ```
 
-Open **index.html** using **Live Server**.
+Then open **`index.html`** with **Live Server** (or any local dev server of your choice).
 
 ---
 
-## 🚀 Future Enhancements
+## 🧭 Roadmap
 
-- JWT Authentication
-- Role-Based Access Control
-- Email Notifications
-- Document Upload
-- Dashboard Analytics
-- Export PDF & Excel
-- MySQL Integration
-- MongoDB Integration
-- REST API (Node.js & Express)
-- Audit Logs
+- [ ] JWT authentication
+- [ ] Role-based access control
+- [ ] Email notifications
+- [ ] Document upload support
+- [ ] Dashboard analytics
+- [ ] Export to PDF & Excel
+- [ ] MySQL integration
+- [ ] MongoDB integration
+- [ ] REST API with Node.js & Express
+- [ ] Audit logs
 
 ---
 
 <div align="center">
 
-### ⭐ Star this repository if you found it useful!
+### ⭐ If you found this project useful, consider giving it a star!
 
 Made with ❤️ using HTML, CSS, JavaScript, Bootstrap, jQuery & JSON Server.
 
 </div>
-````
