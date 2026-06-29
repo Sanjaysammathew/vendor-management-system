@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/svg/logo.svg" width="170">
+
 
 # VendorFlow
 
@@ -72,15 +72,13 @@ It gives organizations a structured way to onboard and manage vendors — from r
 
 | Home | Vendor Dashboard |
 |------|-------------------|
-| ![Home page](assets/screenshots/home.png) | ![Vendor dashboard](assets/screenshots/vendor-dashboard.png) |
+| ![Home page](./assests/Screenshot/Home%20page.png) | ![Vendor dashboard](./assests/Screenshot/User%20Dashboard.png) |
 
 | Admin Dashboard | Vendor Details |
 |------------------|------------------|
-| ![Admin dashboard](assets/screenshots/admin-dashboard.png) | ![Vendor details](assets/screenshots/vendor-details.png) |
+| ![Admin dashboard](./assests/Screenshot/Admin%20Dashboard.png) | ![Vendor details](./assests/Screenshot/Records.png) |
 
-| Approval Modal | Register |
-|------------------|-----------|
-| ![Approval modal](assets/screenshots/approval-modal.png) | ![Register page](assets/screenshots/register.png) |
+
 
 ---
 
