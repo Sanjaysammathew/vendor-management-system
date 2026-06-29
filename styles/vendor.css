@@ -299,6 +299,19 @@ color: white;
     line-height:1.5;
 }
 
+.btn-close{
+    filter: invert(1);
+}
+
+.stat-card{
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.stat-card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(83,168,144,.25);
+}
 @media(max-width:768px){
 
 .stat-card{

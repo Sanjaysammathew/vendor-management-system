@@ -595,6 +595,7 @@ function displayVendorCards(vendors) {
                 <div class="col-6">
                     <div class="p-3 bg-light rounded-3 border h-100">
                         <small class="text-muted d-block">
+                        <i class="bi bi-receipt-cutoff me-2 text-primary"></i>
                             GST Number
                         </small>
 
@@ -607,6 +608,7 @@ function displayVendorCards(vendors) {
                 <div class="col-6">
                     <div class="p-3 bg-light rounded-3 border h-100">
                         <small class="text-muted d-block">
+                        <i class="bi bi-award-fill me-2 text-primary"></i>
                             License Number
                         </small>
 
@@ -715,25 +717,47 @@ async function loadVendorByStatus(status) {
 }
 
 $(".gradient-all").click(function () {
-      showVendorRecords();
+
+    showVendorRecords();
+
     loadVendorCards();
+
+    document.getElementById("vendorSection").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
 });
 
 $(".gradient-pending").click(function () {
-      showVendorRecords();
+    showVendorRecords();
     loadVendorByStatus("pending");
+
+    document.getElementById("vendorSection").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
 });
 
 $(".gradient-completed").click(function () {
-      showVendorRecords();
+    showVendorRecords();
     loadVendorByStatus("approved");
+
+    document.getElementById("vendorSection").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
 });
 
 $(".gradient-rejected").click(function () {
-      showVendorRecords();
+    showVendorRecords();
     loadVendorByStatus("rejected");
-});
 
+    document.getElementById("vendorSection").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+});
 
 function getBadgeClass(status) {
 
@@ -1134,3 +1158,51 @@ function showVendorRecords() {
 function capitalize(text) {
     return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
 }
+
+$("#totalCard").click(function () {
+
+    showVendorRecords();
+    loadVendorCards();
+
+    document.getElementById("vendorSection").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+});
+
+$("#completedCard").click(function () {
+
+    showVendorRecords();
+    loadVendorByStatus("approved");
+
+    document.getElementById("vendorSection").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+});
+
+$("#pendingCard").click(function () {
+
+    showVendorRecords();
+    loadVendorByStatus("pending");
+
+    document.getElementById("vendorSection").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+});
+
+$("#rejectedCard").click(function () {
+
+    showVendorRecords();
+    loadVendorByStatus("rejected");
+
+    document.getElementById("vendorSection").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+});

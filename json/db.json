@@ -50,7 +50,7 @@
       "status": "pending",
       "remarks": "",
       "createdAt": "2026-06-25T08:41:38.876Z",
-      "updatedAt": "2026-06-27T11:03:41.661Z",
+      "updatedAt": "2026-06-29T06:23:17.381Z",
       "id": "G04w4vh6yVo",
       "contactPerson": "Krithick",
       "contactDesignation": "Product Lead"
@@ -62,13 +62,13 @@
       "licenseNumber": "FSSAI102345",
       "phone": "9080624255",
       "vendorType": "Food",
-      "description": "Providing foods and Beverages",
+      "description": "Providing foods and Beverage",
       "address": "123,Indra Nagar ,coimbatore -06",
       "isDeleted": false,
       "status": "rejected",
       "remarks": "No it is not within our budget it is not approved",
       "createdAt": "2026-06-25T12:25:12.553Z",
-      "updatedAt": "2026-06-27T10:18:24.125Z",
+      "updatedAt": "2026-06-29T06:23:46.896Z",
       "id": "1e8XXFlrDW0",
       "contactPerson": "Manoj",
       "contactDesignation": "Manager"
@@ -154,6 +154,24 @@
       "createdAt": "2026-06-27T07:09:11.720Z",
       "updatedAt": "2026-06-27T07:09:11.720Z",
       "id": "k69vlPp4s5w"
+    },
+    {
+      "organizationName": "SPK Groups",
+      "email": "spkgroups@gmail.com",
+      "gstNumber": "29ABCDE1234F1Z5",
+      "licenseNumber": "OFF456732",
+      "phone": "8940997874",
+      "contactPerson": "Johan",
+      "contactDesignation": "Manager",
+      "vendorType": "Office Supplies",
+      "description": "Providing Office supplies",
+      "address": "123,Thirumalai Nagar ,coimbatore -06",
+      "isDeleted": false,
+      "status": "pending",
+      "remarks": "",
+      "createdAt": "2026-06-29T05:55:17.377Z",
+      "updatedAt": "2026-06-29T05:55:17.377Z",
+      "id": "wJoAuzX0oyA"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
