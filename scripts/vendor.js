@@ -128,6 +128,14 @@ if (licenseNumber === "") {
 
     if (!isValid) return;
 
+    const response = await fetch(`${API}?licenseNumber=${licenseNumber}`);
+const vendor = await response.json();
+
+if (vendor.length) {
+    $("#error-license").text("License Number already exists");
+    return;
+}
+
       const vendorData = {
     organizationName: loggedInUser.organizationName,
     email: loggedInUser.email,
@@ -259,6 +267,50 @@ if (license === "" || vendorType === "" || description === "") {
         title: "Required",
         text: "All fields are required."
     });
+    return;
+}
+
+// Check duplicate license number
+const checkResponse = await fetch(`${API}?licenseNumber=${license}`);
+
+const vendors = await checkResponse.json();
+
+const duplicateVendor = vendors.find(v => v.id !== id);
+
+if (duplicateVendor) {
+
+    Swal.fire({
+        icon: "warning",
+        title: "Duplicate License Number",
+        text: "License Number already exists."
+    });
+
+    return;
+}
+
+const updatedLicense = capitalizeFirst($("#editLicense").val().trim());
+const updatedPhone = $("#editPhone").val().trim();
+const updatedVendorType = capitalizeFirst($("#editVendorType").val().trim());
+const updatedContactPerson = capitalizeFirst($("#editContactPerson").val().trim());
+const updatedDesignation = capitalizeFirst($("#editContactDesignation").val().trim());
+const updatedDescription = capitalizeFirst($("#editDesc").val().trim());
+const updatedAddress = capitalizeFirst($("#editAddress").val().trim());
+
+if (
+    vendor.licenseNumber === updatedLicense &&
+    vendor.phone === updatedPhone &&
+    vendor.vendorType === updatedVendorType &&
+    vendor.contactPerson === updatedContactPerson &&
+    vendor.contactDesignation === updatedDesignation &&
+    vendor.description === updatedDescription &&
+    vendor.address === updatedAddress
+) {
+    Swal.fire({
+        icon: "info",
+        title: "No Changes Detected",
+        text: "Please modify at least one field before updating."
+    });
+
     return;
 }
 
