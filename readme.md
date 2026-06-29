@@ -1,40 +1,52 @@
 ````markdown
-# 🚀 VendorFlow
+<div align="center">
 
-<p align="center">
-  <img src="assets/svg/logo.svg" width="180" alt="VendorFlow Logo">
+<img src="assets/svg/logo.svg" width="170">
+
+# VendorFlow
+
+### Vendor Management System
+
+<p>
+A modern web-based application for managing vendor registration,
+verification, approval, and administration through a centralized workflow.
 </p>
 
-<h2 align="center">Vendor Management System</h2>
+<p>
 
-<p align="center">
-A modern web-based Vendor Management System that streamlines vendor registration, verification, approval, and management through a centralized workflow.
-</p>
-
-<p align="center">
-
-![HTML5](https://img.shields.io/badge/HTML5-orange?style=for-the-badge&logo=html5)
-![CSS3](https://img.shields.io/badge/CSS3-blue?style=for-the-badge&logo=css3)
-![JavaScript](https://img.shields.io/badge/JavaScript-yellow?style=for-the-badge&logo=javascript)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge&logo=bootstrap)
-![jQuery](https://img.shields.io/badge/jQuery-blue?style=for-the-badge&logo=jquery)
-![JSON Server](https://img.shields.io/badge/JSON--Server-green?style=for-the-badge)
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white">
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white">
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black">
+<img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white">
+<img src="https://img.shields.io/badge/jQuery-0769AD?style=flat-square&logo=jquery&logoColor=white">
+<img src="https://img.shields.io/badge/JSON_Server-44CC11?style=flat-square">
 
 </p>
+
+</div>
 
 ---
 
-# 📖 Overview
+## 📖 About
 
-VendorFlow is a Vendor Management System developed using **HTML, CSS, JavaScript, Bootstrap, jQuery, and JSON Server**.
+VendorFlow is a **Vendor Management System** built using **HTML5, CSS3, JavaScript, Bootstrap, jQuery, and JSON Server**.
 
-The application enables organizations and government departments to efficiently manage vendor registrations through a structured approval workflow. Vendors can register, submit business information, monitor approval status, and update pending applications, while administrators can review, approve, reject, restore, and manage vendor records from a centralized dashboard.
+It enables organizations and government departments to efficiently manage vendor registrations through a structured approval workflow.
 
 ---
 
-# ✨ Features
+## ✨ Features
 
-## 👤 Vendor Module
+<table>
+
+<tr>
+<th width="50%">Vendor</th>
+<th width="50%">Administrator</th>
+</tr>
+
+<tr>
+
+<td>
 
 - Register Account
 - Secure Login
@@ -43,66 +55,43 @@ The application enables organizations and government departments to efficiently 
 - Update Pending Applications
 - Track Approval Status
 
----
+</td>
 
-## 🛡️ Admin Module
+<td>
 
-- Admin Login
-- Dashboard
+- Admin Dashboard
 - View Vendor Applications
 - View Vendor Details
 - Approve Vendors
-- Reject Vendors with Remarks
-- Restore Rejected Vendors
+- Reject with Remarks
+- Restore Vendors
 - Delete Pending Applications
 
----
+</td>
 
-# 📸 Application Preview
+</tr>
 
-## 🏠 Home Page
-
-![Home](assets/screenshots/home.png)
+</table>
 
 ---
 
-## 🔐 Login Page
+## 📸 Screenshots
 
-![Login](assets/screenshots/login.png)
+| Home | Vendor Dashboard |
+|------|------------------|
+| ![](assets/screenshots/home.png) | ![](assets/screenshots/vendor-dashboard.png) |
 
----
+| Admin Dashboard | Vendor Details |
+|-----------------|----------------|
+| ![](assets/screenshots/admin-dashboard.png) | ![](assets/screenshots/vendor-details.png) |
 
-## 📝 Register Page
-
-![Register](assets/screenshots/register.png)
-
----
-
-## 👤 Vendor Dashboard
-
-![Vendor Dashboard](assets/screenshots/vendor-dashboard.png)
+| Approval Modal | Register |
+|----------------|----------|
+| ![](assets/screenshots/approval-modal.png) | ![](assets/screenshots/register.png) |
 
 ---
 
-## 🛡️ Admin Dashboard
-
-![Admin Dashboard](assets/screenshots/admin-dashboard.png)
-
----
-
-## 📄 Vendor Details
-
-![Vendor Details](assets/screenshots/vendor-details.png)
-
----
-
-## ✅ Approval Modal
-
-![Approval Modal](assets/screenshots/approval-modal.png)
-
----
-
-# 🔄 System Workflow
+## ⚙ Workflow
 
 ```text
 Vendor Registration
@@ -129,36 +118,18 @@ Vendor Status Updated
 
 ---
 
-# 🛠️ Technology Stack
+## 🛠 Technology Stack
 
-### Frontend
-
-- HTML5
-- CSS3
-- Bootstrap 5
-- JavaScript (ES6)
-- jQuery
-
-### Backend
-
-- JSON Server
-
-### Database
-
-- db.json
-
-### Tools
-
-- Visual Studio Code
-- Git
-- GitHub
-- Bootstrap Icons
-- SweetAlert2
-- Local Storage
+| Category | Technologies |
+|-----------|--------------|
+| Frontend | HTML5 • CSS3 • Bootstrap 5 • JavaScript • jQuery |
+| Backend | JSON Server |
+| Database | db.json |
+| Tools | VS Code • Git • GitHub • Bootstrap Icons • SweetAlert2 |
 
 ---
 
-# 📂 Project Structure
+## 📂 Project Structure
 
 ```text
 VendorFlow/
@@ -178,11 +149,11 @@ VendorFlow/
 │   └── vendor.css
 │
 ├── js/
-│   ├── app.js
-│   ├── auth.js
 │   ├── admin.js
 │   ├── vendor.js
-│   └── validation.js
+│   ├── login.js
+│   ├── register.js
+│   └── script.js
 │
 ├── json/
 │   └── db.json
@@ -198,82 +169,46 @@ VendorFlow/
 
 ---
 
-# 🚀 Getting Started
-
-### Clone Repository
+## 🚀 Getting Started
 
 ```bash
+# Clone Repository
 git clone https://github.com/yourusername/VendorFlow.git
-```
 
-### Navigate to Project
-
-```bash
+# Navigate
 cd VendorFlow
-```
 
-### Install JSON Server
-
-```bash
+# Install JSON Server
 npm install -g json-server
-```
 
-### Start Server
-
-```bash
+# Start Server
 json-server --watch json/db.json --port 3000
 ```
-
-### Run the Application
 
 Open **index.html** using **Live Server**.
 
 ---
 
-# 📌 Core Modules
-
-### Vendor
-
-- Registration
-- Authentication
-- Vendor Profile
-- Vendor Details
-- Status Tracking
-- Update Application
-
----
-
-### Administrator
-
-- Dashboard
-- Vendor Management
-- Vendor Approval
-- Reject with Remarks
-- Restore Vendors
-- Delete Pending Applications
-
----
-
-# 🚀 Future Enhancements
+## 🚀 Future Enhancements
 
 - JWT Authentication
 - Role-Based Access Control
 - Email Notifications
 - Document Upload
 - Dashboard Analytics
-- Export Reports (PDF & Excel)
+- Export PDF & Excel
 - MySQL Integration
 - MongoDB Integration
-- REST API with Node.js & Express
+- REST API (Node.js & Express)
 - Audit Logs
 
 ---
 
-# ⭐ Support
+<div align="center">
 
-If you found this project useful, consider giving it a ⭐ on GitHub.
+### ⭐ Star this repository if you found it useful!
 
-It helps others discover the project and motivates future improvements.
+Made with ❤️ using HTML, CSS, JavaScript, Bootstrap, jQuery & JSON Server.
 
----
+</div>
 ````
