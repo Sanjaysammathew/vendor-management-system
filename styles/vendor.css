@@ -237,14 +237,7 @@ color: white;
 }
 
 /* Mini Cards */
-.mini-card{
-    background:#f8fafc;
-    border:1px solid #e9ecef;
-         padding:8px 10px;       /* was 10px 12px */
-    min-height:65px;        /* was 75px */
-    border-radius:10px;      /* instead of growing */
-    transition:.3s;
-}
+
 .vendor-card .row{
     --bs-gutter-y:.45rem;
     --bs-gutter-x:.45rem;
@@ -252,33 +245,6 @@ color: white;
 .vendor-card .btn{
     padding:6px 12px;
     font-size:.85rem;
-}
-.mini-card:hover{
-    background:#eef5ff;
-    border-color:#0d6efd33;
-}
-
-.mini-card i{
-    font-size:1.2rem !important;   /* smaller icons */
-}
-
-.mini-card small{
-    display:block;
-    margin-top:4px;
-    margin-bottom:2px;
-    font-size:.72rem;
-}
-
-.mini-card h6,
-.mini-card div.fw-semibold{
-    font-size:.88rem;
-    margin-bottom:0;
-}
-
-.mini-card p{
-    font-size:.82rem;
-    line-height:1.3;
-    margin:2px 0 0;
 }
 
 .card-footer .btn{

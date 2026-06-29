@@ -257,16 +257,29 @@ $("#updateBtn").click(async function () {
     const response = await fetch(`${API}/${id}`);
     const vendor = await response.json();
 
-    const license = $("#editLicense").val().trim();
+ const license = $("#editLicense").val().trim();
+const phone = $("#editPhone").val().trim();
 const vendorType = $("#editVendorType").val().trim();
+const contactPerson = $("#editContactPerson").val().trim();
+const contactDesignation = $("#editContactDesignation").val().trim();
 const description = $("#editDesc").val().trim();
+const address = $("#editAddress").val().trim();
 
-if (license === "" || vendorType === "" || description === "") {
+if (
+    license === "" ||
+    phone === "" ||
+    vendorType === "" ||
+    contactPerson === "" ||
+    contactDesignation === "" ||
+    description === "" ||
+    address === ""
+) {
     Swal.fire({
         icon: "warning",
         title: "Required",
         text: "All fields are required."
     });
+
     return;
 }
 

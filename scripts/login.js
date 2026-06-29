@@ -180,7 +180,7 @@ if (gstUsers.length > 0) {
 }
 
         const user = {
-    organizationName: $("#org").val().trim(),
+      organizationName: capitalizeWords($("#org").val().trim()),
     email: $("#email").val().trim(),
     password: $("#regPassword").val(),
     gstNumber: $("#gst").val().trim().toUpperCase(),
@@ -202,6 +202,10 @@ if (gstUsers.length > 0) {
             timer: 2000,
             showConfirmButton: true
         });
+
+        bootstrap.Modal.getInstance(
+    document.getElementById("registerModal")
+).hide();
 
         $("#org").val("");
         $("#email").val("");
@@ -322,3 +326,12 @@ async function loginUser() {
 }
 
 $("#login").on("click", loginUser);
+
+function capitalizeWords(text) {
+    return text
+        .toLowerCase()
+        .split(" ")
+        .filter(word => word !== "")
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+}

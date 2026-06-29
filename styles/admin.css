@@ -141,8 +141,7 @@
     align-items: center;
     justify-content: center;
     border: none;
-    border-radius: 50%;       
-    background-color: #f5f5f5;  
+  
     color: #000000;             
     transition: background-color 0.2s ease, transform 0.1s ease;
     cursor: pointer;
@@ -224,4 +223,18 @@
     background: #4CAF7A !important;
     color: #fff !important;
     border-color: #4CAF7A !important;
+}
+
+/* iPad / Tablet */
+@media (max-width: 1199px) and (min-width: 768px) {
+
+    #button-container{
+        gap: 8px;
+    }
+
+    #button-container .btn{
+        padding: 10px 18px;
+        font-size: 15px;
+    }
+
 }
