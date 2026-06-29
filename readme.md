@@ -11,16 +11,7 @@ A web-based application for managing vendor registration, verification,
 approval, and administration through a centralized workflow.
 </p>
 
-<p>
 
-<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white">
-<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white">
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black">
-<img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white">
-<img src="https://img.shields.io/badge/jQuery-0769AD?style=flat-square&logo=jquery&logoColor=white">
-<img src="https://img.shields.io/badge/JSON_Server-44CC11?style=flat-square">
-
-</p>
 
 </div>
 
@@ -76,7 +67,7 @@ It gives organizations a structured way to onboard and manage vendors — from r
 
 | Admin Dashboard | Vendor Details |
 |------------------|------------------|
-| ![Admin dashboard](./assests/Screenshot/Admin%20Dashboard.png) | ![Vendor details](./assests/Screenshot/Records.png) |
+| ![Admin dashboard](./assests/Screenshot/Admin%20Dashboard.png) | ![Vendor details](./assests/Screenshot/View%20Details.png) |
 
 
 
@@ -196,10 +187,3 @@ Then open **`index.html`** with **Live Server** (or any local dev server of your
 
 ---
 
-<div align="center">
-
-### ⭐ If you found this project useful, consider giving it a star!
-
-Made with ❤️ using HTML, CSS, JavaScript, Bootstrap, jQuery & JSON Server.
-
-</div>
