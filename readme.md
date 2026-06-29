@@ -1,97 +1,104 @@
+````markdown
 # 🚀 VendorFlow
 
 <p align="center">
-  <img src="./assets/svg/logo.svg" width="120" alt="VendorFlow Logo">
+  <img src="assets/svg/logo.svg" width="180" alt="VendorFlow Logo">
 </p>
 
-<h1 align="center">Vendor Management System</h1>
+<h2 align="center">Vendor Management System</h2>
 
 <p align="center">
-A modern web-based Vendor Management System for organizations and government departments to manage vendor registration, verification, approval, rejection, and restoration.
+A modern web-based Vendor Management System that streamlines vendor registration, verification, approval, and management through a centralized workflow.
 </p>
 
 <p align="center">
 
-![HTML](https://img.shields.io/badge/HTML5-orange?style=for-the-badge\&logo=html5)
-![CSS](https://img.shields.io/badge/CSS3-blue?style=for-the-badge\&logo=css3)
-![JavaScript](https://img.shields.io/badge/JavaScript-yellow?style=for-the-badge\&logo=javascript)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge\&logo=bootstrap)
-![jQuery](https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge\&logo=jquery)
-![JSON Server](https://img.shields.io/badge/JSON_Server-black?style=for-the-badge)
+![HTML5](https://img.shields.io/badge/HTML5-orange?style=for-the-badge&logo=html5)
+![CSS3](https://img.shields.io/badge/CSS3-blue?style=for-the-badge&logo=css3)
+![JavaScript](https://img.shields.io/badge/JavaScript-yellow?style=for-the-badge&logo=javascript)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge&logo=bootstrap)
+![jQuery](https://img.shields.io/badge/jQuery-blue?style=for-the-badge&logo=jquery)
+![JSON Server](https://img.shields.io/badge/JSON--Server-green?style=for-the-badge)
 
 </p>
 
 ---
 
-## 🌟 Project Overview
+# 📖 Overview
 
-VendorFlow simplifies vendor onboarding and approval by providing separate dashboards for Vendors and Administrators.
+VendorFlow is a Vendor Management System developed using **HTML, CSS, JavaScript, Bootstrap, jQuery, and JSON Server**.
 
-### 👤 Vendor
-
-* Register Account
-* Secure Login
-* Submit Vendor Details
-* Track Approval Status
-* Update Pending Applications
-* Restore Rejected Applications
-* Search & Filter Records
-
-### 🛡️ Administrator
-
-* Review Vendor Requests
-* View Complete Vendor Details
-* Approve Applications
-* Reject with Remarks
-* Restore Vendors
-* Delete Pending Vendors
-* Dashboard Statistics
-
----
-
-# 📸 Application Preview
-
-## 🏠 Home
-
-![Home](./assests/Screenshot/Admin%20Dashboard.png)
-
----
-
-## 👤 Vendor Dashboard
-
-![Vendor](./assets/Screenshot/User%20Dashboard.png)
-
----
-
-## 🛡️ Admin Dashboard
-
-![Admin](./assets/Screenshot/Admin%20Dashboard.png)
-
----
-
-## 📄 Vendor Details
-
-![Details](./assets/Screenshot/View%20Details.png)
-
----
-
-## 📋 Vendor Records
-
-![Records](./assets/Screenshot/Records.png)
+The application enables organizations and government departments to efficiently manage vendor registrations through a structured approval workflow. Vendors can register, submit business information, monitor approval status, and update pending applications, while administrators can review, approve, reject, restore, and manage vendor records from a centralized dashboard.
 
 ---
 
 # ✨ Features
 
-| Vendor                | Administrator          |
-| --------------------- | ---------------------- |
-| Register              | Admin Login            |
-| Login                 | Dashboard              |
-| Submit Vendor Details | Approve Vendors        |
-| View Details          | Reject Vendors         |
-| Update Details        | Restore Vendors        |
-| Track Status          | Delete Pending Vendors |
-| Search Records        | Manage Vendors         |
+## 👤 Vendor Module
+
+- Register Account
+- Secure Login
+- Submit Vendor Details
+- View Vendor Profile
+- Update Pending Applications
+- Track Approval Status
+
+---
+
+## 🛡️ Admin Module
+
+- Admin Login
+- Dashboard
+- View Vendor Applications
+- View Vendor Details
+- Approve Vendors
+- Reject Vendors with Remarks
+- Restore Rejected Vendors
+- Delete Pending Applications
+
+---
+
+# 📸 Application Preview
+
+## 🏠 Home Page
+
+![Home](assets/screenshots/home.png)
+
+---
+
+## 🔐 Login Page
+
+![Login](assets/screenshots/login.png)
+
+---
+
+## 📝 Register Page
+
+![Register](assets/screenshots/register.png)
+
+---
+
+## 👤 Vendor Dashboard
+
+![Vendor Dashboard](assets/screenshots/vendor-dashboard.png)
+
+---
+
+## 🛡️ Admin Dashboard
+
+![Admin Dashboard](assets/screenshots/admin-dashboard.png)
+
+---
+
+## 📄 Vendor Details
+
+![Vendor Details](assets/screenshots/vendor-details.png)
+
+---
+
+## ✅ Approval Modal
+
+![Approval Modal](assets/screenshots/approval-modal.png)
 
 ---
 
@@ -107,69 +114,84 @@ Vendor Login
 Submit Vendor Details
         │
         ▼
-JSON Server Database
+JSON Server
         │
         ▼
 Admin Dashboard
         │
- ┌──────┼───────┐
- ▼      ▼       ▼
-Approve Reject Delete
+   ┌────┴────┐
+   ▼         ▼
+Approve   Reject
         │
         ▼
-Vendor Dashboard Updated
+Vendor Status Updated
 ```
 
 ---
 
-# 🛠 Technology Stack
+# 🛠️ Technology Stack
 
 ### Frontend
 
-* HTML5
-* CSS3
-* Bootstrap 5
-* JavaScript ES6
-* jQuery
+- HTML5
+- CSS3
+- Bootstrap 5
+- JavaScript (ES6)
+- jQuery
 
 ### Backend
 
-* JSON Server
+- JSON Server
 
 ### Database
 
-* db.json
+- db.json
 
 ### Tools
 
-* VS Code
-* Git
-* GitHub
-* Bootstrap Icons
-* SweetAlert2
-* Local Storage
+- Visual Studio Code
+- Git
+- GitHub
+- Bootstrap Icons
+- SweetAlert2
+- Local Storage
 
 ---
 
-# 📂 Folder Structure
+# 📂 Project Structure
 
 ```text
-VendorFlow
+VendorFlow/
 │
-├── assets
-│   ├── Screenshot
-│   ├── svg
-│   └── icons
+├── assets/
+│   ├── images/
+│   ├── icons/
+│   ├── screenshots/
+│   └── svg/
 │
-├── css
-├── js
-├── json
-│   └── db.json
-│
-├── config
+├── config/
 │   └── config.js
 │
-├── pages
+├── css/
+│   ├── style.css
+│   ├── admin.css
+│   └── vendor.css
+│
+├── js/
+│   ├── app.js
+│   ├── auth.js
+│   ├── admin.js
+│   ├── vendor.js
+│   └── validation.js
+│
+├── json/
+│   └── db.json
+│
+├── index.html
+├── login.html
+├── register.html
+├── vendor.html
+├── admin.html
 │
 └── README.md
 ```
@@ -178,76 +200,80 @@ VendorFlow
 
 # 🚀 Getting Started
 
-## Clone Repository
+### Clone Repository
 
 ```bash
-git clone https://github.com/Sanjaysammathew/vendor-management-system.git
+git clone https://github.com/yourusername/VendorFlow.git
 ```
 
-## Install JSON Server
+### Navigate to Project
+
+```bash
+cd VendorFlow
+```
+
+### Install JSON Server
 
 ```bash
 npm install -g json-server
 ```
 
-## Run Server
+### Start Server
 
 ```bash
 json-server --watch json/db.json --port 3000
 ```
 
-## Open Project
+### Run the Application
 
-Run `index.html` using Live Server.
+Open **index.html** using **Live Server**.
 
 ---
 
-# 📊 Core Modules
+# 📌 Core Modules
 
-### Vendor Module
+### Vendor
 
-* Registration
-* Authentication
-* Vendor Details
-* Status Tracking
-* Search & Filter
-* Update Vendor
-* Restore Requests
+- Registration
+- Authentication
+- Vendor Profile
+- Vendor Details
+- Status Tracking
+- Update Application
 
-### Admin Module
+---
 
-* Dashboard
-* Vendor Review
-* Approval Workflow
-* Reject with Remarks
-* Restore Vendors
-* Delete Pending Vendors
+### Administrator
+
+- Dashboard
+- Vendor Management
+- Vendor Approval
+- Reject with Remarks
+- Restore Vendors
+- Delete Pending Applications
 
 ---
 
 # 🚀 Future Enhancements
 
-* JWT Authentication
-* MySQL Integration
-* MongoDB Support
-* Document Upload
-* Email Notifications
-* Dashboard Analytics
-* Export PDF & Excel
-* REST API with Node.js
-* Audit Logs
-* Role Based Access Control
-
----
-
-# 👨‍💻 Developer
-
-**Sanjay Sam Mathew**
-
-Final Year B.Sc Computer Technology
+- JWT Authentication
+- Role-Based Access Control
+- Email Notifications
+- Document Upload
+- Dashboard Analytics
+- Export Reports (PDF & Excel)
+- MySQL Integration
+- MongoDB Integration
+- REST API with Node.js & Express
+- Audit Logs
 
 ---
 
 # ⭐ Support
 
-If you found this project useful, don't forget to ⭐ the repository.
+If you found this project useful, consider giving it a ⭐ on GitHub.
+
+It helps others discover the project and motivates future improvements.
+
+---
+````
