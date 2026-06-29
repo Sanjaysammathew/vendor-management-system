@@ -63,13 +63,12 @@ $("#saveBtn").click(async function () {
 
     let isValid = true;
 
-     
-    const vendorType = $("#vendor-type").val().trim();
-    const description = $("#desc").val().trim();
-    const address = $("#address").val().trim();
-    const licenseNumber=$("#license").val().trim()
-    const contactPerson = $("#contactPerson").val().trim();
-    const contactDesignation = $("#contactDesignation").val().trim();
+const vendorType = capitalizeFirst($("#vendor-type").val().trim());
+const description = capitalizeFirst($("#desc").val().trim());
+const address = capitalizeFirst($("#address").val().trim());
+const licenseNumber = capitalizeFirst($("#license").val().trim());
+const contactPerson = capitalizeFirst($("#contactPerson").val().trim());
+const contactDesignation = capitalizeFirst($("#contactDesignation").val().trim());
 
     // Phone
     const phone = $("#number").val().trim();
@@ -265,13 +264,13 @@ if (license === "" || vendorType === "" || description === "") {
   const updatedVendor = {
     ...vendor,
 
-    licenseNumber: $("#editLicense").val().trim(),
+    licenseNumber: capitalizeFirst($("#editLicense").val().trim()),
     phone: $("#editPhone").val().trim(),
-    vendorType: $("#editVendorType").val().trim(),
-    contactPerson: $("#editContactPerson").val().trim(),
-    contactDesignation: $("#editContactDesignation").val().trim(),
-    description: $("#editDesc").val().trim(),
-    address: $("#editAddress").val().trim(),
+    vendorType: capitalizeFirst($("#editVendorType").val().trim()),
+    contactPerson: capitalizeFirst($("#editContactPerson").val().trim()),
+    contactDesignation: capitalizeFirst($("#editContactDesignation").val().trim()),
+    description: capitalizeFirst($("#editDesc").val().trim()),
+    address: capitalizeFirst($("#editAddress").val().trim()),
     status: vendor.status === "rejected" ? "pending" : vendor.status,
     remarks: vendor.status === "rejected" ? "" : vendor.remarks,
     updatedAt: new Date().toISOString()
@@ -1207,3 +1206,8 @@ $("#rejectedCard").click(function () {
     });
 
 });
+
+function capitalizeFirst(text) {
+    if (!text) return "";
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+}

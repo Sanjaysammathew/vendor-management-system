@@ -70,7 +70,7 @@
 
              <!-- Total Contracts -->
         <div class="col-lg-3 col-md-6">
-            <div class="card stat-card border-0 h-100">
+            <div class="card stat-card border-0 h-100" id="totalCard">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center">
 
@@ -105,7 +105,7 @@
         </div>
          
       <!-- Completed -->
-              <div class="col-lg-3 col-md-6">
+              <div class="col-lg-3 col-md-6" id="completedCard">
             <div class="card stat-card border-0 h-100">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center">
@@ -141,7 +141,7 @@
         </div>
 
         <!-- Pending -->
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-3 col-md-6" id="pendingCard">
             <div class="card stat-card border-0 h-100">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center">
@@ -178,7 +178,7 @@
         </div>
 
         <!-- Rejected -->
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-3 col-md-6" id="rejectedCard">
             <div class="card stat-card border-0 h-100">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center">
@@ -293,7 +293,7 @@
 </div>
 
 
-<div class="container my-4 p-3">
+<div class="container my-4 p-3" id="vendorTableSection">
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="fw-bold mb-0">
@@ -390,7 +390,7 @@
         <div class="modal-content border-0 shadow rounded-4">
 
             <!-- Header -->
-            <div class="modal-header bg-primary text-white">
+            <div class="modal-header  text-white" style="background-color:#198754;">
 
                 <h5 class="modal-title fw-bold">
                     <i class="bi bi-person-vcard-fill me-2"></i>
@@ -451,19 +451,22 @@
                         </div>
                     </div>
 
+                    
+                    <div class="col-md-6">
+                         <div class="info-card">
+                           <small>Updated Date</small>
+                             <h6 id="viewUpdatedAt"></h6>
+                         </div>
+                    </div>
+             
+
+
                     <div class="col-md-6">
                         <div class="info-card text-center">
                             <small>Status</small>
 
                             <div id="statusBadge" class="mt-2"></div>
 
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="info-card">
-                            <small>Created Date</small>
-                            <h6 id="viewCreatedAt"></h6>
                         </div>
                     </div>
 

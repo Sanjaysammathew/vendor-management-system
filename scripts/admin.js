@@ -2,7 +2,7 @@ const API = "http://localhost:3000/vendorDetails"
 
 let allVendors = [];
 let currentPage = 1;
-const rowsPerPage = 3;
+const rowsPerPage = 5;
 
 document.addEventListener("DOMContentLoaded", () => {
     const currentUser = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -196,18 +196,22 @@ async function loadVendorByStatus(status) {
 
 $(".gradient-all").click(function () {
     loadVendors();
-});
-
-$(".gradient-pending").click(function () {
-    loadVendorByStatus("pending");
+    scrollToTable();
 });
 
 $(".gradient-completed").click(function () {
     loadVendorByStatus("approved");
+    scrollToTable();
+});
+
+$(".gradient-pending").click(function () {
+    loadVendorByStatus("pending");
+    scrollToTable();
 });
 
 $(".gradient-rejected").click(function () {
     loadVendorByStatus("rejected");
+    scrollToTable();
 });
 
 async function viewVendor(id) {
@@ -225,6 +229,9 @@ async function viewVendor(id) {
         $("#viewCreatedAt").text(
             new Date(vendor.createdAt).toLocaleDateString()
         );
+        $("#viewUpdatedAt").text(
+    new Date(vendor.updatedAt).toLocaleDateString()
+);
 
         let badge = "";
 
@@ -281,7 +288,10 @@ $("#rejectBtn").click(function () {
 });
 
 $("#submitRemarksBtn").click(async function () {
-    const remarks = $("#remarksInput").val().trim();
+     const remarks = $("#remarksInput").val().trim();
+
+const formattedRemarks =
+    remarks.charAt(0).toUpperCase() + remarks.slice(1);
 
     if (remarks === "") {
         Swal.fire("Required", "Please enter remarks.", "warning");
@@ -293,7 +303,7 @@ $("#submitRemarksBtn").click(async function () {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             status: currentAction,
-            remarks: remarks,
+            remarks: formattedRemarks,
             updatedAt: new Date().toISOString()
         })
     });
@@ -399,3 +409,29 @@ $("#fromDate, #toDate").on("keydown paste", function (e) {
 function capitalize(text) {
     return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
 }
+function scrollToTable() {
+    document.getElementById("vendorTableSection").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+$("#totalCard").click(function () {
+    loadVendors();
+    scrollToTable();
+});
+
+$("#completedCard").click(function () {
+    loadVendorByStatus("approved");
+    scrollToTable();
+});
+
+$("#pendingCard").click(function () {
+    loadVendorByStatus("pending");
+    scrollToTable();
+});
+
+$("#rejectedCard").click(function () {
+    loadVendorByStatus("rejected");
+    scrollToTable();
+});
