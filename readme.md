@@ -53,7 +53,7 @@ VendorFlow simplifies vendor onboarding and approval by providing separate dashb
 
 ## 🏠 Home
 
-![Home](./assets/Screenshot/Home%20page.png)
+![Home](./assests/Screenshot/Admin%20Dashboard.png)
 
 ---
 
