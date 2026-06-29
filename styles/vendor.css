@@ -312,6 +312,11 @@ color: white;
     transform: translateY(-6px);
     box-shadow: 0 12px 30px rgba(83,168,144,.25);
 }
+
+.offcanvas .btn-close{
+    filter: none !important;
+    opacity: 1 !important;
+}
 @media(max-width:768px){
 
 .stat-card{

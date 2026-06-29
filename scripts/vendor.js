@@ -1,5 +1,6 @@
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 const API="http://localhost:3000/vendorDetails"
+const USER_API = "http://localhost:3000/users";
 
 $("#orgName").val(loggedInUser.organizationName);
 $("#gst").val(loggedInUser.gstNumber);
@@ -938,8 +939,8 @@ $("#editProfileBtn").click(async function () {
 
     try {
 
-        const response = await fetch(
-            `${API}?gstNumber=${loggedInUser.gstNumber}`
+           const response = await fetch(
+            `${USER_API}?email=${loggedInUser.email}`
         );
 
         const vendors = await response.json();
@@ -999,7 +1000,7 @@ $("#updateProfileBtn").click(async function () {
 
     try {
 
-        const response = await fetch(`${API}/${id}`);
+        const response = await fetch(`${USER_API}/${id}`);
         const vendor = await response.json();
 
         const updatedVendor = {
@@ -1014,7 +1015,7 @@ $("#updateProfileBtn").click(async function () {
 
         };
 
-        await fetch(`${API}/${id}`, {
+        await fetch(`${USER_API}/${id}`, {
 
             method: "PUT",
 
