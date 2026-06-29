@@ -1,58 +1,101 @@
-````markdown
-# 🚀 VendorFlow - Vendor Management System
+# 🚀 VendorFlow
 
-## 📖 Overview
+<p align="center">
+  <img src="./assets/svg/logo.svg" width="120" alt="VendorFlow Logo">
+</p>
 
-**VendorFlow** is a web-based **Vendor Management System** developed using **HTML, CSS, JavaScript, jQuery, Bootstrap, and JSON Server**.
+<h1 align="center">Vendor Management System</h1>
 
-The application helps organizations and government departments streamline vendor registration and approval through a centralized platform. Vendors can register, submit their business details, monitor approval status, and update pending applications, while administrators can efficiently review, approve, reject, restore, and manage vendor records.
+<p align="center">
+A modern web-based Vendor Management System for organizations and government departments to manage vendor registration, verification, approval, rejection, and restoration.
+</p>
+
+<p align="center">
+
+![HTML](https://img.shields.io/badge/HTML5-orange?style=for-the-badge\&logo=html5)
+![CSS](https://img.shields.io/badge/CSS3-blue?style=for-the-badge\&logo=css3)
+![JavaScript](https://img.shields.io/badge/JavaScript-yellow?style=for-the-badge\&logo=javascript)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple?style=for-the-badge\&logo=bootstrap)
+![jQuery](https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge\&logo=jquery)
+![JSON Server](https://img.shields.io/badge/JSON_Server-black?style=for-the-badge)
+
+</p>
 
 ---
 
-# 📑 Table of Contents
+## 🌟 Project Overview
 
-- Overview
-- Features
-- Workflow
-- Technology Stack
-- Project Structure
-- Screenshots
-- Installation
-- Future Enhancements
-- Conclusion
+VendorFlow simplifies vendor onboarding and approval by providing separate dashboards for Vendors and Administrators.
+
+### 👤 Vendor
+
+* Register Account
+* Secure Login
+* Submit Vendor Details
+* Track Approval Status
+* Update Pending Applications
+* Restore Rejected Applications
+* Search & Filter Records
+
+### 🛡️ Administrator
+
+* Review Vendor Requests
+* View Complete Vendor Details
+* Approve Applications
+* Reject with Remarks
+* Restore Vendors
+* Delete Pending Vendors
+* Dashboard Statistics
+
+---
+
+# 📸 Application Preview
+
+## 🏠 Home
+
+![Home](./assets/Screenshot/Home%20page.png)
+
+---
+
+## 👤 Vendor Dashboard
+
+![Vendor](./assets/Screenshot/User%20Dashboard.png)
+
+---
+
+## 🛡️ Admin Dashboard
+
+![Admin](./assets/Screenshot/Admin%20Dashboard.png)
+
+---
+
+## 📄 Vendor Details
+
+![Details](./assets/Screenshot/View%20Details.png)
+
+---
+
+## 📋 Vendor Records
+
+![Records](./assets/Screenshot/Records.png)
 
 ---
 
 # ✨ Features
 
-## 👤 Vendor Module
-
-| Feature | Description |
-|---------|-------------|
-| Registration & Login | Secure vendor authentication |
-| Vendor Registration | Submit vendor details |
-| Vendor Dashboard | Manage vendor profile |
-| Update Vendor | Edit pending applications |
-| View Vendor Details | View complete vendor information |
-| Status Tracking | Track application approval status |
-
----
-
-## 🛡️ Admin Module
-
-| Feature | Description |
-|---------|-------------|
-| Admin Login | Secure administrator access |
-| Dashboard | View all vendor applications |
-| View Vendor Details | View complete vendor profile |
-| Approve Vendors | Approve vendor applications |
-| Reject Vendors | Reject applications with remarks |
-| Restore Vendors | Restore rejected applications |
-| Delete Pending Vendors | Delete pending vendor requests |
+| Vendor                | Administrator          |
+| --------------------- | ---------------------- |
+| Register              | Admin Login            |
+| Login                 | Dashboard              |
+| Submit Vendor Details | Approve Vendors        |
+| View Details          | Reject Vendors         |
+| Update Details        | Restore Vendors        |
+| Track Status          | Delete Pending Vendors |
+| Search Records        | Manage Vendors         |
 
 ---
 
-# 🔄 Workflow
+# 🔄 System Workflow
 
 ```text
 Vendor Registration
@@ -64,194 +107,147 @@ Vendor Login
 Submit Vendor Details
         │
         ▼
-Stored in JSON Server
+JSON Server Database
         │
         ▼
-Admin Reviews Application
+Admin Dashboard
         │
-   ┌────┴────┐
-   ▼         ▼
-Approve   Reject
-   │         │
-   └────┬────┘
+ ┌──────┼───────┐
+ ▼      ▼       ▼
+Approve Reject Delete
+        │
         ▼
-Vendor Status Updated
+Vendor Dashboard Updated
 ```
 
 ---
 
-# 🛠️ Technology Stack
+# 🛠 Technology Stack
 
-## Frontend
+### Frontend
 
-- HTML5
-- CSS3
-- Bootstrap 5
-- JavaScript (ES6)
-- jQuery
+* HTML5
+* CSS3
+* Bootstrap 5
+* JavaScript ES6
+* jQuery
 
-## Backend (Mock)
+### Backend
 
-- JSON Server
+* JSON Server
 
-## Database
+### Database
 
-- db.json
+* db.json
 
-## Tools
+### Tools
 
-- VS Code
-- Git
-- GitHub
-- Bootstrap Icons
-- SweetAlert2
-- Local Storage
+* VS Code
+* Git
+* GitHub
+* Bootstrap Icons
+* SweetAlert2
+* Local Storage
 
 ---
 
-# 📂 Project Structure
+# 📂 Folder Structure
 
 ```text
-VendorFlow/
+VendorFlow
 │
-├── assets/
-│   ├── images/
-│   ├── icons/
-│   └── svg/
+├── assets
+│   ├── Screenshot
+│   ├── svg
+│   └── icons
 │
-├── config/
-│   └── config.js
-│
-├── css/
-│   ├── style.css
-│   ├── admin.css
-│   └── vendor.css
-│
-├── js/
-│
-├── json/
+├── css
+├── js
+├── json
 │   └── db.json
 │
-├── screenshots/
+├── config
+│   └── config.js
 │
-├── index.html
-├── login.html
-├── register.html
-├── vendor.html
-├── admin.html
+├── pages
 │
 └── README.md
 ```
 
 ---
 
-# 📸 Screenshots
+# 🚀 Getting Started
 
-### Home Page
-
-![Home](./assests/Screenshot/Home%20page.png)
-
-### Vendor Dashboard
-
-![Vendor Dashboard](./assests/Screenshot/User%20Dashboard.png)
-
-### Admin Dashboard
-
-![Admin Dashboard](./assests/Screenshot/Admin%20Dashboard.png)
-
-### Vendor Details
-
-![Vendor Details](./assests/Screenshot/View%20Details.png)
-
-### Add Details Modal
-
-![Approval Modal](./assests/Screenshot/Records.png)
-
----
-
-# 🚀 Installation
-
-### 1️⃣ Clone Repository
+## Clone Repository
 
 ```bash
 git clone https://github.com/Sanjaysammathew/vendor-management-system.git
 ```
 
-### 2️⃣ Navigate to Project
-
-```bash
-cd VendorFlow
-```
-
-### 3️⃣ Install JSON Server
+## Install JSON Server
 
 ```bash
 npm install -g json-server
 ```
 
-### 4️⃣ Start JSON Server
+## Run Server
 
 ```bash
 json-server --watch json/db.json --port 3000
 ```
 
-### 5️⃣ Run Project
+## Open Project
 
-Open:
-
-```text
-index.html
-```
-
-using **Live Server** or any local web server.
+Run `index.html` using Live Server.
 
 ---
 
-# 🎯 Key Functionalities
+# 📊 Core Modules
 
-## Vendor
+### Vendor Module
 
-- Register Account
-- Login
-- Submit Vendor Details
-- View Vendor Profile
-- Update Pending Applications
-- Track Approval Status
+* Registration
+* Authentication
+* Vendor Details
+* Status Tracking
+* Search & Filter
+* Update Vendor
+* Restore Requests
 
----
+### Admin Module
 
-## Administrator
-
-- Login
-- View Vendor Applications
-- View Vendor Details
-- Approve Vendor Applications
-- Reject Vendor Applications
-- Restore Rejected Vendors
-- Delete Pending Applications
-- Manage Vendor Records
+* Dashboard
+* Vendor Review
+* Approval Workflow
+* Reject with Remarks
+* Restore Vendors
+* Delete Pending Vendors
 
 ---
 
 # 🚀 Future Enhancements
 
-- Email Notifications
-- Document Upload
-- Role-Based Access Control
-- Dashboard Analytics
-- Export Reports (Excel/PDF)
-- MySQL Integration
-- MongoDB Integration
-- JWT Authentication
-- REST API using Node.js & Express
-- Audit Logs
-- Vendor Performance Reports
+* JWT Authentication
+* MySQL Integration
+* MongoDB Support
+* Document Upload
+* Email Notifications
+* Dashboard Analytics
+* Export PDF & Excel
+* REST API with Node.js
+* Audit Logs
+* Role Based Access Control
 
 ---
 
-# 🏆 Conclusion
+# 👨‍💻 Developer
 
-**VendorFlow** provides a simple and efficient solution for managing vendor registration and approval workflows. With dedicated dashboards for vendors and administrators, the system ensures transparency, simplifies verification, and improves vendor management.
+**Sanjay Sam Mathew**
 
-The project demonstrates the practical implementation of **CRUD operations, vendor approval workflows, status tracking, form validation, Local Storage authentication, JSON Server integration, and responsive user interface development** using modern web technologies.
-````
+Final Year B.Sc Computer Technology
+
+---
+
+# ⭐ Support
+
+If you found this project useful, don't forget to ⭐ the repository.
