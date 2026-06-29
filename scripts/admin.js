@@ -1,4 +1,4 @@
-const API = "http://localhost:3000/vendorDetails"
+import { VENDOR_API } from "./config.js";
 
 let allVendors = [];
 let currentPage = 1;
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadVendors() {
     try {
-        const response = await fetch(`${API}?isDeleted=false`)
+        const response = await fetch(`${ VENDOR_API }?isDeleted=false`)
         const data = await response.json()
 
         data.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
@@ -136,6 +136,8 @@ function displayPage(page) {
     createPagination();
 }
 
+window.displayPage = displayPage;
+
 
 function createPagination() {
     const totalPages = Math.ceil(allVendors.length / rowsPerPage);
@@ -180,7 +182,7 @@ function createPagination() {
 async function loadVendorByStatus(status) {
     try {
         const response = await fetch(
-            `${API}?isDeleted=false&status=${status}`
+            `${ VENDOR_API }?isDeleted=false&status=${status}`
         );
 
         const vendors = await response.json();
@@ -216,7 +218,7 @@ $(".gradient-rejected").click(function () {
 
 async function viewVendor(id) {
     try {
-        const response = await fetch(`${API}/${id}`);
+        const response = await fetch(`${ VENDOR_API }/${id}`);
         const vendor = await response.json();
 
         $("#viewOrganization").text(vendor.organizationName);
@@ -269,6 +271,7 @@ async function viewVendor(id) {
         console.log(err);
     }
 }
+window.viewVendor = viewVendor;
 
 let currentVendorId = null;
 let currentAction = "";
@@ -298,7 +301,7 @@ const formattedRemarks =
         return;
     }
 
-    await fetch(`${API}/${currentVendorId}`, {
+    await fetch(`${ VENDOR_API }/${currentVendorId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -321,7 +324,7 @@ async function applyFilters() {
     const fromDate = $("#fromDate").val();
     const toDate = $("#toDate").val();
 
-    const response = await fetch(`${API}?isDeleted=false`);
+    const response = await fetch(`${ VENDOR_API }?isDeleted=false`);
     let vendors = await response.json();
 
     if (searchText) {

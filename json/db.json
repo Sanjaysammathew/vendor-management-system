@@ -35,14 +35,6 @@
       "password": "Sanjay@2005",
       "role": "admin",
       "id": "kWY8jaMZEGA"
-    },
-    {
-      "organizationName": "Vishal Groups",
-      "email": "vishal05@gmail.com",
-      "password": "Vishal@2005",
-      "gstNumber": "09AAACI1681G1ZF",
-      "role": "user",
-      "id": "lXGJQKJBMaY"
     }
   ],
   "vendorDetails": [
@@ -172,33 +164,15 @@
       "phone": "8940997874",
       "contactPerson": "Johan",
       "contactDesignation": "Manager",
-      "vendorType": "Office supplies",
+      "vendorType": "Office supply",
       "description": "Providing office supplies",
       "address": "123,thirumalai nagar ,coimbatore -06",
       "isDeleted": false,
       "status": "pending",
       "remarks": "",
       "createdAt": "2026-06-29T05:55:17.377Z",
-      "updatedAt": "2026-06-29T09:28:24.551Z",
+      "updatedAt": "2026-06-29T10:35:23.938Z",
       "id": "wJoAuzX0oyA"
-    },
-    {
-      "organizationName": "Vishal Groups",
-      "email": "vishal05@gmail.com",
-      "gstNumber": "09AAACI1681G1ZF",
-      "licenseNumber": "Fssai589017",
-      "phone": "8940997874",
-      "contactPerson": "Vasan",
-      "contactDesignation": "Manager",
-      "vendorType": "Food supply",
-      "description": "Providing food supplies",
-      "address": "123,indra nagar nallampalayam coimbatore -06",
-      "isDeleted": false,
-      "status": "approved",
-      "remarks": "It is approved within our budget",
-      "createdAt": "2026-06-29T10:03:52.294Z",
-      "updatedAt": "2026-06-29T10:10:17.962Z",
-      "id": "n0gBwaF4rHg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

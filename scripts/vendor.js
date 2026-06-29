@@ -1,6 +1,6 @@
+import { USER_API, VENDOR_API } from "./config.js";
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-const API="http://localhost:3000/vendorDetails"
-const USER_API = "http://localhost:3000/users";
+
 
 $("#orgName").val(loggedInUser.organizationName);
 $("#gst").val(loggedInUser.gstNumber);
@@ -17,7 +17,7 @@ $("#profileGST").text(loggedInUser.gstNumber);
 async function loadVendorProfile() {
 
        const response = await fetch(
-        `${API}?gstNumber=${loggedInUser.gstNumber}`
+        `${VENDOR_API}?gstNumber=${loggedInUser.gstNumber}`
     );
 
     const vendor = await response.json();
@@ -128,7 +128,7 @@ if (licenseNumber === "") {
 
     if (!isValid) return;
 
-    const response = await fetch(`${API}?licenseNumber=${licenseNumber}`);
+    const response = await fetch(`${VENDOR_API}?licenseNumber=${licenseNumber}`);
 const vendor = await response.json();
 
 if (vendor.length) {
@@ -161,7 +161,7 @@ if (vendor.length) {
 
     try {
 
-        const response = await fetch(API, {
+        const response = await fetch(VENDOR_API, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -202,7 +202,7 @@ async function loadVendorCards() {
     try {
 
         const response = await fetch(
-            `${API}?gstNumber=${loggedInUser.gstNumber}&isDeleted=false`
+            `${VENDOR_API}?gstNumber=${loggedInUser.gstNumber}&isDeleted=false`
         );
 
         const vendors = await response.json();
@@ -224,7 +224,7 @@ async function loadVendorCards() {
 //edit task
 async function editVendor(id) {
 
-    const response = await fetch(`${API}/${id}`);
+    const response = await fetch(`${VENDOR_API}/${id}`);
     const vendor = await response.json();
 
     console.log("Vendor ID:", id);
@@ -247,14 +247,14 @@ $("#editCreatedAt").val(
     new Date(vendor.createdAt).toLocaleDateString()
 );
 }
-
+window.editVendor = editVendor;
 // update Task
 
 $("#updateBtn").click(async function () {
 
     const id = $("#editId").val();
 
-    const response = await fetch(`${API}/${id}`);
+    const response = await fetch(`${VENDOR_API}/${id}`);
     const vendor = await response.json();
 
  const license = $("#editLicense").val().trim();
@@ -284,7 +284,7 @@ if (
 }
 
 // Check duplicate license number
-const checkResponse = await fetch(`${API}?licenseNumber=${license}`);
+const checkResponse = await fetch(`${VENDOR_API}?licenseNumber=${license}`);
 
 const vendors = await checkResponse.json();
 
@@ -342,7 +342,7 @@ if (
     updatedAt: new Date().toISOString()
 };
 
-    await fetch(`${API}/${id}`, {
+    await fetch(`${VENDOR_API}/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -377,7 +377,7 @@ async function deleteVendor(id) {
 
     try {
 
-        const response = await fetch(`${API}/${id}`);
+        const response = await fetch(`${VENDOR_API}/${id}`);
         const vendor = await response.json();
 
         const updatedVendor = {
@@ -386,7 +386,7 @@ async function deleteVendor(id) {
             updatedAt: new Date().toISOString()
         };
 
-        await fetch(`${API}/${id}`, {
+        await fetch(`${VENDOR_API}/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -406,13 +406,14 @@ async function deleteVendor(id) {
     }
 
 }
+window.deleteVendor = deleteVendor;
  //load deleted task 
 async function loadDeletedCards() {
 
     try {
 
         const response = await fetch(
-            `${API}?gstNumber=${loggedInUser.gstNumber}&isDeleted=true`
+            `${VENDOR_API}?gstNumber=${loggedInUser.gstNumber}&isDeleted=true`
         );
 
         const vendors = await response.json();
@@ -574,13 +575,13 @@ $("#restoreBtn").click(function () {
 //function to restore the task 
 async function restoreVendor(id) {
 
-    const response = await fetch(`${API}/${id}`);
+    const response = await fetch(`${VENDOR_API}/${id}`);
     const vendor = await response.json();
 
     vendor.isDeleted = false;
     vendor.updatedAt = new Date().toISOString();
 
-    await fetch(`${API}/${id}`, {
+    await fetch(`${VENDOR_API}/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -601,6 +602,8 @@ async function restoreVendor(id) {
 $(".gradient-all").click(function () {
     loadVendorCards();
 });
+
+window.restoreVendor = restoreVendor;
 
 
 
@@ -770,7 +773,7 @@ async function loadVendorByStatus(status) {
     try {
 
         const response = await fetch(
-            `${API}?gstNumber=${loggedInUser.gstNumber}&isDeleted=false&status=${status}`
+            `${VENDOR_API}?gstNumber=${loggedInUser.gstNumber}&isDeleted=false&status=${status}`
         );
 
         const vendors = await response.json();
@@ -852,7 +855,7 @@ async function applyFilters() {
     const toDate = $("#toDate").val();
 
     const response = await fetch(
-        `${API}?gstNumber=${loggedInUser.gstNumber}&isDeleted=false`
+        `${VENDOR_API}?gstNumber=${loggedInUser.gstNumber}&isDeleted=false`
     );
 
     let vendors = await response.json();
@@ -899,7 +902,7 @@ $("#clearFiltersBtn").click(function () {
 
 async function viewVendor(id){
 
-    const response = await fetch(`${API}/${id}`);
+    const response = await fetch(`${VENDOR_API}/${id}`);
     const vendor = await response.json();
 
    $("#viewOrganization").text(vendor.organizationName || "-");
@@ -973,6 +976,7 @@ $("#viewRemarks").text(vendor.remarks || "No remarks available");
         });
 
 }
+window.viewVendor = viewVendor;
 
 function countStat(vendors) {
 
@@ -1004,11 +1008,21 @@ $("#editProfileBtn").click(async function () {
 
     try {
 
-           const response = await fetch(
-            `${USER_API}?email=${loggedInUser.email}`
-        );
+       const response = await fetch(
+    `${USER_API}?id=${loggedInUser.id}`
+);
 
-        const vendors = await response.json();
+const vendors = await response.json();
+
+if (vendors.length === 0) {
+    Swal.fire({
+        icon: "error",
+        title: "Profile not found"
+    });
+    return;
+}
+
+
 
         if (!vendors.length) {
             Swal.fire({

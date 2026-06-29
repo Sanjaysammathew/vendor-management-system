@@ -1,4 +1,4 @@
-const API = "http://localhost:3000/users";
+import { USER_API } from "./config.js";
 
 const emailRegex = /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/;
 const passRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
@@ -155,7 +155,7 @@ async function registerUser() {
 const email = $("#email").val().trim();
 const gstNumber = $("#gst").val().trim().toUpperCase();
 
-const emailRes = await fetch(`${API}?email=${email}`);
+const emailRes = await fetch(`${ USER_API}?email=${email}`);
 const emailUsers = await emailRes.json();
 
 if (emailUsers.length > 0) {
@@ -167,7 +167,7 @@ if (emailUsers.length > 0) {
     return;
 }
 
-const gstRes = await fetch(`${API}?gstNumber=${gstNumber}`);
+const gstRes = await fetch(`${ USER_API}?gstNumber=${gstNumber}`);
 const gstUsers = await gstRes.json();
 
 if (gstUsers.length > 0) {
@@ -187,7 +187,7 @@ if (gstUsers.length > 0) {
     role: "user" 
 };
 
-        await fetch(API, {
+        await fetch( USER_API, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -273,7 +273,7 @@ async function loginUser() {
             return;
         }
 
-        const response = await fetch(`${API}?email=${email}`);
+        const response = await fetch(`${ USER_API}?email=${email}`);
         const users = await response.json();
 
         if (users.length === 0) {
