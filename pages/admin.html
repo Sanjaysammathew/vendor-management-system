@@ -124,11 +124,10 @@
                                 Successfully completed
                             </p>
                             <div class="progress mt-3" style="height:6px;">
-    <div id="completedProgress"
-         class="progress-bar bg-success"
-         style="width:0%">
-    </div>
-</div>
+                               <div id="completedProgress"
+                                   class="progress-bar bg-success"style="width:0%">
+                               </div>
+                           </div>
                         </div>
 
                         <div class="icon completed-icon">
@@ -161,11 +160,9 @@
                             </p>
 
                             <div class="progress mt-3" style="height:6px;">
-    <div id="pendingProgress"
-         class="progress-bar bg-warning"
-         style="width:0%">
-    </div>
-</div>
+                               <div id="pendingProgress" class="progress-bar bg-warning"style="width:0%">
+                              </div>
+                          </div>
                         </div>
 
                         <div class="icon pending-icon">
@@ -197,12 +194,10 @@
                                 Declined contracts
                             </p>
                             <div class="progress mt-3" style="height:6px;">
-    <div id="rejectedProgress"
-         class="progress-bar bg-danger"
-         style="width:0%">
-    </div>
-</div>
-                        </div>
+                               <div id="rejectedProgress" class="progress-bar bg-danger" style="width:0%">
+                                  </div>
+                                </div>
+                          </div>
 
                         <div class="icon rejected-icon">
                             <i class="bi bi-x-circle-fill"></i>
@@ -215,7 +210,8 @@
         </div>
     </div>
 
-    <!-- Search & Filter Section (Outside Table Card) -->
+    <!-- Search & Filter Section  -->
+
 <div class="container my-4">
     <div class="p-4 bg-white rounded-4 shadow-sm border border-light">
         <div class="row g-3 align-items-end">
@@ -292,8 +288,11 @@
     </div>
 </div>
 
+   <!-- Table Section -->
 
 <div class="container my-4 p-3" id="vendorTableSection">
+
+    <!-- Table Title -->
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="fw-bold mb-0">
@@ -301,8 +300,12 @@
             <span class="text-success" id="recordTitle">Vendor Records</span>
         </h3>
     </div>
+      
+     <!-- If no records found  it display the text it does not have any records -->
 
     <div id="noRecord"></div>
+   
+    <!-- Table to display Records -->
 
     <div class="table-responsive">
         <table class="table table-hover table-striped">
@@ -322,6 +325,8 @@
             </tbody>
         </table>
     </div>
+     
+     <!-- pagination section -->
 
     <div class="d-flex justify-content-center mt-4">
         <nav>
@@ -331,6 +336,7 @@
 
 </div>
 
+<!-- Offcanvas to shows the admin details  -->
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="userProfile">
     <div class="offcanvas-header">

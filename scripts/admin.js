@@ -1,16 +1,24 @@
+// Importing API from config.js
+
 import { VENDOR_API } from "./config.js";
 
-let allVendors = [];
-let currentPage = 1;
-const rowsPerPage = 5;
 
+let allVendors = []; // to store the detched records from db.json
+
+let currentPage = 1; // Initializing Current Page It will increase if next button is clicked
+
+const rowsPerPage = 5; // TO store how many rows should be displayed in one page
+
+
+// Add event Listner when pages refresh it will load these details and function
 document.addEventListener("DOMContentLoaded", () => {
-    const currentUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-    loadVendors();
+    const currentUser = JSON.parse(localStorage.getItem("loggedInUser")); //Getting data from local storage
 
-    console.log(allVendors.length, document.getElementById("pagination"));
+    loadVendors(); // Show the fetched Records
 
+    
+    // It is to display the records  in off canvas
     $('#userProfile').on('show.bs.offcanvas', function () {
         if (currentUser) {
             $("#dropdownUsername").text(currentUser.organizationName || "User");
@@ -25,11 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
             console.warn("Failed loading profiles: 'currentUser' was missing from localStorage.");
         }
     });
-
+  
+    // To show the name near profile
     if (currentUser) {
         $("#navUsername").text(currentUser.organizationName);
     }
-
+    
+    // if filter button is clicked  it should be active
     const buttons = document.querySelectorAll("#button-container .btn");
     buttons.forEach(button => {
         button.addEventListener("click", function () {
@@ -40,25 +50,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+//this function will display the fetched records
 
 async function loadVendors() {
     try {
         const response = await fetch(`${ VENDOR_API }?isDeleted=false`)
         const data = await response.json()
 
-        data.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+        data.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)) // sort the latest update task first
 
-        allVendors = data;
-        countStat(data);
+        allVendors = data; // it stores fetched records in array which decalred globally
+
+        countStat(data);  // This function is used to count the records dsipaly in stat cards
 
         currentPage = 1;
-        displayPage(currentPage);
+        displayPage(currentPage); // it shows the recordsin first page (pagination)
 
     } catch (err) {
         console.log(err);
     }
 }
 
+ // This function is used to store the details in table drom database
 
 function displayVendorCards(data) {
     const table = document.getElementById("vendorTableBody")
@@ -124,6 +137,7 @@ function displayVendorCards(data) {
 }
 
 
+// This function is for pagination to display the records 
 function displayPage(page) {
     currentPage = page;
 
@@ -136,9 +150,10 @@ function displayPage(page) {
     createPagination();
 }
 
-window.displayPage = displayPage;
+window.displayPage = displayPage; // This is to prevent error for using onclick in button
 
 
+// This function is used to  create buttons next previous and increment current pages
 function createPagination() {
     const totalPages = Math.ceil(allVendors.length / rowsPerPage);
 
@@ -178,7 +193,7 @@ function createPagination() {
     $("#pagination").html(html);
 }
 
-
+// this function is used to dispaly records  based on the filter such as all completed pending
 async function loadVendorByStatus(status) {
     try {
         const response = await fetch(
@@ -195,26 +210,31 @@ async function loadVendorByStatus(status) {
         console.log(err);
     }
 }
-
+// if click  all button  it load function display all task
 $(".gradient-all").click(function () {
     loadVendors();
     scrollToTable();
 });
 
+//completed Button
 $(".gradient-completed").click(function () {
     loadVendorByStatus("approved");
     scrollToTable();
 });
 
+//Pending Button
 $(".gradient-pending").click(function () {
     loadVendorByStatus("pending");
     scrollToTable();
 });
 
+//Rejected Button
 $(".gradient-rejected").click(function () {
     loadVendorByStatus("rejected");
     scrollToTable();
 });
+
+// Function to view all details stored in database
 
 async function viewVendor(id) {
     try {
@@ -249,8 +269,10 @@ async function viewVendor(id) {
 
         $("#statusBadge").html(badge);
 
-        $("#approveBtn").data("id", vendor.id);
-        $("#rejectBtn").data("id", vendor.id);
+        $("#approveBtn").data("id", vendor.id); // storing id for approval so it will helpful to differentiate the buttons
+        $("#rejectBtn").data("id", vendor.id); // storing id fot reject
+
+            // If status is pending it show the buttons update and delete or else it hides
 
         if (vendor.status === "pending") {
             $("#actionButtons").show();
@@ -276,6 +298,7 @@ window.viewVendor = viewVendor;
 let currentVendorId = null;
 let currentAction = "";
 
+ // this modal for the approval and reject
 $("#approveBtn").click(function () {
     currentVendorId = $(this).data("id");
     currentAction = "approved";
@@ -289,6 +312,8 @@ $("#rejectBtn").click(function () {
     $("#remarksTitle").text("Reject Vendor");
     $("#remarksInput").val("");
 });
+
+// once submit button is clciked status and remarks are posted to database along with updated date
 
 $("#submitRemarksBtn").click(async function () {
      const remarks = $("#remarksInput").val().trim();
@@ -314,10 +339,12 @@ const formattedRemarks =
     bootstrap.Modal.getInstance(document.getElementById("remarksModal")).hide();
     bootstrap.Modal.getInstance(document.getElementById("viewVendorModal")).hide();
 
-    loadVendors();
+    loadVendors(); //loading all the records   after updating
 
     Swal.fire("Success", `Vendor ${currentAction} successfully.`, "success");
 });
+
+// This function is used for search filter 
 
 async function applyFilters() {
     const searchText = $("#searchVendor").val().toLowerCase().trim();
@@ -350,6 +377,8 @@ async function applyFilters() {
     displayPage(currentPage);
 }
 
+// Real time validations
+
 $("#searchVendor").on("input", applyFilters);
 $("#fromDate").on("change", applyFilters);
 $("#toDate").on("change", applyFilters);
@@ -361,6 +390,7 @@ $("#clearFiltersBtn").click(function () {
     loadVendors();
 });
 
+// This function is used to count the stats and show it in the stat card
 function countStat(data) {
     const total = data.length;
     const completed = data.filter(v => v.status === "approved").length;
@@ -377,6 +407,8 @@ function countStat(data) {
     $("#pendingProgress").css("width", (pending / total) * 100 + "%");
     $("#rejectedProgress").css("width", (rejected / total) * 100 + "%");
 }
+
+// Logout
 
 $("#logoutBtn").click(async function () {
     const result = await Swal.fire({
@@ -405,19 +437,25 @@ $("#logoutBtn").click(async function () {
     }, 1500);
 });
 
+// Function to prevent typing in date search filter
 $("#fromDate, #toDate").on("keydown paste", function (e) {
     e.preventDefault();
 });
 
+// It is  used to captilize  the first word 
 function capitalize(text) {
     return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
 }
+
+// this function is used to scroll if click any filter buttons
+
 function scrollToTable() {
     document.getElementById("vendorTableSection").scrollIntoView({
         behavior: "smooth",
         block: "start"
     });
 }
+
 
 $("#totalCard").click(function () {
     loadVendors();

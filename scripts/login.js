@@ -1,15 +1,21 @@
+
+// Import API from Config.js
 import { USER_API } from "./config.js";
+
+//Regex
 
 const emailRegex = /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/;
 const passRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
 const gstRegex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
-const nameRegex = /^[A-Za-z0-9#@ ]+$/;
+const nameRegex = /^(?=.{2,15}$)[A-Za-z ]+$/;
 
+// Set error for validations
 function setError(input, errorDiv, message) {
     $("#" + errorDiv).text(message);
     $(input).addClass("is-invalid").removeClass("is-valid");
 }
 
+//Clear Error
 function clearError(input, errorDiv) {
     $("#" + errorDiv).text("");
     $(input).addClass("is-valid").removeClass("is-invalid");
@@ -24,8 +30,8 @@ function validateName() {
         return false;
     }
 
-    if (value.length < 3) {
-        setError("#org", "error-loginName", "Minimum 3 characters required");
+    if (value.length < 2) {
+        setError("#org", "error-loginName", "Minimum 2 characters required");
         return false;
     }
 
@@ -33,7 +39,7 @@ function validateName() {
         setError(
             "#org",
             "error-loginName",
-            "Only letters, numbers, # and @ are allowed"
+            "Must contain Letters maximum 15 letters allowed"
         );
         return false;
     }
@@ -137,10 +143,13 @@ $("#regPassword").on("input", function () {
     validateConfirmPassword();
 });
 
+// validate passwords
 $("#confirmPassword").on("input", validateConfirmPassword);
 
+//validate GST
 $("#gst").on("input", validateGST);
 
+// Register the user and post records to the database
 async function registerUser() {
     try {
         if (
@@ -179,9 +188,12 @@ if (gstUsers.length > 0) {
     return;
 }
 
+const emailData = $("#email").val().trim().toLowerCase();
+
+// This is object to store data and send to database
         const user = {
       organizationName: capitalizeWords($("#org").val().trim()),
-    email: $("#email").val().trim(),
+    email: emailData,
     password: $("#regPassword").val(),
     gstNumber: $("#gst").val().trim().toUpperCase(),
     role: "user" 
@@ -207,6 +219,9 @@ if (gstUsers.length > 0) {
     document.getElementById("registerModal")
 ).hide();
 
+
+// clears the data
+
         $("#org").val("");
         $("#email").val("");
         $("#regPassword").val("");
@@ -228,8 +243,11 @@ if (gstUsers.length > 0) {
         console.error(error);
     }
 }
+// Register button is clciked Function is called
 
 $("#register").on("click", registerUser);
+
+// Email validation for login
 
 function validateLoginEmail() {
     const value = $("#loginEmail").val().trim();
@@ -258,10 +276,11 @@ function validateLoginEmail() {
 
 $("#loginEmail").on("input", validateLoginEmail);
 
+// Login 
 async function loginUser() {
     try {
 
-        const email = $("#loginEmail").val().trim();
+         const email = $("#loginEmail").val().trim().toLowerCase();
         const password = $("#password").val().trim();
 
         if (email === "" || password === "") {
@@ -327,6 +346,7 @@ async function loginUser() {
 
 $("#login").on("click", loginUser);
 
+// captalize the first words
 function capitalizeWords(text) {
     return text
         .toLowerCase()

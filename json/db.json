@@ -35,6 +35,22 @@
       "password": "Sanjay@2005",
       "role": "admin",
       "id": "kWY8jaMZEGA"
+    },
+    {
+      "organizationName": "Santhosh Groups",
+      "email": "santhosh05@gmail.com",
+      "password": "Santhosh@2005",
+      "gstNumber": "33AAAPL1234C1ZJ",
+      "role": "user",
+      "id": "V-nqJIosYKQ"
+    },
+    {
+      "organizationName": "Ravi Groups",
+      "email": "ravi@gmail.com",
+      "password": "Ravi123@",
+      "gstNumber": "29ABCDE1234F1Z6",
+      "role": "user",
+      "id": "7oPCIHkPsSM"
     }
   ],
   "vendorDetails": [
@@ -47,13 +63,13 @@
       "vendorType": "Electrical appliance",
       "description": "Providing electrical appliances and service to them",
       "address": "123,thirumalai nagar ,coimbatore -06",
-      "isDeleted": false,
-      "status": "rejected",
-      "remarks": "It is not within our budget so repropse the ide and come",
+      "isDeleted": true,
+      "status": "pending",
+      "remarks": "",
       "createdAt": "2026-06-25T08:41:38.876Z",
-      "updatedAt": "2026-06-29T09:31:24.641Z",
+      "updatedAt": "2026-06-29T15:12:48.573Z",
       "id": "G04w4vh6yVo",
-      "contactPerson": "Krithick",
+      "contactPerson": "Krithi",
       "contactDesignation": "Product lead"
     },
     {
@@ -94,17 +110,19 @@
       "organizationName": "SPK Groups",
       "email": "spkgroups@gmail.com",
       "gstNumber": "29ABCDE1234F1Z5",
-      "licenseNumber": "MECH102345",
+      "licenseNumber": "Mech102345",
       "phone": "9080763516",
-      "vendorType": "Mechanical Equipments",
-      "description": "Providing Mechanical appliance and service to them",
-      "address": "123,Nehru Nagar ,coimbatore -06",
-      "isDeleted": true,
+      "vendorType": "Mechanical equipments",
+      "description": "Providing mechanical appliance and service to them",
+      "address": "123,nehru nagar ,coimbatore -06",
+      "isDeleted": false,
       "status": "pending",
       "remarks": "",
       "createdAt": "2026-06-25T12:54:12.580Z",
-      "updatedAt": "2026-06-29T07:38:10.742Z",
-      "id": "aeuMZgTxDBI"
+      "updatedAt": "2026-06-29T15:11:37.256Z",
+      "id": "aeuMZgTxDBI",
+      "contactPerson": "Johan",
+      "contactDesignation": "Manager"
     },
     {
       "organizationName": "KG Groups",
@@ -153,7 +171,7 @@
       "status": "pending",
       "remarks": "",
       "createdAt": "2026-06-27T07:09:11.720Z",
-      "updatedAt": "2026-06-29T09:32:47.312Z",
+      "updatedAt": "2026-06-29T15:34:46.101Z",
       "id": "k69vlPp4s5w"
     },
     {
@@ -173,6 +191,60 @@
       "createdAt": "2026-06-29T05:55:17.377Z",
       "updatedAt": "2026-06-29T10:35:23.938Z",
       "id": "wJoAuzX0oyA"
+    },
+    {
+      "organizationName": "Santhosh Groups",
+      "email": "santhosh05@gmail.com",
+      "gstNumber": "33AAAPL1234C1ZJ",
+      "licenseNumber": "It4567",
+      "phone": "8940997874",
+      "contactPerson": "Sanjay",
+      "contactDesignation": "Manager",
+      "vendorType": "Office supply",
+      "description": "Providing office supplies",
+      "address": "123,thirumalai nagar ,coimbatore -06",
+      "isDeleted": false,
+      "status": "pending",
+      "remarks": "",
+      "createdAt": "2026-06-29T15:05:10.660Z",
+      "updatedAt": "2026-06-29T15:05:10.660Z",
+      "id": "ZbfnoiiXQ50"
+    },
+    {
+      "organizationName": "SPK Group",
+      "email": "spkgroups@gmail.com",
+      "gstNumber": "29ABCDE1234F1Z5",
+      "licenseNumber": "Iteq456731",
+      "phone": "8940997874",
+      "contactPerson": "Sanjay",
+      "contactDesignation": "Manager",
+      "vendorType": "Office supply",
+      "description": "Providing office supplies",
+      "address": "123,thirumalai nagar ,coimbatore -06",
+      "isDeleted": false,
+      "status": "pending",
+      "remarks": "",
+      "createdAt": "2026-06-29T15:08:47.242Z",
+      "updatedAt": "2026-06-29T15:08:47.242Z",
+      "id": "SYQwqVxVlb0"
+    },
+    {
+      "organizationName": "SPK Group",
+      "email": "spkgroups@gmail.com",
+      "gstNumber": "29ABCDE1234F1Z5",
+      "licenseNumber": "Iteq456730",
+      "phone": "8940997874",
+      "contactPerson": "Sanjay",
+      "contactDesignation": "Manager",
+      "vendorType": "Office supply",
+      "description": "Providing office supplies",
+      "address": "Ganapahi",
+      "isDeleted": false,
+      "status": "pending",
+      "remarks": "",
+      "createdAt": "2026-06-29T15:16:29.980Z",
+      "updatedAt": "2026-06-29T15:19:55.882Z",
+      "id": "uhjm25Reyik"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

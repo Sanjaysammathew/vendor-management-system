@@ -1,11 +1,13 @@
+// Import API from config js
 import { USER_API, VENDOR_API } from "./config.js";
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-
+// It is to display the records for the add modal 
 $("#orgName").val(loggedInUser.organizationName);
 $("#gst").val(loggedInUser.gstNumber);
 $("#addEmail").val(loggedInUser.email);
 
+// It provides data to the user profile offcanvas
 $("#navUsername").text(loggedInUser.organizationName);
 $("#dropdownUsername").text(loggedInUser.organizationName);
 
@@ -13,35 +15,11 @@ $("#profileOrg").text(loggedInUser.organizationName);
 $("#profileEmail").text(loggedInUser.email);
 $("#profileGST").text(loggedInUser.gstNumber);
 
-// off canvas details like phone number
-async function loadVendorProfile() {
 
-       const response = await fetch(
-        `${VENDOR_API}?gstNumber=${loggedInUser.gstNumber}`
-    );
-
-    const vendor = await response.json();
-
-    if(vendor.length > 0){
-
-        const details = vendor[0];
-
-        $("#profileNumber").text(details.phone);
-        $("#profileLicense").text(details.licenseNumber);
-        $("#profileAddress").text(details.address);
-
-    }else{
-
-        $("#profileNumber").text("-");
-        $("#profileLicense").text("-");
-        $("#profileAddress").text("-");
-    
-    }
-
-}
  
 //phone number regex
 const phoneRegex = /^[6-9]\d{9}$/;
+const licenseRegex = /^(?=(?:.*[A-Za-z]){2,})[A-Za-z0-9]{2,10}$/;
 
 $("#number").on("input", function () {
 
@@ -59,7 +37,8 @@ $("#number").on("input", function () {
 
 });
 
-//to check all fileds are completed and post details to db
+
+//To check all fileds are completed and post details to db
 $("#saveBtn").click(async function () {
 
     let isValid = true;
@@ -103,13 +82,14 @@ const contactDesignation = capitalizeFirst($("#contactDesignation").val().trim()
         $("#error-address").text("");
     }
 
+    // Contact person
     if (contactPerson === "") {
     $("#error-contactPerson").text("Contact Person is required");
     isValid = false;
 } else {
     $("#error-contactPerson").text("");
 }
-
+ // Contact Designation
 if (contactDesignation === "") {
     $("#error-contactDesignation").text("Designation is required");
     isValid = false;
@@ -117,8 +97,12 @@ if (contactDesignation === "") {
     $("#error-contactDesignation").text("");
 }
 
+//License Number
 if (licenseNumber === "") {
     $("#error-license").text("License Number is required");
+    isValid = false;
+} else if (!licenseRegex.test(licenseNumber)) {
+    $("#error-license").text("License must contain 2 letters followed by 8 digits.");
     isValid = false;
 } else {
     $("#error-license").text("");
@@ -127,14 +111,16 @@ if (licenseNumber === "") {
 
 
     if (!isValid) return;
-
-    const response = await fetch(`${VENDOR_API}?licenseNumber=${licenseNumber}`);
-const vendor = await response.json();
+ // This fetch is used to check duplicates of license
+    const response = await fetch(`${VENDOR_API}?licenseNumber=${licenseNumber}`); 
+    const vendor = await response.json();
 
 if (vendor.length) {
     $("#error-license").text("License Number already exists");
     return;
 }
+
+// This object stores the data that is sending to database
 
       const vendorData = {
     organizationName: loggedInUser.organizationName,
@@ -159,6 +145,7 @@ if (vendor.length) {
     updatedAt: new Date().toISOString()
 };
 
+ // Posting the data to db.json
     try {
 
         const response = await fetch(VENDOR_API, {
@@ -197,6 +184,7 @@ if (vendor.length) {
 
 });
 
+// Fetching the task form db.json
 async function loadVendorCards() {
 
     try {
@@ -248,6 +236,8 @@ $("#editCreatedAt").val(
 );
 }
 window.editVendor = editVendor;
+
+
 // update Task
 
 $("#updateBtn").click(async function () {
@@ -265,6 +255,7 @@ const contactDesignation = $("#editContactDesignation").val().trim();
 const description = $("#editDesc").val().trim();
 const address = $("#editAddress").val().trim();
 
+// Checkiing all fields are required
 if (
     license === "" ||
     phone === "" ||
@@ -283,7 +274,7 @@ if (
     return;
 }
 
-// Check duplicate license number
+// Check duplicate license number while updating
 const checkResponse = await fetch(`${VENDOR_API}?licenseNumber=${license}`);
 
 const vendors = await checkResponse.json();
@@ -300,6 +291,9 @@ if (duplicateVendor) {
 
     return;
 }
+
+// This line of code is used to check if edit is clicked nothing changed
+// trying to save the details again it shows error that modify and save
 
 const updatedLicense = capitalizeFirst($("#editLicense").val().trim());
 const updatedPhone = $("#editPhone").val().trim();
@@ -327,6 +321,7 @@ if (
     return;
 }
 
+// This object stores the data that want to be updated
   const updatedVendor = {
     ...vendor,
 
@@ -361,7 +356,7 @@ if (
 
 });
 
-//delete task
+//delete task (soft delete)
 
 async function deleteVendor(id) {
 
@@ -407,7 +402,9 @@ async function deleteVendor(id) {
 
 }
 window.deleteVendor = deleteVendor;
- //load deleted task 
+
+
+ //load deleted task when user click restore button
 async function loadDeletedCards() {
 
     try {
@@ -572,7 +569,7 @@ $("#restoreBtn").click(function () {
     loadDeletedCards();
 });
 
-//function to restore the task 
+//function to restore the task  when restore button is clicked
 async function restoreVendor(id) {
 
     const response = await fetch(`${VENDOR_API}/${id}`);
@@ -597,7 +594,7 @@ async function restoreVendor(id) {
     loadDeletedCards(); // Refresh deleted list
 }
 
-// if we clcik all it go to normal page
+// if clcik all button it go to normal page
 
 $(".gradient-all").click(function () {
     loadVendorCards();
@@ -606,6 +603,8 @@ $(".gradient-all").click(function () {
 window.restoreVendor = restoreVendor;
 
 
+// This function contains the cards which stores the fetched records
+// It will be called in loadVendors 
 
 function displayVendorCards(vendors) {
 
@@ -768,6 +767,7 @@ function displayVendorCards(vendors) {
 
 }
 
+// This function is used to fectch task based on the filter button all completed rejected and pending
 async function loadVendorByStatus(status) {
 
     try {
@@ -785,6 +785,9 @@ async function loadVendorByStatus(status) {
     }
 }
 
+// These add event listner click filter button it load fetched task based on the filter
+
+// All
 $(".gradient-all").click(function () {
 
     showVendorRecords();
@@ -798,6 +801,7 @@ $(".gradient-all").click(function () {
 
 });
 
+// Pending
 $(".gradient-pending").click(function () {
     showVendorRecords();
     loadVendorByStatus("pending");
@@ -808,6 +812,7 @@ $(".gradient-pending").click(function () {
     });
 });
 
+//Completed
 $(".gradient-completed").click(function () {
     showVendorRecords();
     loadVendorByStatus("approved");
@@ -818,6 +823,8 @@ $(".gradient-completed").click(function () {
     });
 });
 
+
+//Rejecteds
 $(".gradient-rejected").click(function () {
     showVendorRecords();
     loadVendorByStatus("rejected");
@@ -828,6 +835,7 @@ $(".gradient-rejected").click(function () {
     });
 });
 
+// This is helper function decide what color should be used for status buttons
 function getBadgeClass(status) {
 
     switch (status.toLowerCase()) {
@@ -847,7 +855,7 @@ function getBadgeClass(status) {
 
 }
 
-
+// This function is used to search the records by name and fetched records by using dates also
 async function applyFilters() {
 
     const searchText = $("#taskSearch").val().toLowerCase().trim();
@@ -884,6 +892,7 @@ async function applyFilters() {
     displayVendorCards(vendors);
 }
 
+// Real time validations
 
 $("#taskSearch").on("input", applyFilters);
 
@@ -900,6 +909,7 @@ $("#clearFiltersBtn").click(function () {
     loadVendorCards();
 });
 
+// This function is used to display task in view modal
 async function viewVendor(id){
 
     const response = await fetch(`${VENDOR_API}/${id}`);
@@ -935,15 +945,23 @@ $("#viewRemarks").text(vendor.remarks || "No remarks available");
         </span>`
     );
 
-    if (vendor.status.toLowerCase() === "approved") {
+  if (vendor.isDeleted) {
 
     $("#viewUpdateBtn").hide();
     $("#viewDeleteBtn").hide();
+    $("#viewRestoreBtn").show();
+
+} else if (vendor.status.toLowerCase() === "approved") {
+
+    $("#viewUpdateBtn").hide();
+    $("#viewDeleteBtn").hide();
+    $("#viewRestoreBtn").hide();
 
 } else {
 
     $("#viewUpdateBtn").show();
     $("#viewDeleteBtn").show();
+    $("#viewRestoreBtn").hide();
 
 }
 
@@ -963,6 +981,17 @@ $("#viewRemarks").text(vendor.remarks || "No remarks available");
 
         });
 
+        $("#viewRestoreBtn")
+    .off("click")
+    .on("click", function () {
+
+        bootstrap.Modal.getInstance(
+            document.getElementById("viewModal")
+        ).hide();
+
+        restoreVendor(id);
+    });
+
     $("#viewDeleteBtn")
         .off("click")
         .on("click",function(){
@@ -977,6 +1006,9 @@ $("#viewRemarks").text(vendor.remarks || "No remarks available");
 
 }
 window.viewVendor = viewVendor;
+
+
+// This function is used  Count records and display in stat cards
 
 function countStat(vendors) {
 
@@ -1004,6 +1036,8 @@ function countStat(vendors) {
     document.getElementById("rejectedCount").textContent = rejected;
 }
 
+
+// This Function helps to edit the profile details 
 $("#editProfileBtn").click(async function () {
 
     try {
@@ -1058,6 +1092,9 @@ if (vendors.length === 0) {
     }
 
 });
+
+
+// updates the profile detail
 
 $("#updateProfileBtn").click(async function () {
 
@@ -1152,6 +1189,8 @@ $("#updateProfileBtn").click(async function () {
 
 });
 
+//Logout
+
 $("#logoutBtn").click(async function () {
 
     const result = await Swal.fire({
@@ -1181,13 +1220,16 @@ $("#logoutBtn").click(async function () {
 
 });
 
+//  this addEventListner is executed when page is reloaded
+
 document.addEventListener('DOMContentLoaded', () => {
     loadVendorCards()
-    loadVendorProfile()
+
     const buttons = document.querySelectorAll('#button-container .btn');
     const restoreBtn = document.getElementById('restoreBtn');
 
-  
+  // This helps to set button active when user clicks
+
     buttons.forEach(button => {
         button.addEventListener('click', () => {
             buttons.forEach(btn => btn.classList.remove('active'));
@@ -1209,7 +1251,7 @@ if (restoreBtn) {
 }
 });
 
-
+// This will not let user to type on date filter
 $("#fromDate, #toDate").on("keydown paste", function (e) {
     e.preventDefault();
 });
@@ -1226,6 +1268,9 @@ $("#restoreBtn").click(function () {
     $("#recordTitle").text("Deleted Records");
 });
 
+// This function is used for changing title if user click restore
+//It shows deleted Task as title and any other button it shows vendor records as title
+
 function showVendorRecords() {
 
     $("#recordTitle").text("Vendor Records");
@@ -1235,9 +1280,12 @@ function showVendorRecords() {
     $("#button-container .btn").removeClass("active");
 }
 
+//Capitalize the first word
 function capitalize(text) {
     return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
 }
+
+// Card is clicked it shows the records 
 
 $("#totalCard").click(function () {
 
