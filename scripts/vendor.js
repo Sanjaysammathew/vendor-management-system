@@ -272,7 +272,8 @@ if (license === "" || vendorType === "" || description === "") {
     contactDesignation: $("#editContactDesignation").val().trim(),
     description: $("#editDesc").val().trim(),
     address: $("#editAddress").val().trim(),
-
+    status: vendor.status === "rejected" ? "pending" : vendor.status,
+    remarks: vendor.status === "rejected" ? "" : vendor.remarks,
     updatedAt: new Date().toISOString()
 };
 
